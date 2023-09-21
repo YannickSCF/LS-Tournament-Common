@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace YannickSCF.LSTournaments.Common.Models {
 
-    public enum AtheletInfoType { Name, Surname, BirthDate, Country, Academy, School, Rank, Styles, SaberColor, StartDate, Tier };
+    public enum AthleteInfoType { Name, Surname, BirthDate, Country, Academy, School, Rank, Styles, SaberColor, StartDate, Tier };
     public enum RankType { Novizio, Iniziato, Accademico, Cavaliere, MaestroDiScuola }
     public enum SubRankType { Long, Dual, Staff }
     public enum StyleType {
@@ -17,8 +17,8 @@ namespace YannickSCF.LSTournaments.Common.Models {
 
     public enum FullNameType { SurnameName, NameSurname }
 
-    [System.Serializable]
-    public class AthleteInfo {
+    [Serializable]
+    public class AthleteInfoModel {
         // Personal Information
         [SerializeField] private string _name;
         [SerializeField] private string _surname;
@@ -54,7 +54,9 @@ namespace YannickSCF.LSTournaments.Common.Models {
         #endregion
 
         #region Constructors
-        public AthleteInfo() { }
+        public AthleteInfoModel() {
+            _styles = new List<StyleType>();
+        }
         #endregion
 
         #region Public methods
