@@ -1,3 +1,4 @@
+// Dependencies
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace YannickSCF.LSTournaments.Common.Models {
 
         #region Properties
         public string Name { get => _name; }
-        public List<AthleteInfoModel> Athletes { get => _athletes; }
+        public List<AthleteInfoModel> Athletes { get => _athletes; set => _athletes = value; }
         #endregion
 
         #region Constuctors
