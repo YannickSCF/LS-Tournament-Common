@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca25548d231028346ad45f944206b08c, type: 3}
+  m_Name: Tester 3
+  m_EditorClassIdentifier: 
+  _athletes:
+  - _name: Name 0
+    _surname: Surname 0
+    _country: IT
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 1
+    _surname: Surname 1
+    _country: ES
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 2
+    _surname: Surname 2
+    _country: IT
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 3
+    _surname: Surname 3
+    _country: IT
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 4
+    _surname: Surname 4
+    _country: GB
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 5
+    _surname: Surname 5
+    _country: GB
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 6
+    _surname: Surname 6
+    _country: IT
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 7
+    _surname: Surname 7
+    _country: FR
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 8
+    _surname: Surname 8
+    _country: ES
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 9
+    _surname: Surname 9
+    _country: ES
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 10
+    _surname: Surname 10
+    _country: FR
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 11
+    _surname: Surname 11
+    _country: GB
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _name: Name 12
+    _surname: Surname 12
+    _country: IT
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  _numPoules: 8
+  _maxPouleSize: 4
+  _namingType: 0
+  _pouleRounds: 1
+  _builderType: 0
+  _builderSubtype: 1
