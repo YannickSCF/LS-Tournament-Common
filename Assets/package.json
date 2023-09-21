@@ -1,0 +1,13 @@
+{
+  "name": "com.yannickscf.ls-tournament-common",
+  "version": "0.0.1",
+  "displayName": "Yannick - LS Tournament Common",
+  "description": "Tournament C# files common on Ludosport tournament tools",
+  "unity": "2021.3",
+  "unityRelease": "0b5",
+  "author": {
+    "name": "Yannick Santa Cruz Feuillias",
+    "email": "yannickscf@gmail.com",
+    "url": "https://github.com/YannickSCF"
+  }
+}
