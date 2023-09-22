@@ -26,6 +26,7 @@ public class TesterEditor : Editor {
             CreateAthletes();
         }
         if (GUILayout.Button("Execute")) {
+            Randomizer.SetSeed(0);
             _builder = PoulesBuilder.GetBuilder(_tester.BuilderType, _tester.MaxPouleSize);
             List<string> names = _builder.GetPoulesNames(_tester.NamingType, _tester.NumPoules, _tester.PouleRounds);
             List<PouleInfoModel> poules = _builder.BuildPoules(names, _tester.Athletes, _tester.BuilderSubtype);

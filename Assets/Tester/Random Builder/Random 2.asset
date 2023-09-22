@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca25548d231028346ad45f944206b08c, type: 3}
-  m_Name: Tester 1
+  m_Name: Random 2
   m_EditorClassIdentifier: 
   _athletes:
   - _name: Name 0
@@ -24,7 +24,7 @@ MonoBehaviour:
     _tier: 0
   - _name: Name 1
     _surname: Surname 1
-    _country: ES
+    _country: IT
     _academy: 
     _school: 
     _rank: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     _tier: 0
   - _name: Name 2
     _surname: Surname 2
-    _country: FR
+    _country: IT
     _academy: 
     _school: 
     _rank: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
     _tier: 0
   - _name: Name 3
     _surname: Surname 3
-    _country: GB
+    _country: IT
     _academy: 
     _school: 
     _rank: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
     _tier: 0
   - _name: Name 6
     _surname: Surname 6
-    _country: FR
+    _country: IT
     _academy: 
     _school: 
     _rank: 0
@@ -78,43 +78,7 @@ MonoBehaviour:
     _tier: 0
   - _name: Name 7
     _surname: Surname 7
-    _country: GB
-    _academy: 
-    _school: 
-    _rank: 0
-    _styles: 
-    _saberColor: {r: 0, g: 0, b: 0, a: 0}
-    _tier: 0
-  - _name: Name 8
-    _surname: Surname 8
-    _country: FR
-    _academy: 
-    _school: 
-    _rank: 0
-    _styles: 
-    _saberColor: {r: 0, g: 0, b: 0, a: 0}
-    _tier: 0
-  - _name: Name 9
-    _surname: Surname 9
-    _country: FR
-    _academy: 
-    _school: 
-    _rank: 0
-    _styles: 
-    _saberColor: {r: 0, g: 0, b: 0, a: 0}
-    _tier: 0
-  - _name: Name 10
-    _surname: Surname 10
-    _country: GB
-    _academy: 
-    _school: 
-    _rank: 0
-    _styles: 
-    _saberColor: {r: 0, g: 0, b: 0, a: 0}
-    _tier: 0
-  - _name: Name 11
-    _surname: Surname 11
-    _country: GB
+    _country: IT
     _academy: 
     _school: 
     _rank: 0
