@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: b031bc45e6af93e43b498a31bd16ebde
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Neo Sans Std
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 50fd8bd628a120a42b87d5abb08caf1c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
