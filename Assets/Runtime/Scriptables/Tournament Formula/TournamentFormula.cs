@@ -13,7 +13,7 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Formulas {
         private int _minPouleSize;
         private int _maxPouleSize;
 
-        private PouleBuilderType _type;
+        private PouleFillerType _type;
 
         private ScoringType _scoring;
 
@@ -31,7 +31,7 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Formulas {
         public int MinPouleSize { get => _minPouleSize; }
         public int MaxPouleSize { get => _maxPouleSize; }
 
-        public PouleBuilderType Type { get => _type; }
+        public PouleFillerType Type { get => _type; }
 
         public ScoringType Scoring { get => _scoring; }
 

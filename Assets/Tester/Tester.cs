@@ -16,7 +16,7 @@ public class Tester : ScriptableObject {
     [SerializeField] private PouleNamingType _namingType;
     [SerializeField] private int _pouleRounds = 1;
     [Header("Poule Sorter")]
-    [SerializeField] private PouleBuilderType _builderType;
+    [SerializeField] private PouleFillerType _fillerType;
     [SerializeField] private PouleBuilderSubtype _builderSubtype;
 
     public List<AthleteInfoModel> Athletes { get => _athletes; }
@@ -24,6 +24,6 @@ public class Tester : ScriptableObject {
     public int MaxPouleSize { get => _maxPouleSize; }
     public PouleNamingType NamingType { get => _namingType; }
     public int PouleRounds { get => _pouleRounds; }
-    public PouleBuilderType BuilderType { get => _builderType; }
+    public PouleFillerType FillerType { get => _fillerType; }
     public PouleBuilderSubtype BuilderSubtype { get => _builderSubtype; }
 }

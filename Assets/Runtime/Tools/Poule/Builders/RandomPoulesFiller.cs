@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using YannickSCF.LSTournaments.Common.Models;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Poule.Builder {
-    public class RandomPoulesBuilder : PoulesBuilder {
-        public RandomPoulesBuilder(int pouleMaxSize) : base(pouleMaxSize) { }
+    public class RandomPoulesFiller : PoulesFiller {
+        public RandomPoulesFiller(int pouleMaxSize) : base(pouleMaxSize) { }
 
-        protected override List<AthleteInfoModel> GetSpecificAthletesList(List<AthleteInfoModel> athletes) {
+        protected override List<AthleteInfoModel> GetListReadyToFill(List<AthleteInfoModel> athletes) {
             Randomizer.ShuffleList(athletes);
             return athletes;
         }
