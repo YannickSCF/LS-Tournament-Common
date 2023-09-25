@@ -6,8 +6,6 @@ using YannickSCF.LSTournaments.Common.Models;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler.Specific {
     public class StylesPoulesFiller : PoulesFiller {
-        public StylesPoulesFiller(int pouleMaxSize) : base(pouleMaxSize) { }
-
         protected override List<AthleteInfoModel> GetListReadyToFill(List<AthleteInfoModel> athletes) {
             List<AthleteInfoModel> result = new List<AthleteInfoModel>();
 

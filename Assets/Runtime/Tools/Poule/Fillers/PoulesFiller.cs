@@ -7,30 +7,28 @@ using YannickSCF.LSTournaments.Common.Tools.Poule.Filler.Specific;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
     public abstract class PoulesFiller {
-        // VARIABLES
-        protected int _PouleMaxSize;
-        // CONSTRUCTORS
-        public PoulesFiller(int pouleMaxSize) { _PouleMaxSize = pouleMaxSize; }
-        // STATIC
-        public static PoulesFiller GetFiller(PouleFillerType builder, int pouleMaxSize) {
+
+        // STATIC METHODS
+        public static PoulesFiller GetFiller(PouleFillerType builder) {
             switch (builder) {
                 default:
                 case PouleFillerType.Random:
-                    return new RandomPoulesFiller(pouleMaxSize);
+                    return new RandomPoulesFiller();
                 case PouleFillerType.ByRank:
-                    return new RankPoulesFiller(pouleMaxSize);
+                    return new RankPoulesFiller();
                 case PouleFillerType.ByStyle:
-                    return new StylesPoulesFiller(pouleMaxSize);
+                    return new StylesPoulesFiller();
                 case PouleFillerType.ByTier:
-                    return new TierPoulesFiller(pouleMaxSize);
+                    return new TierPoulesFiller();
             }
         }
+        
         // ABSTRACT METHODS
         protected abstract List<AthleteInfoModel> GetListReadyToFill(List<AthleteInfoModel> athletes);
 
-        #region Public methods
+        // PUBLIC METHODS
         public List<PouleInfoModel> FillPoules(List<string> pouleNames,
-            List<AthleteInfoModel> athletes, PouleFillerSubtype subtype) {
+            List<AthleteInfoModel> athletes, PouleFillerSubtype subtype, int pouleMaxSize) {
             List<PouleInfoModel> result = new List<PouleInfoModel>();
 
             // Get list of athletes orderer in order to place in poules (without subtype filtering)
@@ -42,7 +40,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
                 poulesData.Add(i, new List<AthleteInfoModel>());
             }
             // Build poules adding subtype filtering (if it is selected)
-            poulesData = FillPoulesData(poulesData, orderedAthletes, subtype);
+            poulesData = FillPoulesData(poulesData, orderedAthletes, subtype, pouleMaxSize);
 
             // Transform poules data in objects
             foreach (KeyValuePair<int, List<AthleteInfoModel>> pouleData in poulesData) {
@@ -51,13 +49,12 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
 
             return result;
         }
-        #endregion
 
         #region Private methods
         private Dictionary<int, List<AthleteInfoModel>> FillPoulesData(
             Dictionary<int, List<AthleteInfoModel>> poulesData,
             List<AthleteInfoModel> athletes,
-            PouleFillerSubtype subtype) {
+            PouleFillerSubtype subtype, int pouleMaxSize) {
             // Loop all athletes to add them to poules
             for (int i = 0; i < athletes.Count; ++i) {
                 AthleteInfoModel athlete = athletes[i];
@@ -69,7 +66,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
                 while (athletePouleIndex < poulesData.Count && pouleLoopCounter < poulesData.Count) {
                     List<AthleteInfoModel> pouleAthletes = poulesData[athletePouleIndex];
                     // Try to add the athlete to the poule
-                    if (TryToAddAthlete(ref pouleAthletes, athlete, subtype)) {
+                    if (TryToAddAthlete(ref pouleAthletes, athlete, subtype, pouleMaxSize)) {
                         poulesData[athletePouleIndex] = pouleAthletes;
                         break;
                     }
@@ -90,9 +87,9 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
         }
 
         private bool TryToAddAthlete(ref List<AthleteInfoModel> pouleAthletes,
-            AthleteInfoModel athlete, PouleFillerSubtype subtypeFilter) {
+            AthleteInfoModel athlete, PouleFillerSubtype subtypeFilter, int pouleMaxSize) {
             // First check if the poule is totally filled or not
-            if (pouleAthletes.Count >= _PouleMaxSize) return false;
+            if (pouleAthletes.Count >= pouleMaxSize) return false;
             // Then chekc the subtype filter to avoid repetitions in some characteristics
             switch (subtypeFilter) {
                 case PouleFillerSubtype.Country:

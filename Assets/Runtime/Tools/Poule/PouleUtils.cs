@@ -1,9 +1,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using YannickSCF.LSTournaments.Common.Models;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
+using YannickSCF.LSTournaments.Common.Tools.Poule.Filler;
+using YannickSCF.LSTournaments.Common.Tools.Poule.Filler.Specific;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Poule {
+    public struct PouleNamingObject {
+        private PouleNamingType _pouleNaming;
+        private int _numOfPoules;
+        private int _pouleRounds;
+
+        public PouleNamingObject(PouleNamingType pouleNaming, int numOfPoules) {
+            _pouleNaming = pouleNaming;
+            _numOfPoules = numOfPoules;
+            _pouleRounds = 1;
+        }
+
+        public PouleNamingObject(PouleNamingType pouleNaming, int numOfPoules, int pouleRounds) {
+            _pouleNaming = pouleNaming;
+            _numOfPoules = numOfPoules;
+            _pouleRounds = pouleRounds;
+        }
+
+        public PouleNamingType PouleNaming { get => _pouleNaming; }
+        public int NumOfPoules { get => _numOfPoules; }
+        public int PouleRounds { get => _pouleRounds; }
+    }
+
     public static class PouleUtils {
         // ENUMS
         private enum PouleSize { Three = 3, Four = 4, Five = 5, Six = 6, Seven = 7, Eight = 8, Nine = 9, Ten = 10, Eleven = 11 };
@@ -13,6 +38,27 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
         private const int DEFAULT_MAX_POULE_SIZE = 11;
 
         #region Poules names - METHODS
+        public static List<string> GetPoulesNames(PouleNamingObject namingParams) {
+            List<string> pouleNames = new List<string>();
+
+            int roundSize = namingParams.NumOfPoules / namingParams.PouleRounds;
+            for (int i = 0; i < namingParams.NumOfPoules; ++i) {
+                string index;
+                if (namingParams.PouleNaming == PouleNamingType.Numbers) {
+                    index = (i + 1).ToString();
+                } else {
+                    if (namingParams.PouleRounds > 1) {
+                        index = ((char)(FIRST_LETTER_CHAR + (i % roundSize))).ToString() + ((i / roundSize) + 1).ToString();
+                    } else {
+                        index = ((char)(FIRST_LETTER_CHAR + i)).ToString();
+                    }
+                }
+                pouleNames.Add("Poule " + index);
+            }
+
+            return pouleNames;
+        }
+
         public static List<string> GetPoulesNames(PouleNamingType pouleNaming, int numPoules, int rounds = 1) {
             List<string> pouleNames = new List<string>();
 
@@ -146,6 +192,46 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
             return simulatedPoules;
         }
         #endregion
+        #endregion
+
+        #region Poules Filler - METHODS
+        public static List<PouleInfoModel> GetPoulesFilled(
+            PouleNamingObject namingParams, List<AthleteInfoModel> athletes,
+            PouleFillerType fillerType, PouleFillerSubtype fillerSubtype, int maxPouleSize) {
+
+            // Get poules names
+            List<string> names = GetPoulesNames(namingParams);
+            // Get poules filler
+            PoulesFiller _filler = GetFiller(fillerType);
+            // Return poules filled
+            return _filler.FillPoules(names, athletes, fillerSubtype, maxPouleSize);
+        }
+
+        public static List<PouleInfoModel> GetPoulesFilled(
+            PouleNamingObject namingParams, List<AthleteInfoModel> athletes,
+            TournamentFormula formula, PouleFillerSubtype fillerSubtype) {
+
+            // Get poules names
+            List<string> names = GetPoulesNames(namingParams);
+            // Get poules filler
+            PoulesFiller _filler = GetFiller(formula.FillerType);
+            // Return poules filled
+            return _filler.FillPoules(names, athletes, fillerSubtype, formula.MaxPouleSize);
+        }
+
+        public static PoulesFiller GetFiller(PouleFillerType builder) {
+            switch (builder) {
+                default:
+                case PouleFillerType.Random:
+                    return new RandomPoulesFiller();
+                case PouleFillerType.ByRank:
+                    return new RankPoulesFiller();
+                case PouleFillerType.ByStyle:
+                    return new StylesPoulesFiller();
+                case PouleFillerType.ByTier:
+                    return new TierPoulesFiller();
+            }
+        }
         #endregion
 
         #region Poules matches - METHODS
