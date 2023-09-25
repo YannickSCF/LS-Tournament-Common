@@ -41,10 +41,5 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Formulas {
         public StyleRankingType StyleSorter { get => _styleSorter; }
         public WarRankingType WarSorter { get => _warSorter; }
         public MixedRankingType MixedSorter { get => _mixedSorter; }
-
-        public int[,] GetPouleSizes(int numberOfParticipants) {
-
-            return null;
-        }
     }
 }

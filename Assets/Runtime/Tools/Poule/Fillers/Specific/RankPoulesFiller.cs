@@ -4,7 +4,7 @@ using System.Linq;
 // Custom Dependencies
 using YannickSCF.LSTournaments.Common.Models;
 
-namespace YannickSCF.LSTournaments.Common.Tools.Poule.Builder {
+namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler.Specific {
     public class RankPoulesFiller : PoulesFiller {
         public RankPoulesFiller(int pouleMaxSize) : base(pouleMaxSize) { }
 

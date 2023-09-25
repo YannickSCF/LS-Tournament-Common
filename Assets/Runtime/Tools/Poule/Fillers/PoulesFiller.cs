@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 // Custom Dependencies
 using YannickSCF.LSTournaments.Common.Models;
-using YannickSCF.LSTournaments.Common.Tools.Poule.Builder;
+using YannickSCF.LSTournaments.Common.Tools.Poule.Filler.Specific;
 
-namespace YannickSCF.LSTournaments.Common.Tools.Poule {
+namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
     public abstract class PoulesFiller {
-        // CONSTANTS
-        private const int FIRST_LETTER_CHAR = 65;
         // VARIABLES
         protected int _PouleMaxSize;
         // CONSTRUCTORS
@@ -31,27 +29,6 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
         protected abstract List<AthleteInfoModel> GetListReadyToFill(List<AthleteInfoModel> athletes);
 
         #region Public methods
-        public List<string> GetPoulesNames(PouleNamingType pouleNaming, int numPoules, int rounds = 1) {
-            List<string> pouleNames = new List<string>();
-
-            int roundSize = numPoules / rounds;
-            for (int i = 0; i < numPoules; ++i) {
-                string index;
-                if (pouleNaming == PouleNamingType.Numbers) {
-                    index = (i + 1).ToString();
-                } else {
-                    if (rounds > 1) {
-                        index = ((char)(FIRST_LETTER_CHAR + (i % roundSize))).ToString() + ((i / roundSize) + 1).ToString();
-                    } else {
-                        index = ((char)(FIRST_LETTER_CHAR + i)).ToString();
-                    }
-                }
-                pouleNames.Add("Poule " + index);
-            }
-
-            return pouleNames;
-        }
-
         public List<PouleInfoModel> FillPoules(List<string> pouleNames,
             List<AthleteInfoModel> athletes, PouleFillerSubtype subtype) {
             List<PouleInfoModel> result = new List<PouleInfoModel>();
