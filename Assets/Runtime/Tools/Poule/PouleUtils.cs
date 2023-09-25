@@ -37,6 +37,46 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
         private const int DEFAULT_MIN_POULE_SIZE = 3;
         private const int DEFAULT_MAX_POULE_SIZE = 11;
 
+        #region Create Poules - METHODS
+        public static List<PouleInfoModel> CreatePoules(
+            PouleNamingObject namingParams, List<AthleteInfoModel> athletes,
+            PouleFillerType fillerType, PouleFillerSubtype fillerSubtype, int maxPouleSize) {
+
+            // Get poules names
+            List<string> names = GetPoulesNames(namingParams);
+            // Get poules filler
+            PoulesFiller _filler = GetFiller(fillerType);
+            // Return poules filled
+            return _filler.FillPoules(names, athletes, fillerSubtype, maxPouleSize);
+        }
+
+        public static List<PouleInfoModel> CreatePoules(
+            PouleNamingObject namingParams, List<AthleteInfoModel> athletes,
+            TournamentFormula formula, PouleFillerSubtype fillerSubtype) {
+
+            // Get poules names
+            List<string> names = GetPoulesNames(namingParams);
+            // Get poules filler
+            PoulesFiller _filler = GetFiller(formula.FillerType);
+            // Return poules filled
+            return _filler.FillPoules(names, athletes, fillerSubtype, formula.MaxPouleSize);
+        }
+
+        public static PoulesFiller GetFiller(PouleFillerType builder) {
+            switch (builder) {
+                default:
+                case PouleFillerType.Random:
+                    return new RandomPoulesFiller();
+                case PouleFillerType.ByRank:
+                    return new RankPoulesFiller();
+                case PouleFillerType.ByStyle:
+                    return new StylesPoulesFiller();
+                case PouleFillerType.ByTier:
+                    return new TierPoulesFiller();
+            }
+        }
+        #endregion
+
         #region Poules names - METHODS
         public static List<string> GetPoulesNames(PouleNamingObject namingParams) {
             List<string> pouleNames = new List<string>();
@@ -192,46 +232,6 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
             return simulatedPoules;
         }
         #endregion
-        #endregion
-
-        #region Poules Filler - METHODS
-        public static List<PouleInfoModel> GetPoulesFilled(
-            PouleNamingObject namingParams, List<AthleteInfoModel> athletes,
-            PouleFillerType fillerType, PouleFillerSubtype fillerSubtype, int maxPouleSize) {
-
-            // Get poules names
-            List<string> names = GetPoulesNames(namingParams);
-            // Get poules filler
-            PoulesFiller _filler = GetFiller(fillerType);
-            // Return poules filled
-            return _filler.FillPoules(names, athletes, fillerSubtype, maxPouleSize);
-        }
-
-        public static List<PouleInfoModel> GetPoulesFilled(
-            PouleNamingObject namingParams, List<AthleteInfoModel> athletes,
-            TournamentFormula formula, PouleFillerSubtype fillerSubtype) {
-
-            // Get poules names
-            List<string> names = GetPoulesNames(namingParams);
-            // Get poules filler
-            PoulesFiller _filler = GetFiller(formula.FillerType);
-            // Return poules filled
-            return _filler.FillPoules(names, athletes, fillerSubtype, formula.MaxPouleSize);
-        }
-
-        public static PoulesFiller GetFiller(PouleFillerType builder) {
-            switch (builder) {
-                default:
-                case PouleFillerType.Random:
-                    return new RandomPoulesFiller();
-                case PouleFillerType.ByRank:
-                    return new RankPoulesFiller();
-                case PouleFillerType.ByStyle:
-                    return new StylesPoulesFiller();
-                case PouleFillerType.ByTier:
-                    return new TierPoulesFiller();
-            }
-        }
         #endregion
 
         #region Poules matches - METHODS

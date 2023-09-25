@@ -31,7 +31,7 @@ public class TesterEditor : Editor {
 
             PouleNamingObject namingParams =
                 new PouleNamingObject(_tester.NamingType, _tester.NumPoules, _tester.PouleRounds);
-            List<PouleInfoModel> poules = PouleUtils.GetPoulesFilled(
+            List<PouleInfoModel> poules = PouleUtils.CreatePoules(
                 namingParams, _tester.Athletes,
                 _tester.FillerType, _tester.FillerSubtype, _tester.MaxPouleSize);
             
