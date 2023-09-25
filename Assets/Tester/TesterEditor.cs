@@ -27,9 +27,9 @@ public class TesterEditor : Editor {
         }
         if (GUILayout.Button("Execute")) {
             Randomizer.SetSeed(0);
-            _filler = PoulesFiller.GetBuilder(_tester.FillerType, _tester.MaxPouleSize);
+            _filler = PoulesFiller.GetFiller(_tester.FillerType, _tester.MaxPouleSize);
             List<string> names = _filler.GetPoulesNames(_tester.NamingType, _tester.NumPoules, _tester.PouleRounds);
-            List<PouleInfoModel> poules = _filler.FillPoules(names, _tester.Athletes, _tester.BuilderSubtype);
+            List<PouleInfoModel> poules = _filler.FillPoules(names, _tester.Athletes, _tester.FillerSubtype);
             ShowPoules(poules);
         }
     }

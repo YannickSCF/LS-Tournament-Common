@@ -19,7 +19,7 @@ namespace YannickSCF.LSTournaments.Common {
 
     public enum PouleNamingType { Letters, Numbers }
     public enum PouleFillerType { Random, ByRank, ByStyle, ByTier }
-    public enum PouleBuilderSubtype { None, Country, Academy, School }
+    public enum PouleFillerSubtype { None, Country, Academy, School }
 
     // -------------- Scoring Sorters Enumerators --------------
 
