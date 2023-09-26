@@ -1,5 +1,6 @@
 
 namespace YannickSCF.LSTournaments.Common {
+    public enum TournamentType { Unrated, School, Academy, National, International }
 
     // -------------- Athlete Info Enumerators --------------
 
@@ -18,7 +19,7 @@ namespace YannickSCF.LSTournaments.Common {
     // -------------- Poules Builder Enumerators --------------
 
     public enum PouleNamingType { Letters, Numbers }
-    public enum PouleFillerType { Random, ByRank, ByStyle, ByTier }
+    public enum PouleFillerType { TBD, Random, ByRank, ByStyle, ByTier }
     public enum PouleFillerSubtype { None, Country, Academy, School }
 
     // -------------- Scoring Sorters Enumerators --------------
@@ -34,5 +35,5 @@ namespace YannickSCF.LSTournaments.Common {
 
     public enum StyleRankingType { TBD, Style }
     public enum WarRankingType { TBD, LS, Fencing, Style }
-    public enum MixedRankingType { TBD, RankingAdd/*, School, Academy, National, International*/ }
+    public enum MixedRankingType { TBD, PrefStyle, PrefWar }
 }

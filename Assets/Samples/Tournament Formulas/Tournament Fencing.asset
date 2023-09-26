@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289233bc6d8fc684f91a86c3e6ef6280, type: 3}
+  m_Name: Tournament Fencing
+  m_EditorClassIdentifier: 
+  _formulaName: Fencing
+  _infinitePoules: 1
+  _possibleNumberOfPoules: 
+  _minPouleSize: 6
+  _maxPouleSize: 7
+  _fillerType: 0
+  _scoring: 1
+  _classification: 1
+  _maxEliminationPhases: 256
+  _styleSorter: 1
+  _warSorter: 2
+  _mixedSorter: 1
