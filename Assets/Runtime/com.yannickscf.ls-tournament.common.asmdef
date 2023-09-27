@@ -1,7 +1,10 @@
 {
     "name": "com.yannickscf.ls-tournament.common",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:57aceb93e943b3a48b90c3b7039ece0c"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
