@@ -6,31 +6,36 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events {
 
         // ------------------------- Specific Delegates -------------------------
 
-        public delegate void ParticipantDataEvent(AthleteInfoType infoType, string dataUpdated, int participantIndex);
-        public delegate void ParticipantInfoCheckboxEvent(AthleteInfoType checkboxInfo, bool isChecked);
+        public delegate void AthleteDataEvent(AthleteInfoType infoType, string dataUpdated, int AthleteIndex);
+        public delegate void AthleteInfoCheckboxEvent(AthleteInfoType checkboxInfo, bool isChecked);
 
         // ------------------------------- Events -------------------------------
 
-        #region --------------- Participants panel events ---------------
-        public static event SimpleEventDelegate OnLoadParticipantsFromFile;
-        public static void ThrowOnLoadParticipantsFromFile() {
-            OnLoadParticipantsFromFile?.Invoke();
+        #region --------------- Athletes panel events ---------------
+        public static event SimpleEventDelegate OnLoadAthletesFromFile;
+        public static void ThrowOnLoadAthletesFromFile() {
+            OnLoadAthletesFromFile?.Invoke();
         }
 
-        public static event SimpleEventDelegate OnParticipantAdded;
-        public static void ThrowOnParticipantAdded() {
-            OnParticipantAdded?.Invoke();
+        public static event SimpleEventDelegate OnAthleteAdded;
+        public static void ThrowOnAthleteAdded() {
+            OnAthleteAdded?.Invoke();
         }
 
-        public static event SimpleEventDelegate OnParticipantRemoved;
-        public static void ThrowOnParticipantRemoved() {
-            OnParticipantRemoved?.Invoke();
+        public static event SimpleEventDelegate OnAthleteRemoved;
+        public static void ThrowOnAthleteRemoved() {
+            OnAthleteRemoved?.Invoke();
         }
 
-        public static event ParticipantDataEvent OnParticipantDataUpdated;
-        public static void ThrowOnParticipantDataUpdated(
-            AthleteInfoType infoType, string dataUpdated, int participantIndex) {
-            OnParticipantDataUpdated?.Invoke(infoType, dataUpdated, participantIndex);
+        public static event AthleteDataEvent OnAthleteDataUpdated;
+        public static void ThrowOnAthleteDataUpdated(
+            AthleteInfoType infoType, string dataUpdated, int AthleteIndex) {
+            OnAthleteDataUpdated?.Invoke(infoType, dataUpdated, AthleteIndex);
+        }
+
+        public static event AthleteInfoCheckboxEvent OnAthleteInfoCheckboxToggle;
+        public static void ThrowOnAthleteInfoCheckboxToggle(AthleteInfoType checkboxInfo, bool isChecked) {
+            OnAthleteInfoCheckboxToggle?.Invoke(checkboxInfo, isChecked);
         }
         #endregion
     }

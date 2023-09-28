@@ -238,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5569683874478072687}
   - component: {fileID: 3746934782602851040}
+  - component: {fileID: 1370886999903699242}
   m_Layer: 5
   m_Name: Header Column
   m_TagString: Untagged
@@ -288,6 +289,21 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1370886999903699242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3322909268346133676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43c431e167a66c4381781a92afb66b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _headerType: 0
+  _headerText: {fileID: 2856196234161235940}
+  _toggleToHide: {fileID: 4871344178909139239}
 --- !u!1 &7682408746437027779
 GameObject:
   m_ObjectHideFlags: 0

@@ -195,37 +195,37 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Ro
 
         #region Event listeners methods
         private void CountryFieldChanged(string finalValue) {
-            AthletesPanelViewEvents.ThrowOnParticipantDataUpdated(
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
                 AthleteInfoType.Country,
                 finalValue, _athleteRowIndex);
         }
 
         private void SurnameFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnParticipantDataUpdated(
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
                 AthleteInfoType.Surname,
                 strValue, _athleteRowIndex);
         }
 
         private void NameFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnParticipantDataUpdated(
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
                 AthleteInfoType.Name,
                 strValue, _athleteRowIndex);
         }
 
         private void AcademyFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnParticipantDataUpdated(
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
                 AthleteInfoType.Academy,
                 strValue, _athleteRowIndex);
         }
 
         private void SchoolFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnParticipantDataUpdated(
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
                 AthleteInfoType.School,
                 strValue, _athleteRowIndex);
         }
 
         private void RankFieldChanged(int intValue) {
-            AthletesPanelViewEvents.ThrowOnParticipantDataUpdated(
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
                 AthleteInfoType.Rank,
                 intValue.ToString(), _athleteRowIndex);
         }
@@ -238,13 +238,13 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Ro
                 stylesInList += (int)style + ",";
             }
 
-            AthletesPanelViewEvents.ThrowOnParticipantDataUpdated(
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
                 AthleteInfoType.Styles,
                 stylesInList, _athleteRowIndex);
         }
 
         private void TierFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnParticipantDataUpdated(
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
                 AthleteInfoType.Tier,
                 strValue, _athleteRowIndex);
         }

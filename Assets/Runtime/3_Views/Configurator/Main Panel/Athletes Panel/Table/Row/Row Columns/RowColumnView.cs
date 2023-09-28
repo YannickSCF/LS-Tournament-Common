@@ -1,3 +1,4 @@
+// Dependencies
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Ro
         }
 
         public void Disable(bool hide) {
-            _hidder.gameObject.SetActive(hide);
+            _hidder.gameObject.SetActive(!hide);
         }
     }
 }
