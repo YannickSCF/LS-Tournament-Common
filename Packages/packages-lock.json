@@ -89,6 +89,13 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.yannickscf.countries-data": {
+      "version": "https://github.com/YannickSCF/Countries-Data.git?path=/Assets",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "469d4a1e166483e8a67579dc31aa09701d2047a6"
+    },
     "com.yannickscf.project-basecode-template": {
       "version": "https://github.com/YannickSCF/project-basecode-template.git?path=/Assets",
       "depth": 0,

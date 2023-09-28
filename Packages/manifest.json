@@ -3,6 +3,7 @@
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ide.visualstudio": "2.0.21",
     "com.unity.textmeshpro": "3.0.6",
+    "com.yannickscf.countries-data": "https://github.com/YannickSCF/Countries-Data.git?path=/Assets",
     "com.yannickscf.project-basecode-template": "https://github.com/YannickSCF/project-basecode-template.git?path=/Assets",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
