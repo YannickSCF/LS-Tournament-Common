@@ -4,7 +4,7 @@ namespace YannickSCF.LSTournaments.Common {
 
     // -------------- Athlete Info Enumerators --------------
 
-    public enum AthleteInfoType { Name, Surname, BirthDate, Country, Academy, School, Rank, Styles, SaberColor, StartDate, Tier };
+    public enum AthleteInfoType { Country, Surname, Name, Academy, School, Rank, Styles, Tier, SaberColor, BirthDate, StartDate };
     public enum RankType { Novizio, Iniziato, Accademico, Cavaliere, MaestroDiScuola }
     public enum SubRankType { Long, Dual, Staff }
     public enum StyleType {

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 
 namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
-    public class Crumb : MonoBehaviour {
+    public class CrumbView : MonoBehaviour {
 
         [SerializeField] private TextMeshProUGUI _crumbText;
         [SerializeField] private Image _disableCrumbImage;

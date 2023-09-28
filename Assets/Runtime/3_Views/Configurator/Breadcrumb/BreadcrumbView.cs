@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
-    public class Breadcrumb : MonoBehaviour {
+    public class BreadcrumbView : MonoBehaviour {
 
         public event BooleanEventDelegate NavigationBreadCrumbPressed;
 
@@ -14,13 +14,13 @@ namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
         [SerializeField] private Transform _crumbsParent;
         [SerializeField] private Button _nextStepButton;
 
-        [SerializeField] private Crumb _crumbPrefab;
+        [SerializeField] private CrumbView _crumbPrefab;
 
-        private List<Crumb> crumbs;
+        private List<CrumbView> crumbs;
 
         #region Mono
         private void Awake() {
-            crumbs = new List<Crumb>();
+            crumbs = new List<CrumbView>();
         }
 
         private void OnEnable() {
@@ -41,7 +41,7 @@ namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
             crumbs.Clear();
 
             for (int i = crumbNames.Count - 1; i >= 0; --i) {
-                Crumb newCrumb = Instantiate(_crumbPrefab, _crumbsParent);
+                CrumbView newCrumb = Instantiate(_crumbPrefab, _crumbsParent);
                 newCrumb.SetCrumbText(crumbNames[i]);
                 newCrumb.EnableCrumb(i == 0);
 
