@@ -16,6 +16,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Ro
         [SerializeField] private Image _rowBackground;
         [SerializeField] private Color _pairColor;
         [SerializeField] private Color _oddColor;
+        [SerializeField] private TextMeshProUGUI _rowIndexText;
 
         [Header("Columns references")]
         [SerializeField] private CountryColView _countryRow;
@@ -54,6 +55,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Ro
         public int AthleteRowIndex { get => _athleteRowIndex; }
         public void SetAthleteRowIndex (int index) {
             _athleteRowIndex = index;
+            _rowIndexText.text = (index + 1).ToString();
+
             _rowBackground.color = index % 2 == 0 ? _pairColor : _oddColor;
 
             _countryRowBase.SetBackgroundColor(_rowBackground.color);
