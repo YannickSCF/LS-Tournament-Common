@@ -1,13 +1,12 @@
+// Dependencies
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+// Custom dependencies
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events;
-using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns;
-using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.CountryCol;
-using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.StylesCol;
+using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.Table.Row {
     public class AthleteRowView : MonoBehaviour {
@@ -21,34 +20,19 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
         [Header("Columns references")]
         [SerializeField] private CountryColView _countryRow;
 
-        [SerializeField] private TMP_InputField _surnameRow;
-        [SerializeField] private TMP_InputField _nameRow;
-        [SerializeField] private TMP_InputField _academyRow;
-        [SerializeField] private TMP_InputField _schoolRow;
+        [SerializeField] private InputFieldColView _surnameRow;
+        [SerializeField] private InputFieldColView _nameRow;
+        [SerializeField] private InputFieldColView _academyRow;
+        [SerializeField] private InputFieldColView _schoolRow;
 
-        [SerializeField] private TMP_Dropdown _rankRow;
+        [SerializeField] private DropdownColView _rankRow;
         [SerializeField] private StylesColView _stylesRow;
 
-        [SerializeField] private TMP_InputField _tierRow;
+        [SerializeField] private InputFieldColView _tierRow;
 
-        [Header("TO DO (Temporal references)")]
-        [SerializeField] private RowColumnView _colorRow;
-        [SerializeField] private RowColumnView _birthDateRow;
-        [SerializeField] private RowColumnView _startDateRow;
-
-        private RowColumnView _countryRowBase;
-
-        private RowColumnView _academyRowBase;
-        private RowColumnView _schoolRowBase;
-
-        private RowColumnView _rankRowBase;
-        private RowColumnView _stylesRowBase;
-
-        private RowColumnView _tierRowBase;
-
-        private RowColumnView _colorRowBase;
-        private RowColumnView _birthDateRowBase;
-        private RowColumnView _startDateRowBase;
+        [SerializeField] private ColorColView _colorRow;
+        [SerializeField] private DateColView _birthDateRow;
+        [SerializeField] private DateColView _startDateRow;
 
         private int _athleteRowIndex;
 
@@ -59,70 +43,58 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
 
             _rowBackground.color = index % 2 == 0 ? _pairColor : _oddColor;
 
-            _countryRowBase.SetBackgroundColor(_rowBackground.color);
-            _academyRowBase.SetBackgroundColor(_rowBackground.color);
-            _schoolRowBase.SetBackgroundColor(_rowBackground.color);
-            _rankRowBase.SetBackgroundColor(_rowBackground.color);
-            _stylesRowBase.SetBackgroundColor(_rowBackground.color);
-            _tierRowBase.SetBackgroundColor(_rowBackground.color);
-            _colorRowBase.SetBackgroundColor(_rowBackground.color);
-            _birthDateRowBase.SetBackgroundColor(_rowBackground.color);
-            _startDateRowBase.SetBackgroundColor(_rowBackground.color);
+            _countryRow.SetBackgroundColor(_rowBackground.color);
+
+            _academyRow.SetBackgroundColor(_rowBackground.color);
+            _schoolRow.SetBackgroundColor(_rowBackground.color);
+
+            _rankRow.SetBackgroundColor(_rowBackground.color);
+            _stylesRow.SetBackgroundColor(_rowBackground.color);
+
+            _tierRow.SetBackgroundColor(_rowBackground.color);
+
+            _colorRow.SetBackgroundColor(_rowBackground.color);
+            _birthDateRow.SetBackgroundColor(_rowBackground.color);
+            _startDateRow.SetBackgroundColor(_rowBackground.color);
         }
 
         #region Mono
-        private void Awake() {
-            _countryRowBase = _countryRow.GetComponent<RowColumnView>();
-
-            _academyRowBase = _academyRow.GetComponent<RowColumnView>();
-            _schoolRowBase = _schoolRow.GetComponent<RowColumnView>();
-
-            _rankRowBase = _rankRow.GetComponent<RowColumnView>();
-            _stylesRowBase = _stylesRow.GetComponent<RowColumnView>();
-
-            _tierRowBase = _tierRow.GetComponent<RowColumnView>();
-
-            _colorRowBase = _colorRow.GetComponent<RowColumnView>();
-            _birthDateRowBase = _birthDateRow.GetComponent<RowColumnView>();
-            _startDateRowBase = _startDateRow.GetComponent<RowColumnView>();
-        }
-
         private void OnEnable() {
             _countryRow.OnFinalValueSetted += CountryFieldChanged;
 
-            _surnameRow.onValueChanged.AddListener(SurnameFieldChanged);
-            _nameRow.onValueChanged.AddListener(NameFieldChanged);
-            _academyRow.onValueChanged.AddListener(AcademyFieldChanged);
-            _academyRow.onValueChanged.AddListener(SchoolFieldChanged);
+            _surnameRow.InputField.onValueChanged.AddListener(SurnameFieldChanged);
+            _nameRow.InputField.onValueChanged.AddListener(NameFieldChanged);
+            _academyRow.InputField.onValueChanged.AddListener(AcademyFieldChanged);
+            _academyRow.InputField.onValueChanged.AddListener(SchoolFieldChanged);
 
-            _rankRow.onValueChanged.AddListener(RankFieldChanged);
+            _rankRow.Dropdown.onValueChanged.AddListener(RankFieldChanged);
             _stylesRow.StyleToggleClicked += StylesFieldChanged;
 
-            _tierRow.onValueChanged.AddListener(TierFieldChanged);
+            _tierRow.InputField.onValueChanged.AddListener(TierFieldChanged);
         }
 
         private void OnDisable() {
             _countryRow.OnFinalValueSetted -= CountryFieldChanged;
 
-            _surnameRow.onValueChanged.RemoveAllListeners();
-            _nameRow.onValueChanged.RemoveAllListeners();
-            _academyRow.onValueChanged.RemoveAllListeners();
-            _schoolRow.onValueChanged.RemoveAllListeners();
+            _surnameRow.InputField.onValueChanged.RemoveAllListeners();
+            _nameRow.InputField.onValueChanged.RemoveAllListeners();
+            _academyRow.InputField.onValueChanged.RemoveAllListeners();
+            _schoolRow.InputField.onValueChanged.RemoveAllListeners();
 
-            _rankRow.onValueChanged.RemoveAllListeners();
+            _rankRow.Dropdown.onValueChanged.RemoveAllListeners();
             _stylesRow.StyleToggleClicked -= StylesFieldChanged;
 
-            _tierRow.onValueChanged.RemoveAllListeners();
+            _tierRow.InputField.onValueChanged.RemoveAllListeners();
         }
         #endregion
 
         #region GETTERS
         public string GetCountryField() { return _countryRow.GetCurrentValue(); }
-        public string GetSurnameField() { return _surnameRow.text; }
-        public string GetNameField() { return _nameRow.text; }
-        public string GetAcademyField() { return _academyRow.text; }
-        public string GetSchoolField() { return _schoolRow.text; }
-        public RankType GetRankField() { return (RankType)_rankRow.value; }
+        public string GetSurnameField() { return _surnameRow.InputField.text; }
+        public string GetNameField() { return _nameRow.InputField.text; }
+        public string GetAcademyField() { return _academyRow.InputField.text; }
+        public string GetSchoolField() { return _schoolRow.InputField.text; }
+        public RankType GetRankField() { return (RankType)_rankRow.Dropdown.value; }
         public List<StyleType> GetStylesField() {
             List<StyleType> styles = new List<StyleType>();
             List<bool> stylesBools = _stylesRow.GetStyles();
@@ -133,7 +105,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
             }
             return styles;
         }
-        public int GetTierField() { return int.Parse(_tierRow.text); }
+        public int GetTierField() { return int.Parse(_tierRow.InputField.text); }
         #endregion
 
         #region SETTERS
@@ -142,56 +114,60 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
         }
         public void SetSurnameField(string surname, bool withoutNotify = false) {
             if (!withoutNotify) {
-                _surnameRow.text = surname;
+                _surnameRow.InputField.text = surname;
             } else {
-                _surnameRow.SetTextWithoutNotify(surname);
+                _surnameRow.InputField.SetTextWithoutNotify(surname);
             }
         }
         public void SetNameField(string name, bool withoutNotify = false) {
             if (!withoutNotify) {
-                _nameRow.text = name;
+                _nameRow.InputField.text = name;
             } else {
-                _nameRow.SetTextWithoutNotify(name);
+                _nameRow.InputField.SetTextWithoutNotify(name);
             }
         }
         public void SetAcademyField(string academy, bool withoutNotify = false) {
             if (!withoutNotify) {
-                _academyRow.text = academy;
+                _academyRow.InputField.text = academy;
             } else {
-                _academyRow.SetTextWithoutNotify(academy);
+                _academyRow.InputField.SetTextWithoutNotify(academy);
             }
         }
         public void SetSchoolField(string school, bool withoutNotify = false) {
             if (!withoutNotify) {
-                _schoolRow.text = school;
+                _schoolRow.InputField.text = school;
             } else {
-                _schoolRow.SetTextWithoutNotify(school);
+                _schoolRow.InputField.SetTextWithoutNotify(school);
             }
         }
         public void SetRankField(RankType rank, bool withoutNotify = false) {
             if (!withoutNotify) {
-                _rankRow.value = (int)rank;
+                _rankRow.Dropdown.value = (int)rank;
             } else {
-                _rankRow.SetValueWithoutNotify((int)rank);
+                _rankRow.Dropdown.SetValueWithoutNotify((int)rank);
             }
         }
         public void SetStylesField(List<StyleType> styles, bool withoutNotify = false) {
             if (_stylesRow != null) {
-                List<bool> stylesBools = new List<bool>();
+                try {
+                    List<bool> stylesBools = new List<bool>();
 
-                Array allStyles = Enum.GetValues(typeof(StyleType));
-                for (int i = 0; i < allStyles.Length; ++i) {
-                    stylesBools[i] = styles.Contains((StyleType)allStyles.GetValue(i));
+                    Array allStyles = Enum.GetValues(typeof(StyleType));
+                    for (int i = 0; i < allStyles.Length; ++i) {
+                        stylesBools.Add(styles.Contains((StyleType)allStyles.GetValue(i)));
+                    }
+
+                    _stylesRow.SetStyles(stylesBools, withoutNotify);
+                } catch (Exception ex) {
+                    Debug.LogError(ex.Message);
                 }
-
-                _stylesRow.SetStyles(stylesBools, withoutNotify);
             }
         }
         public void SetTierField(int tier, bool withoutNotify = false) {
             if (!withoutNotify) {
-                _tierRow.text = tier.ToString();
+                _tierRow.InputField.text = tier.ToString();
             } else {
-                _tierRow.SetTextWithoutNotify(tier.ToString());
+                _tierRow.InputField.SetTextWithoutNotify(tier.ToString());
             }
         }
         #endregion
@@ -253,51 +229,55 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
         }
         #endregion
 
-        public void HideColumn(AthleteInfoType column, bool hide) {
+        public void HideColumn(AthleteInfoType column, bool hide, bool withoutNotify = false) {
             switch (column) {
                 case AthleteInfoType.Country:
-                    _countryRowBase.gameObject.SetActive(!hide);
+                    _countryRow.gameObject.SetActive(!hide);
                     break;
                 case AthleteInfoType.Academy:
-                    _academyRowBase.gameObject.SetActive(!hide);
+                    _academyRow.gameObject.SetActive(!hide);
                     break;
                 default:
-                    Debug.LogWarning($"{Enum.GetName(typeof(AthleteInfoType), column)} cannot be {(hide ? "hide" : "show")}!");
+                    if (!withoutNotify) {
+                        Debug.LogWarning($"{Enum.GetName(typeof(AthleteInfoType), column)} cannot be {(hide ? "hide" : "show")}!");
+                    }
                     break;
             }
         }
 
-        public void DisableColumn(AthleteInfoType column, bool disable) {
+        public void DisableColumn(AthleteInfoType column, bool disable, bool withoutNotify = false) {
             switch (column) {
                 case AthleteInfoType.Country:
-                    _countryRowBase.Disable(disable);
+                    _countryRow.Disable(disable);
                     break;
                 case AthleteInfoType.Academy:
-                    _academyRowBase.Disable(disable);
+                    _academyRow.Disable(disable);
                     break;
                 case AthleteInfoType.School:
-                    _schoolRowBase.Disable(disable);
+                    _schoolRow.Disable(disable);
                     break;
                 case AthleteInfoType.Rank:
-                    _rankRowBase.Disable(disable);
+                    _rankRow.Disable(disable);
                     break;
                 case AthleteInfoType.Styles:
-                    _stylesRowBase.Disable(disable);
+                    _stylesRow.Disable(disable);
                     break;
                 case AthleteInfoType.Tier:
-                    _tierRowBase.Disable(disable);
+                    _tierRow.Disable(disable);
                     break;
                 case AthleteInfoType.SaberColor:
-                    _colorRowBase.Disable(disable);
+                    _colorRow.Disable(disable);
                     break;
                 case AthleteInfoType.BirthDate:
-                    _birthDateRowBase.Disable(disable);
+                    _birthDateRow.Disable(disable);
                     break;
                 case AthleteInfoType.StartDate:
-                    _startDateRowBase.Disable(disable);
+                    _startDateRow.Disable(disable);
                     break;
                 default:
-                    Debug.LogWarning($"{Enum.GetName(typeof(AthleteInfoType), column)} cannot be {(disable ? "disable" : "enable")}!");
+                    if (!withoutNotify) {
+                        Debug.LogWarning($"{Enum.GetName(typeof(AthleteInfoType), column)} cannot be {(disable ? "disable" : "enable")}!");
+                    }
                     break;
             }
         }

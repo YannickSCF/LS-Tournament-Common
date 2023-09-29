@@ -222,7 +222,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8971255220699944965}
   - component: {fileID: 159026469288659338}
-  - component: {fileID: 1504143693244217447}
   m_Layer: 5
   m_Name: Row Column
   m_TagString: Untagged
@@ -272,19 +271,6 @@ MonoBehaviour:
   m_FlexibleWidth: 0.065
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &1504143693244217447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2294136173281617862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81504e0b5b645a94ebffc866cdadd004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hidder: {fileID: 5309183751943235112}
 --- !u!1 &4577432854934937066
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.827451, g: 0.4509804, b: 0.16078432, a: 1}
+  m_Color: {r: 0.15294118, g: 0.16470589, b: 0.14901961, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

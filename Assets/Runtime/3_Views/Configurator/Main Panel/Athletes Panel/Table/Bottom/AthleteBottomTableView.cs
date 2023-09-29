@@ -20,14 +20,14 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Bo
             _addAthleteButton.onClick.AddListener(() => AthletesPanelViewEvents.ThrowOnAthleteAdded());
             _removeLastAthleteButton.onClick.AddListener(() => AthletesPanelViewEvents.ThrowOnAthleteRemoved());
 
-            //_addAthletesFromFileButton.onClick.AddListener(() => AthletesPanelViewEvents.ThrowOnLoadAthletesFromFile());
+            _addAthletesFromFileButton.onClick.AddListener(() => AthletesPanelViewEvents.ThrowOnLoadAthletesFromFile());
         }
 
         private void OnDisable() {
             _addAthleteButton.onClick.RemoveAllListeners();
             _removeLastAthleteButton.onClick.RemoveAllListeners();
 
-            //_addAthletesFromFileButton.onClick.RemoveAllListeners();
+            _addAthletesFromFileButton.onClick.RemoveAllListeners();
         }
         #endregion
 
