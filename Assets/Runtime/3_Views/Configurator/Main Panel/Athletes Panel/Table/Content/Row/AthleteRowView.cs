@@ -5,11 +5,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events;
-using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Row.RowColumns;
-using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Row.RowColumns.CountryCol;
-using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Row.RowColumns.StylesCol;
+using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns;
+using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.CountryCol;
+using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.StylesCol;
 
-namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Row {
+namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.Table.Row {
     public class AthleteRowView : MonoBehaviour {
 
         [Header("Local references")]
@@ -256,10 +256,10 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Ro
         public void HideColumn(AthleteInfoType column, bool hide) {
             switch (column) {
                 case AthleteInfoType.Country:
-                    _countryRowBase.gameObject.SetActive(hide);
+                    _countryRowBase.gameObject.SetActive(!hide);
                     break;
                 case AthleteInfoType.Academy:
-                    _academyRowBase.gameObject.SetActive(hide);
+                    _academyRowBase.gameObject.SetActive(!hide);
                     break;
                 default:
                     Debug.LogWarning($"{Enum.GetName(typeof(AthleteInfoType), column)} cannot be {(hide ? "hide" : "show")}!");

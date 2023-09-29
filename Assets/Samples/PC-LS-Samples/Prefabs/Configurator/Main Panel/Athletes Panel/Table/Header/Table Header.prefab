@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 8055740843265393892}
   - component: {fileID: 1791384969137210831}
   m_Layer: 5
-  m_Name: Athlete Table Header
+  m_Name: Table Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

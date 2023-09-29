@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using YannickSCF.CountriesData;
 
-namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Row.RowColumns.CountryCol {
+namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.CountryCol {
     public class CountryColView : MonoBehaviour {
         private const string TWO_DIGITS_PLACEHOLDER = "--";
         private const string THREE_DIGITS_PLACEHOLDER = "---";

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Row.RowColumns.StylesCol {
+namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.StylesCol {
     public class StylesColView : MonoBehaviour {
 
         public delegate void StyleToggleClick(StyleType styleClicked, bool isOn);
