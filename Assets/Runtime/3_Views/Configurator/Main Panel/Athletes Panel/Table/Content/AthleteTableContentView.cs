@@ -13,20 +13,20 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         [SerializeField] private AthleteRowView _athleteRowPrefab;
 
         private List<AthleteRowView> _rows;
-        private Dictionary<AthleteInfoType, bool> _columnsHidden;
-        private Dictionary<AthleteInfoType, bool> _columnsDisabled;
+        private Dictionary<AthleteInfoType, bool> _columnsShown;
+        private Dictionary<AthleteInfoType, bool> _columnsEnabled;
 
         #region Mono
         private void Awake() {
             _rows = new List<AthleteRowView>();
 
-            _columnsHidden = new Dictionary<AthleteInfoType, bool>();
-            _columnsDisabled = new Dictionary<AthleteInfoType, bool>();
+            _columnsShown = new Dictionary<AthleteInfoType, bool>();
+            _columnsEnabled = new Dictionary<AthleteInfoType, bool>();
 
             Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
             foreach (Enum infoType in infoTypes) {
-                _columnsHidden.Add((AthleteInfoType)infoType, false);
-                _columnsDisabled.Add((AthleteInfoType)infoType, false);
+                _columnsShown.Add((AthleteInfoType)infoType, true);
+                _columnsEnabled.Add((AthleteInfoType)infoType, true);
             }
         }
         #endregion
@@ -89,26 +89,26 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         }
 
         private void UpdateAllHiddenAndDisableColumns(AthleteRowView rowToUpdate) {
-            foreach (KeyValuePair<AthleteInfoType, bool> columnHideInfo in _columnsHidden) {
-                rowToUpdate.HideColumn(columnHideInfo.Key, columnHideInfo.Value, true);
+            foreach (KeyValuePair<AthleteInfoType, bool> columnShownInfo in _columnsShown) {
+                rowToUpdate.ShowRowColumn(columnShownInfo.Key, columnShownInfo.Value);
             }
 
-            foreach (KeyValuePair<AthleteInfoType, bool> columnDisabledInfo in _columnsHidden) {
-                rowToUpdate.HideColumn(columnDisabledInfo.Key, columnDisabledInfo.Value, true);
-            }
-        }
-
-        public void HideRowColumns(AthleteInfoType checkboxInfo, bool hide) {
-            _columnsHidden[checkboxInfo] = hide;
-            foreach (AthleteRowView row in _rows) {
-                row.HideColumn(checkboxInfo, hide);
+            foreach (KeyValuePair<AthleteInfoType, bool> columnEnabledInfo in _columnsEnabled) {
+                rowToUpdate.EnableRowColumn(columnEnabledInfo.Key, columnEnabledInfo.Value);
             }
         }
 
-        public void DisableRowColumns(AthleteInfoType checkboxInfo, bool isChecked) {
-            _columnsDisabled[checkboxInfo] = isChecked;
+        public void ShowRowColumns(AthleteInfoType checkboxInfo, bool show) {
+            _columnsShown[checkboxInfo] = show;
             foreach (AthleteRowView row in _rows) {
-                row.DisableColumn(checkboxInfo, isChecked);
+                row.ShowRowColumn(checkboxInfo, show);
+            }
+        }
+
+        public void EnableRowColumns(AthleteInfoType checkboxInfo, bool enable) {
+            _columnsEnabled[checkboxInfo] = enable;
+            foreach (AthleteRowView row in _rows) {
+                row.EnableRowColumn(checkboxInfo, enable);
             }
         }
     }

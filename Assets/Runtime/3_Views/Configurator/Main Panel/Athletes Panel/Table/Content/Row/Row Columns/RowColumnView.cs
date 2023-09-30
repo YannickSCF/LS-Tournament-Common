@@ -12,8 +12,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             _hidder.color = bgColor;
         }
 
-        public void Disable(bool hide) {
-            _hidder.gameObject.SetActive(!hide);
+        public void EnableColumn(bool enable) {
+            _hidder.gameObject.SetActive(!enable);
         }
     }
 }

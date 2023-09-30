@@ -31,6 +31,17 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.He
         #endregion
 
         public void SetHeaderEnabled(bool enable) {
+            if (_headerType == AthleteInfoType.Styles) {
+                TextMeshProUGUI[] allTexts = GetComponentsInChildren<TextMeshProUGUI>();
+                foreach (TextMeshProUGUI text in allTexts) {
+                    text.color = new Color(
+                        text.color.r,
+                        text.color.g,
+                        text.color.b,
+                        enable ? 1 : 0.5f);
+                }
+            }
+
             _headerText.color = new Color(
                 _headerText.color.r,
                 _headerText.color.g,
@@ -38,8 +49,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.He
                 enable ? 1 : 0.5f);
         }
 
-        public void HideHeader(bool hide) {
-            gameObject.SetActive(hide);
+        public void ShowHeader(bool show) {
+            gameObject.SetActive(show);
         }
     }
 }

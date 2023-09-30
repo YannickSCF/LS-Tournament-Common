@@ -229,55 +229,40 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
         }
         #endregion
 
-        public void HideColumn(AthleteInfoType column, bool hide, bool withoutNotify = false) {
-            switch (column) {
-                case AthleteInfoType.Country:
-                    _countryRow.gameObject.SetActive(!hide);
-                    break;
-                case AthleteInfoType.Academy:
-                    _academyRow.gameObject.SetActive(!hide);
-                    break;
+        public void ShowRowColumn(AthleteInfoType columnToShow, bool show) {
+            switch (columnToShow) {
+                case AthleteInfoType.Country: _countryRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.Surname: _surnameRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.Name: _nameRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.Academy: _academyRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.School: _schoolRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.Rank: _rankRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.Styles: _stylesRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.Tier: _tierRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.SaberColor: _colorRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.BirthDate: _birthDateRow.gameObject.SetActive(show); break;
+                case AthleteInfoType.StartDate: _startDateRow.gameObject.SetActive(show); break;
                 default:
-                    if (!withoutNotify) {
-                        Debug.LogWarning($"{Enum.GetName(typeof(AthleteInfoType), column)} cannot be {(hide ? "hide" : "show")}!");
-                    }
+                    Debug.LogWarning($"{Enum.GetName(typeof(AthleteInfoType), columnToShow)} is not prepared to Show/Hide function!");
                     break;
             }
         }
 
-        public void DisableColumn(AthleteInfoType column, bool disable, bool withoutNotify = false) {
-            switch (column) {
-                case AthleteInfoType.Country:
-                    _countryRow.Disable(disable);
-                    break;
-                case AthleteInfoType.Academy:
-                    _academyRow.Disable(disable);
-                    break;
-                case AthleteInfoType.School:
-                    _schoolRow.Disable(disable);
-                    break;
-                case AthleteInfoType.Rank:
-                    _rankRow.Disable(disable);
-                    break;
-                case AthleteInfoType.Styles:
-                    _stylesRow.Disable(disable);
-                    break;
-                case AthleteInfoType.Tier:
-                    _tierRow.Disable(disable);
-                    break;
-                case AthleteInfoType.SaberColor:
-                    _colorRow.Disable(disable);
-                    break;
-                case AthleteInfoType.BirthDate:
-                    _birthDateRow.Disable(disable);
-                    break;
-                case AthleteInfoType.StartDate:
-                    _startDateRow.Disable(disable);
-                    break;
+        public void EnableRowColumn(AthleteInfoType columnToShow, bool enable) {
+            switch (columnToShow) {
+                case AthleteInfoType.Country: _countryRow.EnableColumn(enable); break;
+                case AthleteInfoType.Surname: _surnameRow.EnableColumn(enable); break;
+                case AthleteInfoType.Name: _nameRow.EnableColumn(enable); break;
+                case AthleteInfoType.Academy: _academyRow.EnableColumn(enable); break;
+                case AthleteInfoType.School: _schoolRow.EnableColumn(enable); break;
+                case AthleteInfoType.Rank: _rankRow.EnableColumn(enable); break;
+                case AthleteInfoType.Styles: _stylesRow.EnableColumn(enable); break;
+                case AthleteInfoType.Tier: _tierRow.EnableColumn(enable); break;
+                case AthleteInfoType.SaberColor: _colorRow.EnableColumn(enable); break;
+                case AthleteInfoType.BirthDate: _birthDateRow.EnableColumn(enable); break;
+                case AthleteInfoType.StartDate: _startDateRow.EnableColumn(enable); break;
                 default:
-                    if (!withoutNotify) {
-                        Debug.LogWarning($"{Enum.GetName(typeof(AthleteInfoType), column)} cannot be {(disable ? "disable" : "enable")}!");
-                    }
+                    Debug.LogWarning($"{Enum.GetName(typeof(AthleteInfoType), columnToShow)} is not prepared to Enable/Disable function!");
                     break;
             }
         }

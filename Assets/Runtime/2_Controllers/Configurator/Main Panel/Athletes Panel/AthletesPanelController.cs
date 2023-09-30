@@ -50,7 +50,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         #region Events Listeners methods
         private void OnToggleHeaderHide(AthleteInfoType checkboxInfo, bool isChecked) {
             _headerView.EnableHeader(checkboxInfo, isChecked);
-            _contentView.DisableRowColumns(checkboxInfo, isChecked);
+            _contentView.EnableRowColumns(checkboxInfo, isChecked);
         }
 
         private void OnAthleteAddedByButton() {
@@ -106,6 +106,19 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             _loadingPanel.SetActive(false);
         }
         #endregion
+
+        public void ShowColumn(AthleteInfoType columnToShow, bool show) {
+            switch (columnToShow) {
+                case AthleteInfoType.Country:
+                case AthleteInfoType.Academy:
+                    _headerView.ShowColumn(columnToShow, show);
+                    _contentView.ShowRowColumns(columnToShow, show);
+                    break;
+                default:
+                    Debug.LogWarning($"You cannot Show/Hide {Enum.GetName(typeof(AthleteInfoType), columnToShow)} column!");
+                    break;
+            }
+        }
 
         #region Update model data
         // TODO: Añadir los metodos que irán guardando la informacion según vaya llegando de la vista

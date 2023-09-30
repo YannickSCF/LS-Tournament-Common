@@ -16,10 +16,10 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.He
             }
         }
 
-        public void HideColumn(AthleteInfoType column, bool hide) {
+        public void ShowColumn(AthleteInfoType column, bool show) {
             foreach (HeaderColumnView header in _allHeaders) {
                 if (header.HeaderType == column) {
-                    header.HideHeader(hide);
+                    header.ShowHeader(show);
                     break;
                 }
             }
