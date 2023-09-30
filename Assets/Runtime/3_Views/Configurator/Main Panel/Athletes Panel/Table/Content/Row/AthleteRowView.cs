@@ -165,9 +165,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
         }
         public void SetTierField(int tier, bool withoutNotify = false) {
             if (!withoutNotify) {
-                _tierRow.InputField.text = tier.ToString();
+                _tierRow.InputField.text = tier > 0 ? tier.ToString() : string.Empty;
             } else {
-                _tierRow.InputField.SetTextWithoutNotify(tier.ToString());
+                _tierRow.InputField.SetTextWithoutNotify(tier > 0 ? tier.ToString() : string.Empty);
             }
         }
         #endregion
