@@ -1,6 +1,7 @@
 // Dependencies
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -93,40 +94,25 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
         }
 
         private AthleteInfoModel AddInfoToAthleteModel(AthleteInfoModel toFill, AthleteInfoType infoType, string info) {
-            // TODO: Preparar la conversion de los tipos que faltan
             switch (infoType) {
-                case AthleteInfoType.Country:
-                    toFill.Country = ManageCountry(info);
-                    break;
-                case AthleteInfoType.Surname:
-                    toFill.Surname = info;
-                    break;
-                case AthleteInfoType.Name:
-                    toFill.Name = info;
-                    break;
-                case AthleteInfoType.Academy:
-                    toFill.Academy = info;
-                    break;
-                case AthleteInfoType.School:
-                    toFill.School = info;
-                    break;
-                case AthleteInfoType.Rank:
-                    toFill.Rank = ManageRank(info);
-                    break;
-                case AthleteInfoType.Styles:
-                    toFill.Styles = ManageStyles(info);
-                    break;
-                case AthleteInfoType.Tier:
-                    toFill.Tier = int.Parse(info);
-                    break;
+                case AthleteInfoType.Country: toFill.Country = ManageCountry(info); break;
+                case AthleteInfoType.Surname: toFill.Surname = info; break;
+                case AthleteInfoType.Name: toFill.Name = info; break;
+                case AthleteInfoType.Academy: toFill.Academy = info; break;
+                case AthleteInfoType.School: toFill.School = info; break;
+                case AthleteInfoType.Rank: toFill.Rank = ManageRank(info); break;
+                case AthleteInfoType.Styles: toFill.Styles = ManageStyles(info); break;
+                case AthleteInfoType.Tier: toFill.Tier = int.Parse(info); break;
                 case AthleteInfoType.SaberColor:
-                    //toFill.SaberColor = info;
+                    if (ColorUtility.TryParseHtmlString(info, out Color colorParsed)) {
+                        toFill.SaberColor = colorParsed;
+                    }
                     break;
                 case AthleteInfoType.BirthDate:
-                    //toFill.BirthDate = info;
+                    toFill.BirthDate = DateTime.ParseExact(info, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     break;
                 case AthleteInfoType.StartDate:
-                    //toFill.StartDate = info;
+                    toFill.StartDate = DateTime.ParseExact(info, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     break;
             }
 
