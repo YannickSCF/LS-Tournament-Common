@@ -1,12 +1,14 @@
+// Dependencies
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+// Custom dependencies
 using YannickSCF.CountriesData;
 using YannickSCF.LSTournaments.Common.Models;
 
-namespace YannickSCF.LSTournaments.Common.Tools.Importers {
+namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
     public class CSVDeserializer : IDeserializer {
 
         public List<PouleInfoModel> GetPoulesFromFile(string path) {
@@ -66,6 +68,9 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importers {
         }
 
         private string[] SeparateCSVLine(string csvLine) {
+            // TODO: Prevenir posibles formatos diferentes. A saber:
+            //      - Con ;
+            //      - Con , y con comillas cuando se usan la coma
             return csvLine.Split(";");
         }
 
@@ -82,11 +87,11 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importers {
                 res.Add(athlete);
             }
 
-            return res;
+            return res.Count == 0 ? null : res;
         }
 
         private AthleteInfoModel AddInfoToAthleteModel(AthleteInfoModel toFill, AthleteInfoType infoType, string info) {
-
+            // TODO: Preparar la conversion de los tipos que faltan
             switch (infoType) {
                 case AthleteInfoType.Country:
                     toFill.Country = info;
@@ -134,6 +139,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importers {
                 return (RankType)Enum.Parse(typeof(RankType), rankStr);
             }
 
+            // TODO Evitar esto. Lanzar un warning (con popup) y devolver El valor de Novizio
             throw new Exception("ERROR: No coincidence for Rank '" + rankStr + "'. Please, review your CSV");
         }
 
@@ -150,6 +156,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importers {
                 if (styleNames.Contains(style)) {
                     res.Add((StyleType)Enum.Parse(typeof(StyleType), style));
                 } else {
+                    // TODO Evitar esto. Lanzar un warning (con popup) y devolver una lista con Forma 1 unicamente
                     throw new Exception("ERROR: No coincidence for Style '" + style + "'. Please, review your CSV");
                 }
             }

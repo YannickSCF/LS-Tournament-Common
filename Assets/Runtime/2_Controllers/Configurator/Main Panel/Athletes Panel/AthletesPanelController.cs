@@ -72,7 +72,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             if (!string.IsNullOrEmpty(filePath)) {
                 // Get all participants
                 List<AthleteInfoModel> athletes = FileImporter.ImportAthletesFromFile(filePath);
-                if (athletes.Count > 0) {
+                if (athletes != null && athletes.Count > 0) {
                     _loadingPanel.SetActive(true);
                     // Reset all table content
                     _contentView.ResetContent();
@@ -105,6 +105,14 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
             _loadingPanel.SetActive(false);
         }
+        #endregion
+
+        #region Update model data
+        // TODO: Añadir los metodos que irán guardando la informacion según vaya llegando de la vista
+        #endregion
+
+        #region Validators
+        // TODO: Crear todos los validadores necesarios. Estos deben imprimir un mensaje en el cuadro inferior
         #endregion
 
         private string GetAthletesCountText(int count) {

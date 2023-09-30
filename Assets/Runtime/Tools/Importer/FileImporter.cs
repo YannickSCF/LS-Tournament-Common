@@ -5,37 +5,10 @@ using UnityEngine;
 // Custom dependencies
 using AnotherFileBrowser.Windows;
 using YannickSCF.LSTournaments.Common.Models;
+using YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Importers {
     public static class FileImporter {
-
-        public static void OpenFileBrowser() {
-            var browserProperties = new BrowserProperties();
-            string myPath = "(holi)";
-
-            new FileBrowser().OpenFileBrowser(browserProperties, path => {
-                if (path != null) {
-                    myPath = path;
-                    IDeserializer deserializer;
-                    if (path.ToLower().EndsWith(".json")) {
-                        deserializer = new JSONDeserializer();
-                    } else if (path.ToLower().EndsWith(".csv")) {
-                        deserializer = new CSVDeserializer();
-                    } else {
-                        deserializer = new CSVDeserializer();
-                    }
-
-                    List<AthleteInfoModel> athletes = deserializer.ImportAthletesFromFile(path);
-
-                    //PouleBuilder pouleBuilder = new AlphaPouleBuilder();
-                    //ITierListBuilder tierListBuilder = new StyleTierListBuilder();
-                    //_ = pouleBuilder.BuildPoules(athletes, tierListBuilder);
-                    Debug.Log("OpenFileBrowser Finished!");
-                }
-            });
-
-            Debug.Log("Returned path: " + myPath);
-        }
 
         public static List<AthleteInfoModel> ImportAthletesFromFile(string filePath) {
             IDeserializer deserializer;
@@ -44,6 +17,8 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importers {
                 deserializer = new JSONDeserializer();
             } else if (filePath.ToLower().EndsWith(".csv")) {
                 deserializer = new CSVDeserializer();
+            } else if (filePath.ToLower().EndsWith(".tsv")) {
+                deserializer = new TSVDeserializer();
             } else {
                 throw new Exception("File with incorrect extension");
             }
@@ -61,7 +36,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importers {
             string res = "";
 
             new FileBrowser().OpenFileBrowser(browserProperties, path => {
-                if (path.ToLower().EndsWith(".json") || path.ToLower().EndsWith(".csv")) {
+                if (path.ToLower().EndsWith(".json") || path.ToLower().EndsWith(".csv") || path.ToLower().EndsWith(".tsv")) {
                     res = path;
                 }
             });

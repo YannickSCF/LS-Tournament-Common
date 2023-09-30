@@ -1,9 +1,11 @@
+// Dependencies
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+// Custom dependencies
 using YannickSCF.LSTournaments.Common.Models;
 
-namespace YannickSCF.LSTournaments.Common.Tools.Importers {
+namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
     public class JSONDeserializer : IDeserializer {
 
         public List<PouleInfoModel> GetPoulesFromFile(string path) {
@@ -15,8 +17,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importers {
 
             List<AthleteInfoModel> athletes = JsonUtility.FromJson<List<AthleteInfoModel>>(jsonText);
 
-            if (athletes.Count == 0) return null;
-            else return athletes;
+            return athletes.Count == 0 ? null : athletes;
         }
 
         //public DrawConfiguration ImportDrawFormJSON(string filePath) {

@@ -1,4 +1,4 @@
-using System.Collections;
+// Dependencies
 using System.Collections.Generic;
 using UnityEngine;
 

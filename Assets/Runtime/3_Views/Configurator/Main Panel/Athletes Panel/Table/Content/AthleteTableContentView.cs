@@ -88,7 +88,6 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             _rows.Clear();
         }
 
-
         private void UpdateAllHiddenAndDisableColumns(AthleteRowView rowToUpdate) {
             foreach (KeyValuePair<AthleteInfoType, bool> columnHideInfo in _columnsHidden) {
                 rowToUpdate.HideColumn(columnHideInfo.Key, columnHideInfo.Value, true);
