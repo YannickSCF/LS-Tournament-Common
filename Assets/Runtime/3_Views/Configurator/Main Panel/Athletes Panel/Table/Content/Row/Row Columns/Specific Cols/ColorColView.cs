@@ -11,11 +11,10 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         [SerializeField] private TMP_InputField _inputField;
         [SerializeField] private Image _exampleColor;
 
-        public TMP_InputField InputField { get => _inputField; }
-
         #region Mono
         private void OnEnable() {
             _inputField.onSelect.AddListener(CheckFirstSelect);
+            // TODO: Move validation to controller
             _inputField.onValueChanged.AddListener(ValidateColorText);
         }
 
@@ -57,6 +56,14 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             SetExampleColor(inputText);
         }
         #endregion
+
+        public TMP_InputField.OnChangeEvent OnValueChanged() {
+            return _inputField.onValueChanged;
+        }
+
+        public Color GetColor() {
+            return _exampleColor.color;
+        }
 
         public void SetColor(Color color, bool withoutNotify = false) {
             if (!withoutNotify) {

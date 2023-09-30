@@ -63,8 +63,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             newRow.SetStylesField(styles, true);
             newRow.SetTierField(tier, true);
             newRow.SetColorField(color, true);
-            //newRow.SetBirthDate(birthData, true);
-            //newRow.SetStartDate(startDate, true);
+            newRow.SetBirthDateField(birthData, true);
+            newRow.SetStartDateField(startDate, true);
 
             UpdateAllHiddenAndDisableColumns(newRow);
             _rows.Add(newRow);

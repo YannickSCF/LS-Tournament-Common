@@ -62,39 +62,43 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
         private void OnEnable() {
             _countryRow.OnFinalValueSetted += CountryFieldChanged;
 
-            _surnameRow.InputField.onValueChanged.AddListener(SurnameFieldChanged);
-            _nameRow.InputField.onValueChanged.AddListener(NameFieldChanged);
-            _academyRow.InputField.onValueChanged.AddListener(AcademyFieldChanged);
-            _academyRow.InputField.onValueChanged.AddListener(SchoolFieldChanged);
+            _surnameRow.OnValueChanged().AddListener(SurnameFieldChanged);
+            _nameRow.OnValueChanged().AddListener(NameFieldChanged);
+            _academyRow.OnValueChanged().AddListener(AcademyFieldChanged);
+            _academyRow.OnValueChanged().AddListener(SchoolFieldChanged);
 
-            _rankRow.Dropdown.onValueChanged.AddListener(RankFieldChanged);
+            _rankRow.OnValueChanged().AddListener(RankFieldChanged);
             _stylesRow.StyleToggleClicked += StylesFieldChanged;
 
-            _tierRow.InputField.onValueChanged.AddListener(TierFieldChanged);
+            _tierRow.OnValueChanged().AddListener(TierFieldChanged);
+
+            // TODO Add color and dates
         }
 
         private void OnDisable() {
             _countryRow.OnFinalValueSetted -= CountryFieldChanged;
 
-            _surnameRow.InputField.onValueChanged.RemoveAllListeners();
-            _nameRow.InputField.onValueChanged.RemoveAllListeners();
-            _academyRow.InputField.onValueChanged.RemoveAllListeners();
-            _schoolRow.InputField.onValueChanged.RemoveAllListeners();
+            _surnameRow.OnValueChanged().RemoveAllListeners();
+            _nameRow.OnValueChanged().RemoveAllListeners();
+            _academyRow.OnValueChanged().RemoveAllListeners();
+            _schoolRow.OnValueChanged().RemoveAllListeners();
 
-            _rankRow.Dropdown.onValueChanged.RemoveAllListeners();
+            _rankRow.OnValueChanged().RemoveAllListeners();
             _stylesRow.StyleToggleClicked -= StylesFieldChanged;
 
-            _tierRow.InputField.onValueChanged.RemoveAllListeners();
+            _tierRow.OnValueChanged().RemoveAllListeners();
+
+            // TODO Remove color and dates
         }
         #endregion
 
         #region GETTERS
         public string GetCountryField() { return _countryRow.GetCurrentValue(); }
-        public string GetSurnameField() { return _surnameRow.InputField.text; }
-        public string GetNameField() { return _nameRow.InputField.text; }
-        public string GetAcademyField() { return _academyRow.InputField.text; }
-        public string GetSchoolField() { return _schoolRow.InputField.text; }
-        public RankType GetRankField() { return (RankType)_rankRow.Dropdown.value; }
+        public string GetSurnameField() { return _surnameRow.GetText(); }
+        public string GetNameField() { return _nameRow.GetText(); }
+        public string GetAcademyField() { return _academyRow.GetText(); }
+        public string GetSchoolField() { return _schoolRow.GetText(); }
+        public RankType GetRankField() { return (RankType)_rankRow.GetValue(); }
         public List<StyleType> GetStylesField() {
             List<StyleType> styles = new List<StyleType>();
             List<bool> stylesBools = _stylesRow.GetStyles();
@@ -105,7 +109,10 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
             }
             return styles;
         }
-        public int GetTierField() { return int.Parse(_tierRow.InputField.text); }
+        public int GetTierField() { return int.Parse(_tierRow.GetText()); }
+        public Color GetColorField() { return _colorRow.GetColor(); }
+        public DateTime GetBirthDateField() { return _birthDateRow.GetDate(); }
+        public DateTime GetStartDateField() { return _startDateRow.GetDate(); }
         #endregion
 
         #region SETTERS
@@ -113,39 +120,19 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
             _countryRow.SetInitValue(countryCode, withoutNotify);
         }
         public void SetSurnameField(string surname, bool withoutNotify = false) {
-            if (!withoutNotify) {
-                _surnameRow.InputField.text = surname;
-            } else {
-                _surnameRow.InputField.SetTextWithoutNotify(surname);
-            }
+            _surnameRow.SetInputField(surname, withoutNotify);
         }
         public void SetNameField(string name, bool withoutNotify = false) {
-            if (!withoutNotify) {
-                _nameRow.InputField.text = name;
-            } else {
-                _nameRow.InputField.SetTextWithoutNotify(name);
-            }
+            _nameRow.SetInputField(name, withoutNotify);
         }
         public void SetAcademyField(string academy, bool withoutNotify = false) {
-            if (!withoutNotify) {
-                _academyRow.InputField.text = academy;
-            } else {
-                _academyRow.InputField.SetTextWithoutNotify(academy);
-            }
+            _academyRow.SetInputField(academy, withoutNotify);
         }
         public void SetSchoolField(string school, bool withoutNotify = false) {
-            if (!withoutNotify) {
-                _schoolRow.InputField.text = school;
-            } else {
-                _schoolRow.InputField.SetTextWithoutNotify(school);
-            }
+            _schoolRow.SetInputField(school, withoutNotify);
         }
         public void SetRankField(RankType rank, bool withoutNotify = false) {
-            if (!withoutNotify) {
-                _rankRow.Dropdown.value = (int)rank;
-            } else {
-                _rankRow.Dropdown.SetValueWithoutNotify((int)rank);
-            }
+            _rankRow.SetDropdown((int)rank, withoutNotify);
         }
         public void SetStylesField(List<StyleType> styles, bool withoutNotify = false) {
             if (_stylesRow != null) {
@@ -164,14 +151,16 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
             }
         }
         public void SetTierField(int tier, bool withoutNotify = false) {
-            if (!withoutNotify) {
-                _tierRow.InputField.text = tier > 0 ? tier.ToString() : string.Empty;
-            } else {
-                _tierRow.InputField.SetTextWithoutNotify(tier > 0 ? tier.ToString() : string.Empty);
-            }
+            _tierRow.SetInputField(tier > 0 ? tier.ToString() : string.Empty, withoutNotify);
         }
         public void SetColorField(Color color, bool withoutNotify = false) {
             _colorRow.SetColor(color, withoutNotify);
+        }
+        public void SetBirthDateField(DateTime birthDate, bool withoutNotify = false) {
+            _birthDateRow.SetDate(birthDate, withoutNotify);
+        }
+        public void SetStartDateField(DateTime startDate, bool withoutNotify = false) {
+            _startDateRow.SetDate(startDate, withoutNotify);
         }
         #endregion
 
