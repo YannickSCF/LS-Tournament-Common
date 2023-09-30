@@ -808,7 +808,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6926994839786731179}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -816,8 +816,8 @@ RectTransform:
   - {fileID: 4547336787828556708}
   - {fileID: 9167455077955028528}
   - {fileID: 6480010929657369489}
-  m_Father: {fileID: 2331422558889911435}
-  m_RootOrder: 1
+  m_Father: {fileID: 2045618174288236734}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1222,6 +1222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Row Column (Dropdown)
       objectReference: {fileID: 0}
+    - target: {fileID: 4663991454489635888, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8971255220699944965, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1319,9 +1323,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2331422558889911435 stripped
+--- !u!224 &2045618174288236734 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8971255220699944965, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4663991454489635888, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
   m_PrefabInstance: {fileID: 6690850825998662798}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &4831454004688214856 stripped

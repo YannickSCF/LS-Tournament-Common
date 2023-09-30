@@ -62,7 +62,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             newRow.SetRankField(rank, true);
             newRow.SetStylesField(styles, true);
             newRow.SetTierField(tier, true);
-            //newRow.SetColor(color, true);
+            newRow.SetColorField(color, true);
             //newRow.SetBirthDate(birthData, true);
             //newRow.SetStartDate(startDate, true);
 

@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Row Column (Styles)
       objectReference: {fileID: 0}
+    - target: {fileID: 4663991454489635888, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8971255220699944965, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -138,9 +142,9 @@ MonoBehaviour:
   - {fileID: 1489106777956896928}
   - {fileID: 6088218274960023647}
   - {fileID: 8980218483187453498}
---- !u!224 &6797487458293792215 stripped
+--- !u!224 &7092070206821468642 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8971255220699944965, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4663991454489635888, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
   m_PrefabInstance: {fileID: 2510136407049528786}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7745005799695205370 stripped
@@ -159,7 +163,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6797487458293792215}
+    m_TransformParent: {fileID: 7092070206821468642}
     m_Modifications:
     - target: {fileID: 510253327248878985, guid: 38090e0e0af62454e89939bd9d6d6368, type: 3}
       propertyPath: m_FlexibleWidth
@@ -343,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7570304055187520260, guid: 38090e0e0af62454e89939bd9d6d6368, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7570304055187520260, guid: 38090e0e0af62454e89939bd9d6d6368, type: 3}
       propertyPath: m_AnchorMax.x

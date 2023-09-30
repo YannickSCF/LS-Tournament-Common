@@ -170,6 +170,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
                 _tierRow.InputField.SetTextWithoutNotify(tier > 0 ? tier.ToString() : string.Empty);
             }
         }
+        public void SetColorField(Color color, bool withoutNotify = false) {
+            _colorRow.SetColor(color, withoutNotify);
+        }
         #endregion
 
         #region Event listeners methods

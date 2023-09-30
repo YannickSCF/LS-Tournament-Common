@@ -26,14 +26,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695664571122009900}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 346521066820327430}
-  m_Father: {fileID: 8409845423547687616}
-  m_RootOrder: 1
+  m_Father: {fileID: 5227653640017057525}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -539,6 +539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Row Column (Input Field)
       objectReference: {fileID: 0}
+    - target: {fileID: 4663991454489635888, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8971255220699944965, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -595,8 +599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8409845423547687616 stripped
+--- !u!224 &5227653640017057525 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8971255220699944965, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4663991454489635888, guid: a6ab9ef07a8dffc4a87b19ef3288f632, type: 3}
   m_PrefabInstance: {fileID: 591529342630197957}
   m_PrefabAsset: {fileID: 0}
