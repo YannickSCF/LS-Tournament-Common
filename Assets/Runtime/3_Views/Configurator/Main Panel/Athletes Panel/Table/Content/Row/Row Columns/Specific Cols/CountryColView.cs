@@ -4,15 +4,16 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+// Custom dependencies
 using YannickSCF.CountriesData;
+using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols {
     public class CountryColView : RowColumnView {
         private const string TWO_DIGITS_PLACEHOLDER = "--";
         private const string THREE_DIGITS_PLACEHOLDER = "---";
 
-        public delegate void FinalValue(string finalValue);
-        public event FinalValue OnFinalValueSetted;
+        public event StringEventDelegate OnFinalValueSetted;
 
         [Header("Country Col References")]
         [SerializeField] private bool _twoDigitCode;

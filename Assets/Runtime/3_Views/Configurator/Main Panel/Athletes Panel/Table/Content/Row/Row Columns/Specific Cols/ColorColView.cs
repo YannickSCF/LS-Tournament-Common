@@ -1,12 +1,16 @@
 // Dependencies
-using System;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+// Custom dependencies
+using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols {
     public class ColorColView : RowColumnView {
+
+        public event StringEventDelegate OnFinalValueSetted;
+
         [Header("Color Col References")]
         [SerializeField] private TMP_InputField _inputField;
         [SerializeField] private Image _exampleColor;
@@ -14,11 +18,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         #region Mono
         private void OnEnable() {
             _inputField.onSelect.AddListener(CheckFirstSelect);
-            // TODO: Move validation to controller
             _inputField.onValueChanged.AddListener(ValidateColorText);
         }
 
         private void OnDisable() {
+            _inputField.onSelect.RemoveAllListeners();
             _inputField.onValueChanged.RemoveAllListeners();
         }
         #endregion
@@ -54,12 +58,10 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             _inputField.SetTextWithoutNotify(_inputField.text.Replace("*", string.Empty));
 
             SetExampleColor(inputText);
+
+            OnFinalValueSetted?.Invoke(inputText);
         }
         #endregion
-
-        public TMP_InputField.OnChangeEvent OnValueChanged() {
-            return _inputField.onValueChanged;
-        }
 
         public Color GetColor() {
             return _exampleColor.color;

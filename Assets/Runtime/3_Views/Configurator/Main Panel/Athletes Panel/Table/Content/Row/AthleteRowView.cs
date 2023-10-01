@@ -72,7 +72,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
 
             _tierRow.OnValueChanged().AddListener(TierFieldChanged);
 
-            // TODO Add color and dates
+            _colorRow.OnFinalValueSetted += ColorFieldChanged;
+            _birthDateRow.OnFinalValueSetted += BirthDateFieldChanged;
+            _startDateRow.OnFinalValueSetted += StartDateFieldChanged;
         }
 
         private void OnDisable() {
@@ -88,7 +90,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
 
             _tierRow.OnValueChanged().RemoveAllListeners();
 
-            // TODO Remove color and dates
+            _colorRow.OnFinalValueSetted -= ColorFieldChanged;
+            _birthDateRow.OnFinalValueSetted -= BirthDateFieldChanged;
+            _startDateRow.OnFinalValueSetted -= StartDateFieldChanged;
         }
         #endregion
 
@@ -217,6 +221,24 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
         private void TierFieldChanged(string strValue) {
             AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
                 AthleteInfoType.Tier,
+                strValue, _athleteRowIndex);
+        }
+
+        private void ColorFieldChanged(string strValue) {
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
+                AthleteInfoType.SaberColor,
+                strValue, _athleteRowIndex);
+        }
+
+        private void BirthDateFieldChanged(string strValue) {
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
+                AthleteInfoType.BirthDate,
+                strValue, _athleteRowIndex);
+        }
+
+        private void StartDateFieldChanged(string strValue) {
+            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
+                AthleteInfoType.StartDate,
                 strValue, _athleteRowIndex);
         }
         #endregion
