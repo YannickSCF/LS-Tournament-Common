@@ -1,6 +1,7 @@
 // Dependencies
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols {
     public class DropdownColView : RowColumnView {
@@ -8,9 +9,21 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         [Header("Dropdown Col References")]
         [SerializeField] private TMP_Dropdown _dropdown;
 
-        public TMP_Dropdown.DropdownEvent OnValueChanged() {
-            return _dropdown.onValueChanged;
+        #region Mono
+        private void OnEnable() {
+            _dropdown.onValueChanged.AddListener(DropdownSelected);
         }
+
+        private void OnDisable() {
+            _dropdown.onValueChanged.RemoveAllListeners();
+        }
+        #endregion
+
+        #region Event Listeners methods
+        private void DropdownSelected(int selectionIndex) {
+            ThrowColumnValueSetted(_dropdown);
+        }
+        #endregion
 
         public int GetValue() {
             return _dropdown.value;

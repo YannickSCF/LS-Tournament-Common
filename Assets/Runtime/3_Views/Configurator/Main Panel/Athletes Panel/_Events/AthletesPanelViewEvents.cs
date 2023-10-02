@@ -6,7 +6,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events {
 
         // ------------------------- Specific Delegates -------------------------
 
-        public delegate void AthleteDataEvent(AthleteInfoType infoType, string dataUpdated, int AthleteIndex);
+        public delegate void AthleteDataEvent(AthleteInfoType infoType, int athleteIndex);
         public delegate void AthleteInfoCheckboxEvent(AthleteInfoType checkboxInfo, bool isChecked);
 
         // ------------------------------- Events -------------------------------
@@ -28,9 +28,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events {
         }
 
         public static event AthleteDataEvent OnAthleteDataUpdated;
-        public static void ThrowOnAthleteDataUpdated(
-            AthleteInfoType infoType, string dataUpdated, int AthleteIndex) {
-            OnAthleteDataUpdated?.Invoke(infoType, dataUpdated, AthleteIndex);
+        public static void ThrowOnAthleteDataUpdated(AthleteInfoType infoType, int athleteIndex) {
+            OnAthleteDataUpdated?.Invoke(infoType, athleteIndex);
         }
 
         public static event AthleteInfoCheckboxEvent OnAthleteInfoCheckboxToggle;

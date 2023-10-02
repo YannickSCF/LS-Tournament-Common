@@ -31,6 +31,20 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         }
         #endregion
 
+        #region GETTERS
+        public string GetCountryField(int row) { return _rows[row].GetCountryField(); }
+        public string GetSurnameField(int row) { return _rows[row].GetSurnameField(); }
+        public string GetNameField(int row) { return _rows[row].GetNameField(); }
+        public string GetAcademyField(int row) { return _rows[row].GetAcademyField(); }
+        public string GetSchoolField(int row) { return _rows[row].GetSchoolField(); }
+        public RankType GetRankField(int row) { return _rows[row].GetRankField(); }
+        public List<StyleType> GetStylesField(int row) { return _rows[row].GetStylesField(); }
+        public int GetTierField(int row) { return _rows[row].GetTierField(); }
+        public Color GetColorField(int row) { return _rows[row].GetColorField(); }
+        public DateTime GetBirthDateField(int row) { return _rows[row].GetBirthDateField(); }
+        public DateTime GetStartDateField(int row) { return _rows[row].GetStartDateField(); }
+        #endregion
+
         public int AddAthleteRow() {
             AthleteRowView newRow = Instantiate(_athleteRowPrefab, _tableScrollRect.content);
             

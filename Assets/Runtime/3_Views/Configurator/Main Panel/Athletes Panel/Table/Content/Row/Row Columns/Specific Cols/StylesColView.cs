@@ -6,9 +6,6 @@ using UnityEngine.UI;
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols {
     public class StylesColView : RowColumnView {
 
-        public delegate void StyleToggleClick(StyleType styleClicked, bool isOn);
-        public event StyleToggleClick StyleToggleClicked;
-
         [Header("Styles Col References")]
         [SerializeField] private List<Toggle> _styleToggles;
 
@@ -49,16 +46,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
 
         #region Event Listeners methods
         private void OnStyleToggleClicked(bool isOn) {
-            StyleType styleClicked = StyleType.Form2;
-            for (int i = 0; i < _styleToggles.Count; ++i) {
-                if (_styleSelections[i] != _styleToggles[i].isOn) {
-                    _styleSelections[i] = isOn;
-                    styleClicked = (StyleType)i;
-                    break;
-                }
-            }
-
-            StyleToggleClicked?.Invoke(styleClicked, isOn);
+            ThrowColumnValueSetted();
         }
         #endregion
 
@@ -70,22 +58,6 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
                 } else {
                     _styleToggles[i].isOn = stylesStatus[i];
                 }
-            }
-        }
-
-        public void SetStyle(StyleType style, bool isOn, bool withoutNotify = false) {
-            _styleSelections[(int)style] = isOn;
-            if (withoutNotify) {
-                _styleToggles[(int)style].SetIsOnWithoutNotify(isOn);
-            } else {
-                _styleToggles[(int)style].isOn = isOn;
-            }
-        }
-
-        public void SetStylesLocked(List<StyleType> styleToLock, bool isLocked) {
-            List<int> stylesIndexes = styleToLock.ConvertAll(x => (int)x);
-            foreach(int styleIndex in stylesIndexes) {
-                _styleToggles[styleIndex].interactable = isLocked;
             }
         }
 

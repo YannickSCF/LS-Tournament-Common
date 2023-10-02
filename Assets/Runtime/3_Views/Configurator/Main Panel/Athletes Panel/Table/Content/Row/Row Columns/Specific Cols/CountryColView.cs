@@ -6,14 +6,11 @@ using UnityEngine;
 using UnityEngine.UI;
 // Custom dependencies
 using YannickSCF.CountriesData;
-using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols {
     public class CountryColView : RowColumnView {
         private const string TWO_DIGITS_PLACEHOLDER = "--";
         private const string THREE_DIGITS_PLACEHOLDER = "---";
-
-        public event StringEventDelegate OnFinalValueSetted;
 
         [Header("Country Col References")]
         [SerializeField] private bool _twoDigitCode;
@@ -31,7 +28,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             _options = new Dictionary<string, Sprite>();
 
             SetPlaceholder();
-            SetFinalValue("");
+            SetFinalValue(string.Empty, true);
         }
 
         private void OnEnable() {
@@ -80,7 +77,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         }
 
         private void OnInputFieldChanged(string text) {
-            SetFinalValue(null);
+            SetFinalValue(null, true);
 
             if (string.IsNullOrEmpty(text)) {
                 _optionsScrollRect.gameObject.SetActive(false);
@@ -160,18 +157,14 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
                 _inputField.SetTextWithoutNotify(code);
                 _optionsScrollRect.gameObject.SetActive(false);
 
-                if (!withoutNotify) {
-                    OnFinalValueSetted?.Invoke(code);
-                }
-
                 _inputField.DeactivateInputField();
             } else {
                 _captionImage.sprite = null;
                 _captionImage.color = new Color(1, 1, 1, 0);
+            }
 
-                if (!withoutNotify) {
-                    OnFinalValueSetted?.Invoke("");
-                }
+            if (!withoutNotify) {
+                ThrowColumnValueSetted(_inputField);
             }
         }
 

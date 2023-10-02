@@ -60,39 +60,39 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
 
         #region Mono
         private void OnEnable() {
-            _countryRow.OnFinalValueSetted += CountryFieldChanged;
+            _countryRow.OnColumnValueSetted += OnColumnSetted;
 
-            _surnameRow.OnValueChanged().AddListener(SurnameFieldChanged);
-            _nameRow.OnValueChanged().AddListener(NameFieldChanged);
-            _academyRow.OnValueChanged().AddListener(AcademyFieldChanged);
-            _academyRow.OnValueChanged().AddListener(SchoolFieldChanged);
+            _surnameRow.OnColumnValueSetted += OnColumnSetted;
+            _nameRow.OnColumnValueSetted += OnColumnSetted;
+            _academyRow.OnColumnValueSetted += OnColumnSetted;
+            _schoolRow.OnColumnValueSetted += OnColumnSetted;
 
-            _rankRow.OnValueChanged().AddListener(RankFieldChanged);
-            _stylesRow.StyleToggleClicked += StylesFieldChanged;
+            _rankRow.OnColumnValueSetted += OnColumnSetted;
+            _stylesRow.OnColumnValueSetted += OnColumnSetted;
 
-            _tierRow.OnValueChanged().AddListener(TierFieldChanged);
+            _tierRow.OnColumnValueSetted += OnColumnSetted;
 
-            _colorRow.OnFinalValueSetted += ColorFieldChanged;
-            _birthDateRow.OnFinalValueSetted += BirthDateFieldChanged;
-            _startDateRow.OnFinalValueSetted += StartDateFieldChanged;
+            _colorRow.OnColumnValueSetted += OnColumnSetted;
+            _birthDateRow.OnColumnValueSetted += OnColumnSetted;
+            _startDateRow.OnColumnValueSetted += OnColumnSetted;
         }
 
         private void OnDisable() {
-            _countryRow.OnFinalValueSetted -= CountryFieldChanged;
+            _countryRow.OnColumnValueSetted -= OnColumnSetted;
 
-            _surnameRow.OnValueChanged().RemoveAllListeners();
-            _nameRow.OnValueChanged().RemoveAllListeners();
-            _academyRow.OnValueChanged().RemoveAllListeners();
-            _schoolRow.OnValueChanged().RemoveAllListeners();
+            _surnameRow.OnColumnValueSetted -= OnColumnSetted;
+            _nameRow.OnColumnValueSetted -= OnColumnSetted;
+            _academyRow.OnColumnValueSetted -= OnColumnSetted;
+            _schoolRow.OnColumnValueSetted -= OnColumnSetted;
 
-            _rankRow.OnValueChanged().RemoveAllListeners();
-            _stylesRow.StyleToggleClicked -= StylesFieldChanged;
+            _rankRow.OnColumnValueSetted -= OnColumnSetted;
+            _stylesRow.OnColumnValueSetted -= OnColumnSetted;
 
-            _tierRow.OnValueChanged().RemoveAllListeners();
+            _tierRow.OnColumnValueSetted -= OnColumnSetted;
 
-            _colorRow.OnFinalValueSetted -= ColorFieldChanged;
-            _birthDateRow.OnFinalValueSetted -= BirthDateFieldChanged;
-            _startDateRow.OnFinalValueSetted -= StartDateFieldChanged;
+            _colorRow.OnColumnValueSetted -= OnColumnSetted;
+            _birthDateRow.OnColumnValueSetted -= OnColumnSetted;
+            _startDateRow.OnColumnValueSetted -= OnColumnSetted;
         }
         #endregion
 
@@ -169,77 +169,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
         #endregion
 
         #region Event listeners methods
-        private void CountryFieldChanged(string finalValue) {
+        private void OnColumnSetted(AthleteInfoType columnSetted) {
             AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.Country,
-                finalValue, _athleteRowIndex);
-        }
-
-        private void SurnameFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.Surname,
-                strValue, _athleteRowIndex);
-        }
-
-        private void NameFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.Name,
-                strValue, _athleteRowIndex);
-        }
-
-        private void AcademyFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.Academy,
-                strValue, _athleteRowIndex);
-        }
-
-        private void SchoolFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.School,
-                strValue, _athleteRowIndex);
-        }
-
-        private void RankFieldChanged(int intValue) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.Rank,
-                intValue.ToString(), _athleteRowIndex);
-        }
-
-        private void StylesFieldChanged(StyleType styleClicked, bool isOn) {
-            string stylesInList = string.Empty;
-
-            List<StyleType> styles = GetStylesField();
-            foreach (StyleType style in styles) {
-                stylesInList += (int)style + ",";
-            }
-
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.Styles,
-                stylesInList, _athleteRowIndex);
-        }
-
-        private void TierFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.Tier,
-                strValue, _athleteRowIndex);
-        }
-
-        private void ColorFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.SaberColor,
-                strValue, _athleteRowIndex);
-        }
-
-        private void BirthDateFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.BirthDate,
-                strValue, _athleteRowIndex);
-        }
-
-        private void StartDateFieldChanged(string strValue) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.StartDate,
-                strValue, _athleteRowIndex);
+                AthleteInfoType.Country, _athleteRowIndex);
         }
         #endregion
 

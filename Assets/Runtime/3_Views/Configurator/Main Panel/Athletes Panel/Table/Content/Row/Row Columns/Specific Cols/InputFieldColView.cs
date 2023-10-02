@@ -8,9 +8,21 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         [Header("Input Field Col References")]
         [SerializeField] private TMP_InputField _inputField;
 
-        public TMP_InputField.OnChangeEvent OnValueChanged() {
-            return _inputField.onValueChanged;
+        #region Mono
+        private void OnEnable() {
+            _inputField.onSubmit.AddListener(OnTextSetted);
         }
+
+        private void OnDisable() {
+            _inputField.onSubmit.RemoveAllListeners();
+        }
+        #endregion
+
+        #region Event Listeners methods
+        private void OnTextSetted(string inputText) {
+            ThrowColumnValueSetted(_inputField);
+        }
+        #endregion
 
         public string GetText() {
             return _inputField.text;

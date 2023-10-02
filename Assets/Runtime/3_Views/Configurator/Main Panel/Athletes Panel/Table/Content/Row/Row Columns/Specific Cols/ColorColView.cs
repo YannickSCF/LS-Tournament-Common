@@ -1,15 +1,12 @@
 // Dependencies
+using System;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-// Custom dependencies
-using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols {
     public class ColorColView : RowColumnView {
-
-        public event StringEventDelegate OnFinalValueSetted;
 
         [Header("Color Col References")]
         [SerializeField] private TMP_InputField _inputField;
@@ -19,11 +16,13 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         private void OnEnable() {
             _inputField.onSelect.AddListener(CheckFirstSelect);
             _inputField.onValueChanged.AddListener(ValidateColorText);
+            _inputField.onEndEdit.AddListener(OnEndEditColor);
         }
 
         private void OnDisable() {
             _inputField.onSelect.RemoveAllListeners();
             _inputField.onValueChanged.RemoveAllListeners();
+            _inputField.onEndEdit.RemoveAllListeners();
         }
         #endregion
 
@@ -58,8 +57,20 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             _inputField.SetTextWithoutNotify(_inputField.text.Replace("*", string.Empty));
 
             SetExampleColor(inputText);
+        }
 
-            OnFinalValueSetted?.Invoke(inputText);
+        private void OnEndEditColor(string inputText) {
+            if (inputText.Length < 7) {
+                int zerosNeeded = 7 - inputText.Length;
+                for (int i = 0; i < zerosNeeded; ++i) {
+                    inputText += "0";
+                }
+            }
+
+            _inputField.SetTextWithoutNotify(inputText);
+            SetExampleColor(inputText);
+
+            ThrowColumnValueSetted(_inputField);
         }
         #endregion
 
