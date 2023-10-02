@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using YannickSCF.LSTournaments.Common.Models;
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Models.Matches;
 using YannickSCF.LSTournaments.Common.Models.Poules;
@@ -20,6 +19,7 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
 
         [SerializeField] private Dictionary<EliminationRound, List<MatchModel>> _eliminationBracket;
 
+        [SerializeField] private Dictionary<AthleteInfoType, bool> _athletesInfoUsed;
         [SerializeField] private List<AthleteInfoModel> _athletes;
         [SerializeField] private List<AthleteTournamentStatsModel> _athletesStats;
 
@@ -33,6 +33,7 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
 
         public Dictionary<EliminationRound, List<MatchModel>> EliminationBracket { get => _eliminationBracket; set => _eliminationBracket = value; }
 
+        public Dictionary<AthleteInfoType, bool> AthletesInfoUsed { get => _athletesInfoUsed; set => _athletesInfoUsed = value; }
         public List<AthleteInfoModel> Athletes { get => _athletes; set => _athletes = value; }
         public List<AthleteTournamentStatsModel> AthletesStats { get => _athletesStats; set => _athletesStats = value; }
     }

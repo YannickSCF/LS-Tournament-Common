@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 // Custom Dependencies
 using YannickSCF.LSTournaments.Common.Models.Athletes;
+using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Tools.Importers;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Bottom;
@@ -20,6 +21,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         [SerializeField] private AthleteBottomTableView _bottomView;
         [Header("Other objects")]
         [SerializeField] private GameObject _loadingPanel;
+
+        private List<AthleteInfoModel> _currentAthletes;
 
         #region Mono
         private void Awake() {
@@ -57,12 +60,16 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             int athleteCount = _contentView.AddAthleteRow();
             _bottomView.SetAthletesCount(GetAthletesCountText(athleteCount));
 
+            // TODO: update _currentAthletes list
+
             UpdateBottomButtons(athleteCount);
         }
 
         private void OnAthleteRemovedByButton() {
             int athleteCount = _contentView.RemoveLastAthleteRow();
             _bottomView.SetAthletesCount(GetAthletesCountText(athleteCount));
+
+            // TODO: Update _currentAthletes list
 
             UpdateBottomButtons(athleteCount);
         }
@@ -78,6 +85,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                     _contentView.ResetContent();
                     // Add all needed rows with the athlete information
                     StartCoroutine(AddRowsCoroutine(athletes));
+                    _currentAthletes = athletes;
                 }
             }
         }
@@ -106,6 +114,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             _loadingPanel.SetActive(false);
         }
         #endregion
+
+        public void FillData(TournamentData data) {
+            data.Athletes = _currentAthletes;
+            // TODO: data.AthletesInfoUsed = ???;
+        }
 
         public void ShowColumn(AthleteInfoType columnToShow, bool show) {
             switch (columnToShow) {
