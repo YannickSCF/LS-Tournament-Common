@@ -46,6 +46,7 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
         public AthleteInfoModel() {
             _id = Guid.NewGuid().ToString();
             _styles = new List<StyleType>();
+            _styles.Add(StyleType.Form1);
         }
 
         public AthleteInfoModel(
@@ -65,6 +66,10 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
             _saberColor = saberColor;
             _startDate = startDate;
             _tier = tier;
+
+            if (!styles.Contains(StyleType.Form1)) {
+                _styles.Add(StyleType.Form1);
+            }
         }
 
         public AthleteInfoModel(string id,
@@ -84,6 +89,10 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
             _saberColor = saberColor;
             _startDate = startDate;
             _tier = tier;
+
+            if (!styles.Contains(StyleType.Form1)) {
+                _styles.Add(StyleType.Form1);
+            }
         }
         #endregion
 

@@ -70,11 +70,15 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             _inputField.SetTextWithoutNotify(inputText);
             SetExampleColor(inputText);
 
-            ThrowColumnValueSetted(_inputField);
+            ThrowColumnValueSetted(GetColor(), _inputField);
         }
         #endregion
 
         public Color GetColor() {
+            if (string.IsNullOrEmpty(_inputField.text)) {
+                return Color.black;
+            }
+
             return _exampleColor.color;
         }
 

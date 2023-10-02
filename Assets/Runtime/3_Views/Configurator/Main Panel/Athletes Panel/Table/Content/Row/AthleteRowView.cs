@@ -60,63 +60,40 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
 
         #region Mono
         private void OnEnable() {
-            _countryRow.OnColumnValueSetted += OnColumnSetted;
+            _countryRow.OnColumnStringValueSetted += OnAthleteDataStringUpdated;
 
-            _surnameRow.OnColumnValueSetted += OnColumnSetted;
-            _nameRow.OnColumnValueSetted += OnColumnSetted;
-            _academyRow.OnColumnValueSetted += OnColumnSetted;
-            _schoolRow.OnColumnValueSetted += OnColumnSetted;
+            _surnameRow.OnColumnStringValueSetted += OnAthleteDataStringUpdated;
+            _nameRow.OnColumnStringValueSetted += OnAthleteDataStringUpdated;
+            _academyRow.OnColumnStringValueSetted += OnAthleteDataStringUpdated;
+            _schoolRow.OnColumnStringValueSetted += OnAthleteDataStringUpdated;
 
-            _rankRow.OnColumnValueSetted += OnColumnSetted;
-            _stylesRow.OnColumnValueSetted += OnColumnSetted;
+            _rankRow.OnColumnRankValueSetted += OnAthleteDataRankUpdated;
+            _stylesRow.OnColumnStylesValueSetted += OnAthleteDataStylesUpdated;
 
-            _tierRow.OnColumnValueSetted += OnColumnSetted;
+            _tierRow.OnColumnStringValueSetted += OnAthleteDataStringUpdated;
 
-            _colorRow.OnColumnValueSetted += OnColumnSetted;
-            _birthDateRow.OnColumnValueSetted += OnColumnSetted;
-            _startDateRow.OnColumnValueSetted += OnColumnSetted;
+            _colorRow.OnColumnColorValueSetted += OnAthleteDataColorUpdated;
+            _birthDateRow.OnColumnDateTimeValueSetted += OnAthleteDataDateTimeUpdated;
+            _startDateRow.OnColumnDateTimeValueSetted += OnAthleteDataDateTimeUpdated;
         }
 
         private void OnDisable() {
-            _countryRow.OnColumnValueSetted -= OnColumnSetted;
+            _countryRow.OnColumnStringValueSetted -= OnAthleteDataStringUpdated;
 
-            _surnameRow.OnColumnValueSetted -= OnColumnSetted;
-            _nameRow.OnColumnValueSetted -= OnColumnSetted;
-            _academyRow.OnColumnValueSetted -= OnColumnSetted;
-            _schoolRow.OnColumnValueSetted -= OnColumnSetted;
+            _surnameRow.OnColumnStringValueSetted -= OnAthleteDataStringUpdated;
+            _nameRow.OnColumnStringValueSetted -= OnAthleteDataStringUpdated;
+            _academyRow.OnColumnStringValueSetted -= OnAthleteDataStringUpdated;
+            _schoolRow.OnColumnStringValueSetted -= OnAthleteDataStringUpdated;
 
-            _rankRow.OnColumnValueSetted -= OnColumnSetted;
-            _stylesRow.OnColumnValueSetted -= OnColumnSetted;
+            _rankRow.OnColumnRankValueSetted -= OnAthleteDataRankUpdated;
+            _stylesRow.OnColumnStylesValueSetted -= OnAthleteDataStylesUpdated;
 
-            _tierRow.OnColumnValueSetted -= OnColumnSetted;
+            _tierRow.OnColumnStringValueSetted -= OnAthleteDataStringUpdated;
 
-            _colorRow.OnColumnValueSetted -= OnColumnSetted;
-            _birthDateRow.OnColumnValueSetted -= OnColumnSetted;
-            _startDateRow.OnColumnValueSetted -= OnColumnSetted;
+            _colorRow.OnColumnColorValueSetted -= OnAthleteDataColorUpdated;
+            _birthDateRow.OnColumnDateTimeValueSetted -= OnAthleteDataDateTimeUpdated;
+            _startDateRow.OnColumnDateTimeValueSetted -= OnAthleteDataDateTimeUpdated;
         }
-        #endregion
-
-        #region GETTERS
-        public string GetCountryField() { return _countryRow.GetCurrentValue(); }
-        public string GetSurnameField() { return _surnameRow.GetText(); }
-        public string GetNameField() { return _nameRow.GetText(); }
-        public string GetAcademyField() { return _academyRow.GetText(); }
-        public string GetSchoolField() { return _schoolRow.GetText(); }
-        public RankType GetRankField() { return (RankType)_rankRow.GetValue(); }
-        public List<StyleType> GetStylesField() {
-            List<StyleType> styles = new List<StyleType>();
-            List<bool> stylesBools = _stylesRow.GetStyles();
-            for (int i = 0; i < stylesBools.Count; ++i) {
-                if (stylesBools[i]) {
-                    styles.Add((StyleType)i);
-                }
-            }
-            return styles;
-        }
-        public int GetTierField() { return int.Parse(_tierRow.GetText()); }
-        public Color GetColorField() { return _colorRow.GetColor(); }
-        public DateTime GetBirthDateField() { return _birthDateRow.GetDate(); }
-        public DateTime GetStartDateField() { return _startDateRow.GetDate(); }
         #endregion
 
         #region SETTERS
@@ -169,9 +146,25 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
         #endregion
 
         #region Event listeners methods
-        private void OnColumnSetted(AthleteInfoType columnSetted) {
-            AthletesPanelViewEvents.ThrowOnAthleteDataUpdated(
-                AthleteInfoType.Country, _athleteRowIndex);
+        private void OnAthleteDataStringUpdated(AthleteInfoType columnSetted, string newData) {
+            AthletesPanelViewEvents.ThrowOnAthleteDataStringUpdated(
+                columnSetted, newData, _athleteRowIndex);
+        }
+        private void OnAthleteDataDateTimeUpdated(AthleteInfoType columnSetted, DateTime newData) {
+            AthletesPanelViewEvents.ThrowOnAthleteDataDateTimeUpdated(
+                columnSetted, newData, _athleteRowIndex);
+        }
+        private void OnAthleteDataRankUpdated(AthleteInfoType columnSetted, RankType newData) {
+            AthletesPanelViewEvents.ThrowOnAthleteDataRankUpdated(
+                newData, _athleteRowIndex);
+        }
+        private void OnAthleteDataColorUpdated(AthleteInfoType columnSetted, Color newData) {
+            AthletesPanelViewEvents.ThrowOnAthleteDataColorUpdated(
+                newData, _athleteRowIndex);
+        }
+        private void OnAthleteDataStylesUpdated(AthleteInfoType columnSetted, List<StyleType> newData) {
+            AthletesPanelViewEvents.ThrowOnAthleteDataStylesUpdated(
+                newData, _athleteRowIndex);
         }
         #endregion
 

@@ -68,10 +68,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             if (string.IsNullOrEmpty(inputText)) return;
 
             int day = int.Parse(inputText);
+            if (day == 0) day = 1;
             _dayInputField.SetTextWithoutNotify(GetTwoDigitNumber(day));
 
             if (IsDateFilled()) {
-                ThrowColumnValueSetted(_dayInputField);
+                ThrowColumnValueSetted(GetDate(), _dayInputField);
             } else {
                 _monthInputField.Select();
             }
@@ -105,10 +106,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             if (string.IsNullOrEmpty(inputText)) return;
 
             int month = int.Parse(inputText);
+            if (month == 0) month = 1;
             _monthInputField.SetTextWithoutNotify(GetTwoDigitNumber(month));
 
             if (IsDateFilled()) {
-                ThrowColumnValueSetted(_monthInputField);
+                ThrowColumnValueSetted(GetDate(), _monthInputField);
             } else {
                 _yearInputField.Select();
             }
@@ -147,7 +149,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             _yearInputField.SetTextWithoutNotify(year.ToString());
 
             if (IsDateFilled()) {
-                ThrowColumnValueSetted(_yearInputField);
+                ThrowColumnValueSetted(GetDate(), _yearInputField);
             } else {
                 _dayInputField.Select();
             }

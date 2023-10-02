@@ -20,7 +20,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
 
         #region Event Listeners methods
         private void OnTextSetted(string inputText) {
-            ThrowColumnValueSetted(_inputField);
+            ThrowColumnValueSetted(inputText, _inputField);
         }
         #endregion
 

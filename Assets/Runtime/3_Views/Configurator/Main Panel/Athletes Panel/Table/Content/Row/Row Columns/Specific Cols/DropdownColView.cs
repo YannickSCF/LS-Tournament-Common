@@ -20,7 +20,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
 
         #region Event Listeners methods
         private void DropdownSelected(int selectionIndex) {
-            ThrowColumnValueSetted(_dropdown);
+            ThrowColumnValueSetted((RankType)selectionIndex, _dropdown);
         }
         #endregion
 

@@ -164,7 +164,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             }
 
             if (!withoutNotify) {
-                ThrowColumnValueSetted(_inputField);
+                ThrowColumnValueSetted(_inputField.text, _inputField);
             }
         }
 

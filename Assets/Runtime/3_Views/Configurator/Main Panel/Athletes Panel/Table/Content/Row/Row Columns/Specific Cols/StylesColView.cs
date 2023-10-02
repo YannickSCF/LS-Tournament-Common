@@ -46,7 +46,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
 
         #region Event Listeners methods
         private void OnStyleToggleClicked(bool isOn) {
-            ThrowColumnValueSetted();
+            ThrowColumnValueSetted(GetStyles());
         }
         #endregion
 
@@ -61,8 +61,14 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             }
         }
 
-        public List<bool> GetStyles() {
-            return _styleSelections;
+        public List<StyleType> GetStyles() {
+            List<StyleType> styles = new List<StyleType>();
+            for (int i = 0; i < _styleSelections.Count; ++i) {
+                if (_styleSelections[i]) {
+                    styles.Add((StyleType)i);
+                }
+            }
+            return styles;
         }
     }
 }
