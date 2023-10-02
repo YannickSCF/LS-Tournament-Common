@@ -1,7 +1,6 @@
 // Dependencies
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols {
     public class DropdownColView : RowColumnView {
