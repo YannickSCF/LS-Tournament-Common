@@ -44,7 +44,8 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
 
             // Transform poules data in objects
             foreach (KeyValuePair<int, List<AthleteInfoModel>> pouleData in poulesData) {
-                result.Add(new PouleInfoModel(pouleNames[pouleData.Key], pouleData.Value));
+                List<string> athletesIds = pouleData.Value.Select(x => x.Id).ToList();
+                result.Add(new PouleInfoModel(pouleNames[pouleData.Key], athletesIds));
             }
 
             return result;

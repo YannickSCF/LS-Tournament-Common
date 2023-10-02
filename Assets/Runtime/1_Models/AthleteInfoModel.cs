@@ -6,6 +6,8 @@ namespace YannickSCF.LSTournaments.Common.Models {
 
     [Serializable]
     public class AthleteInfoModel {
+
+        [SerializeField] private string _id;
         // Personal Information
         [SerializeField] private string _name;
         [SerializeField] private string _surname;
@@ -21,8 +23,9 @@ namespace YannickSCF.LSTournaments.Common.Models {
         [SerializeField] private DateTime _startDate;
         // OTHER
         [SerializeField] private int _tier;
-        
+
         #region Properties
+        public string Id { get => _id; }
         // Personal Information
         public string Name { get => _name; set => _name = value; }
         public string Surname { get => _surname; set => _surname = value; }
@@ -42,15 +45,50 @@ namespace YannickSCF.LSTournaments.Common.Models {
 
         #region Constructors
         public AthleteInfoModel() {
+            _id = Guid.NewGuid().ToString();
             _styles = new List<StyleType>();
+        }
+
+        public AthleteInfoModel(
+            string name, string surname, DateTime birthDate,
+            string country, string academy, string school,
+            RankType rank, List<StyleType> styles, Color saberColor,
+            DateTime startDate, int tier) {
+            _id = Guid.NewGuid().ToString();
+            _name = name;
+            _surname = surname;
+            _birthDate = birthDate;
+            _country = country;
+            _academy = academy;
+            _school = school;
+            _rank = rank;
+            _styles = styles;
+            _saberColor = saberColor;
+            _startDate = startDate;
+            _tier = tier;
+        }
+
+        public AthleteInfoModel(string id,
+            string name, string surname, DateTime birthDate,
+            string country, string academy, string school,
+            RankType rank, List<StyleType> styles, Color saberColor,
+            DateTime startDate, int tier) {
+            _id = id;
+            _name = name;
+            _surname = surname;
+            _birthDate = birthDate;
+            _country = country;
+            _academy = academy;
+            _school = school;
+            _rank = rank;
+            _styles = styles;
+            _saberColor = saberColor;
+            _startDate = startDate;
+            _tier = tier;
         }
         #endregion
 
         #region Public methods
-        public string GetAthleteId() {
-            return _country + "-" + _school + "-" + GetAge() + "-" + _surname + "_" + _name + "-" + _startDate.ToString("ddMMyyyy");
-        }
-
         public string GetFullName(FullNameType howToGiveName = FullNameType.SurnameName) {
             switch(howToGiveName) {
                 default:

@@ -54,8 +54,8 @@ public class TesterEditor : Editor {
 
         foreach (PouleInfoModel poule in poules) {
             toShow += poule.Name +":\n";
-            foreach(AthleteInfoModel athlete in poule.Athletes) {
-                toShow += "    - (" + athlete.Country + ") " + athlete.Name + "\n";
+            foreach(string athlete in poule.AthletesIds) {
+                toShow += "    - " + athlete + "\n";
             }
         }
 
