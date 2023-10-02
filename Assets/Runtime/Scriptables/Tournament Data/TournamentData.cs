@@ -1,10 +1,38 @@
-// Dependencies
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-// Custom dependencies
+using YannickSCF.LSTournaments.Common.Models;
+using YannickSCF.LSTournaments.Common.Models.Athletes;
+using YannickSCF.LSTournaments.Common.Models.Poules;
+using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 
-namespace YannickSCF.LSTournaments.Common.Scriptables.Formulas {
+namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
     [CreateAssetMenu(fileName = "Tournament Data", menuName = "YannickSCF/LS Tournaments/New Tournament Data")]
     public class TournamentData : ScriptableObject {
-        // TODO
+        [SerializeField] private string _tournamentName;
+        [SerializeField] private TournamentType _tournamentType;
+        [SerializeField] private string _tournamentFormulaName;
+
+        [SerializeField] private int _seed;
+
+        [SerializeField] private PouleInfoModel _pouleInfo;
+
+        [SerializeField] private EliminationPhaseModel _eliminationPhase;
+
+        [SerializeField] private List<AthleteInfoModel> _athletes;
+        [SerializeField] private List<AthleteTournamentStatsModel> _athletesStats;
+
+        public string TournamentName { get => _tournamentName; set => _tournamentName = value; }
+        public TournamentType TournamentType { get => _tournamentType; set => _tournamentType = value; }
+        public string TournamentFormulaName { get => _tournamentFormulaName; set => _tournamentFormulaName = value; }
+
+        public int Seed { get => _seed; set => _seed = value; }
+
+        public PouleInfoModel PouleInfo { get => _pouleInfo; set => _pouleInfo = value; }
+
+        public EliminationPhaseModel EliminationPhase { get => _eliminationPhase; set => _eliminationPhase = value; }
+
+        public List<AthleteInfoModel> Athletes { get => _athletes; set => _athletes = value; }
+        public List<AthleteTournamentStatsModel> AthletesStats { get => _athletesStats; set => _athletesStats = value; }
     }
 }
