@@ -13,16 +13,8 @@ MonoBehaviour:
   m_Name: Random 0
   m_EditorClassIdentifier: 
   _athletes:
-  - _name: Name 0
-    _surname: Surname 0
-    _country: IT
-    _academy: 
-    _school: 
-    _rank: 0
-    _styles: 
-    _saberColor: {r: 0, g: 0, b: 0, a: 0}
-    _tier: 0
-  - _name: Name 1
+  - _id: c85d4652-c77f-47fd-85c5-8a767de925db
+    _name: Name 1
     _surname: Surname 1
     _country: IT
     _academy: 
@@ -31,25 +23,8 @@ MonoBehaviour:
     _styles: 
     _saberColor: {r: 0, g: 0, b: 0, a: 0}
     _tier: 0
-  - _name: Name 2
-    _surname: Surname 2
-    _country: IT
-    _academy: 
-    _school: 
-    _rank: 0
-    _styles: 
-    _saberColor: {r: 0, g: 0, b: 0, a: 0}
-    _tier: 0
-  - _name: Name 3
-    _surname: Surname 3
-    _country: ES
-    _academy: 
-    _school: 
-    _rank: 0
-    _styles: 
-    _saberColor: {r: 0, g: 0, b: 0, a: 0}
-    _tier: 0
-  - _name: Name 4
+  - _id: f1cf495b-a465-4847-b96f-4d3a4e774cc1
+    _name: Name 4
     _surname: Surname 4
     _country: IT
     _academy: 
@@ -58,25 +33,18 @@ MonoBehaviour:
     _styles: 
     _saberColor: {r: 0, g: 0, b: 0, a: 0}
     _tier: 0
-  - _name: Name 5
-    _surname: Surname 5
-    _country: IT
+  - _id: ec624f7b-ff22-4af9-8d1e-c33f4c0d0d78
+    _name: Name 8
+    _surname: Surname 8
+    _country: ES
     _academy: 
     _school: 
     _rank: 0
     _styles: 
     _saberColor: {r: 0, g: 0, b: 0, a: 0}
     _tier: 0
-  - _name: Name 6
-    _surname: Surname 6
-    _country: IT
-    _academy: 
-    _school: 
-    _rank: 0
-    _styles: 
-    _saberColor: {r: 0, g: 0, b: 0, a: 0}
-    _tier: 0
-  - _name: Name 7
+  - _id: b0a97119-3552-494c-aedf-7b5f6df43f87
+    _name: Name 7
     _surname: Surname 7
     _country: ES
     _academy: 
@@ -85,9 +53,50 @@ MonoBehaviour:
     _styles: 
     _saberColor: {r: 0, g: 0, b: 0, a: 0}
     _tier: 0
-  - _name: Name 8
-    _surname: Surname 8
+  - _id: 21915024-a573-4d14-ac20-cbd3eaaf1628
+    _name: Name 0
+    _surname: Surname 0
+    _country: IT
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 795da34d-0ec9-4adf-856c-4210708b97f0
+    _name: Name 2
+    _surname: Surname 2
+    _country: IT
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 46c39a83-650b-4172-9aa8-cd4c02238ebd
+    _name: Name 3
+    _surname: Surname 3
     _country: ES
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 3c0e090c-5152-4020-bf39-9107245f2af7
+    _name: Name 6
+    _surname: Surname 6
+    _country: IT
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 2bc55a57-3aae-419b-b32d-bdf43da5a4e1
+    _name: Name 5
+    _surname: Surname 5
+    _country: IT
     _academy: 
     _school: 
     _rank: 0
@@ -98,5 +107,5 @@ MonoBehaviour:
   _maxPouleSize: 3
   _namingType: 0
   _pouleRounds: 2
-  _builderType: 0
-  _builderSubtype: 0
+  _fillerType: 1
+  _fillerSubtype: 1
