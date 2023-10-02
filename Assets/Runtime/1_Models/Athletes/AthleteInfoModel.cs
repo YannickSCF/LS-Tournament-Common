@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace YannickSCF.LSTournaments.Common.Models {
-
+namespace YannickSCF.LSTournaments.Common.Models.Athletes {
     [Serializable]
     public class AthleteInfoModel {
 

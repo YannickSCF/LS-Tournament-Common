@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 // Custom Dependencies
-using YannickSCF.LSTournaments.Common.Models;
+using YannickSCF.LSTournaments.Common.Models.Poules;
+using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Tools.Poule.Filler.Specific;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
@@ -27,9 +28,9 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
         protected abstract List<AthleteInfoModel> GetListReadyToFill(List<AthleteInfoModel> athletes);
 
         // PUBLIC METHODS
-        public List<PouleInfoModel> FillPoules(List<string> pouleNames,
+        public List<PouleDataModel> FillPoules(List<string> pouleNames,
             List<AthleteInfoModel> athletes, PouleFillerSubtype subtype, int pouleMaxSize) {
-            List<PouleInfoModel> result = new List<PouleInfoModel>();
+            List<PouleDataModel> result = new List<PouleDataModel>();
 
             // Get list of athletes orderer in order to place in poules (without subtype filtering)
             List<AthleteInfoModel> orderedAthletes = GetListReadyToFill(athletes);
@@ -45,7 +46,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
             // Transform poules data in objects
             foreach (KeyValuePair<int, List<AthleteInfoModel>> pouleData in poulesData) {
                 List<string> athletesIds = pouleData.Value.Select(x => x.Id).ToList();
-                result.Add(new PouleInfoModel(pouleNames[pouleData.Key], athletesIds));
+                result.Add(new PouleDataModel(pouleNames[pouleData.Key], athletesIds));
             }
 
             return result;

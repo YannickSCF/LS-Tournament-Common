@@ -1,7 +1,10 @@
+// Dependencies
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using YannickSCF.LSTournaments.Common.Models;
+// Custom dependencies
+using YannickSCF.LSTournaments.Common.Models.Poules;
+using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Tools.Poule.Filler;
 using YannickSCF.LSTournaments.Common.Tools.Poule.Filler.Specific;
@@ -38,7 +41,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
         private const int DEFAULT_MAX_POULE_SIZE = 11;
 
         #region Create Poules - METHODS
-        public static List<PouleInfoModel> CreatePoules(
+        public static List<PouleDataModel> CreatePoules(
             PouleNamingObject namingParams, List<AthleteInfoModel> athletes,
             PouleFillerType fillerType, PouleFillerSubtype fillerSubtype, int maxPouleSize) {
 
@@ -50,7 +53,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
             return _filler.FillPoules(names, athletes, fillerSubtype, maxPouleSize);
         }
 
-        public static List<PouleInfoModel> CreatePoules(
+        public static List<PouleDataModel> CreatePoules(
             PouleNamingObject namingParams, List<AthleteInfoModel> athletes,
             TournamentFormula formula, PouleFillerSubtype fillerSubtype) {
 

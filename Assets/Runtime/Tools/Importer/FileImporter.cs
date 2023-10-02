@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 // Custom dependencies
 using AnotherFileBrowser.Windows;
-using YannickSCF.LSTournaments.Common.Models;
+using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Importers {

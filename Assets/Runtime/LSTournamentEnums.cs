@@ -15,6 +15,7 @@ namespace YannickSCF.LSTournaments.Common {
         Form6, Form7
     }
     public enum FullNameType { SurnameName, NameSurname }
+    public enum TournamentPhase { Poules, EliminationPhase }
 
     // -------------- Poules Builder Enumerators --------------
 

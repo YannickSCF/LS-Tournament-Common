@@ -3,8 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using YannickSCF.LSTournaments.Common.Models;
 // Custom Dependencies
+using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Tools.Importers;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Bottom;
