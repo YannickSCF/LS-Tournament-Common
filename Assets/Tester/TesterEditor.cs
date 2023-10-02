@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using YannickSCF.LSTournaments.Common.Tools.Poule;
-using YannickSCF.LSTournaments.Common.Models;
+using YannickSCF.LSTournaments.Common.Models.Poules;
+using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common;
 using YannickSCF.LSTournaments.Common.Tools.Poule.Filler;
 
@@ -31,7 +32,7 @@ public class TesterEditor : Editor {
 
             PouleNamingObject namingParams =
                 new PouleNamingObject(_tester.NamingType, _tester.NumPoules, _tester.PouleRounds);
-            List<PouleInfoModel> poules = PouleUtils.CreatePoules(
+            List<PouleDataModel> poules = PouleUtils.CreatePoules(
                 namingParams, _tester.Athletes,
                 _tester.FillerType, _tester.FillerSubtype, _tester.MaxPouleSize);
             
@@ -49,10 +50,10 @@ public class TesterEditor : Editor {
         }
     }
 
-    private void ShowPoules(List<PouleInfoModel> poules) {
+    private void ShowPoules(List<PouleDataModel> poules) {
         string toShow = string.Empty;
 
-        foreach (PouleInfoModel poule in poules) {
+        foreach (PouleDataModel poule in poules) {
             toShow += poule.Name +":\n";
             foreach(string athlete in poule.AthletesIds) {
                 toShow += "    - " + athlete + "\n";

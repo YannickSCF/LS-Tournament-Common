@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using YannickSCF.LSTournaments.Common;
-using YannickSCF.LSTournaments.Common.Models;
+using YannickSCF.LSTournaments.Common.Models.Athletes;
 
 [CreateAssetMenu(fileName = "Tester", menuName = "YannickSCF/Tester")]
 public class Tester : ScriptableObject {
