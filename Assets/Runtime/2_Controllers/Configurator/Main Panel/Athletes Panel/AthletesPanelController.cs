@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using YannickSCF.CountriesData;
 // Custom Dependencies
@@ -16,6 +17,8 @@ using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Header
 namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
     public class AthletesPanelController : MonoBehaviour {
 
+        private const int MIN_ATHLETES = 4;
+
         [Header("Views")]
         [SerializeField] private AthleteTableHeaderView _headerView;
         [SerializeField] private AthleteTableContentView _contentView;
@@ -28,6 +31,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
         private List<AthleteInfoModel> _currentAthletes;
         private List<RowsErrors> _errorsList;
+
+        private bool _isTableValidated = false;
+        public bool IsTableValidated { get => _isTableValidated; }
 
         #region Mono
         private void Awake() {
@@ -219,7 +225,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
         #region Validators
         private void ValidateCurrent() {
-            // TODO: Añadir validacion para que haya minimo 4 atletas
+            ValidateAthletesMinimum();
 
             for (int i = 0; i < _currentAthletes.Count; ++i) {
                 ValidateCountry(_currentAthletes[i].Country, i);
@@ -234,6 +240,17 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 ValidateColor(_currentAthletes[i].SaberColor, i);
             }
         }
+
+        private bool ValidateAthletesMinimum() {
+            if (_currentAthletes.Count >= MIN_ATHLETES) {
+                AddError($"At least {MIN_ATHLETES} athletes");
+                return true;
+            }
+
+            RemoveError($"At least {MIN_ATHLETES} athletes");
+            return false;
+        }
+
         private bool ValidateCountry(string toValidate, int athleteIndex) {
             if (_columnsShown[AthleteInfoType.Country] && _columnsEnabled[AthleteInfoType.Country]) {
                 if (string.IsNullOrEmpty(toValidate)) {
@@ -257,7 +274,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 }
             }
 
-            RemoveError(athleteIndex, AthleteInfoType.Country);
+            RemoveAllErrors(athleteIndex, AthleteInfoType.Country);
             return true;
         }
 
@@ -269,7 +286,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 }
             }
 
-            RemoveError(athleteIndex, infoType);
+            RemoveAllErrors(athleteIndex, infoType);
             return true;
         }
 
@@ -286,7 +303,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 }
             }
 
-            RemoveError(athleteIndex, AthleteInfoType.Tier);
+            RemoveAllErrors(athleteIndex, AthleteInfoType.Tier);
             return true;
         }
 
@@ -303,7 +320,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 }
             }
 
-            RemoveError(athleteIndex, infoType);
+            RemoveAllErrors(athleteIndex, infoType);
             return true;
         }
 
@@ -320,7 +337,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 }
             }
 
-            RemoveError(athleteIndex, AthleteInfoType.Styles);
+            RemoveAllErrors(athleteIndex, AthleteInfoType.Styles);
             return true;
         }
 
@@ -332,9 +349,93 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 }
             }
 
-            RemoveError(athleteIndex, AthleteInfoType.SaberColor);
+            RemoveAllErrors(athleteIndex, AthleteInfoType.SaberColor);
             return true;
         }
+
+        #region Validation Errors Management
+        private void AddError(string errorId) {
+            AddError(new RowsErrors(errorId));
+        }
+
+        private void AddError(int index, AthleteInfoType column, string errorId) {
+            AddError(new RowsErrors(index, column, errorId));
+        }
+
+        private void AddError(RowsErrors error) {
+            if (!_errorsList.Contains(error)) {
+                _errorsList.Add(error);
+                _isTableValidated = _errorsList.Count == 0;
+            }
+        }
+
+        private void RemoveError(string errorId) {
+            RemoveError(new RowsErrors(errorId));
+        }
+
+        private void RemoveError(int index, AthleteInfoType column, string errorId) {
+            _errorsList.Remove(new RowsErrors(index, column, errorId));
+        }
+
+        private void RemoveAllErrors(int index, AthleteInfoType column) {
+            List<RowsErrors> errors = _errorsList.Where(x => !x.IsGeneric && x.RowIndex == index && x.Column == column).ToList();
+            for (int i = 0; i < errors.Count; ++i) {
+                RemoveError(_errorsList[i]);
+            }
+        }
+
+        private void RemoveError(RowsErrors error) {
+            if (_errorsList.Contains(error)) {
+                _errorsList.Remove(error);
+                _isTableValidated = _errorsList.Count == 0;
+            }
+        }
+
+        private void UpdateErrorsPanel() {
+            string errors = string.Empty;
+            foreach (RowsErrors error in _errorsList) {
+                errors += $"Row {error.RowIndex + 1} ({Enum.GetName(typeof(AthleteInfoType), error.Column)}): {error.Description}\n";
+            }
+
+            _bottomView.SetErrorPanelText(errors);
+        }
+
+        private class RowsErrors {
+            public int RowIndex;
+            public AthleteInfoType Column;
+            public string Description;
+            public bool IsGeneric;
+
+            public RowsErrors(string description) {
+                IsGeneric = false;
+
+                Description = description;
+            }
+
+            public RowsErrors(int rowIndex, AthleteInfoType column, string description) {
+                IsGeneric = false;
+
+                RowIndex = rowIndex;
+                Column = column;
+                Description = description;
+            }
+
+            public override bool Equals(object obj) {
+                RowsErrors objCast = obj as RowsErrors;
+                if (objCast == null) {
+                    return false;
+                }
+
+                return RowIndex == objCast.RowIndex
+                    && Column == objCast.Column
+                    && Description == objCast.Description;
+            }
+
+            public override int GetHashCode() {
+                return base.GetHashCode();
+            }
+        }
+        #endregion
         #endregion
 
         public void FillData(TournamentData data) {
@@ -376,58 +477,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
             foreach (KeyValuePair<AthleteInfoType, bool> columnEnabledInfo in _columnsEnabled) {
                 _contentView.EnableRowColumn(rowToUpdate, columnEnabledInfo.Key, columnEnabledInfo.Value);
-            }
-        }
-
-        private void AddError(int index, AthleteInfoType column, string errorId) {
-            RowsErrors newError = new RowsErrors(index, column, errorId);
-            if (!_errorsList.Contains(newError)) {
-                _errorsList.Add(newError);
-            }
-        }
-
-        private void RemoveError(int index, AthleteInfoType column, string errorId = null) {
-            if (string.IsNullOrEmpty(errorId)) {
-                _errorsList.RemoveAll(x => x.RowIndex == index && x.Column == column);
-            } else {
-                RowsErrors newError = new RowsErrors(index, column, errorId);
-                _errorsList.Remove(newError);
-            }
-        }
-
-        private void UpdateErrorsPanel() {
-            string errors = string.Empty;
-            foreach(RowsErrors error in _errorsList) {
-                errors += $"Row {error.RowIndex + 1} ({Enum.GetName(typeof(AthleteInfoType), error.Column)}): {error.Description}\n";
-            }
-
-            _bottomView.SetErrorPanelText(errors);
-        }
-
-        private class RowsErrors {
-            public int RowIndex;
-            public AthleteInfoType Column;
-            public string Description;
-
-            public RowsErrors(int rowIndex, AthleteInfoType column, string description) {
-                RowIndex = rowIndex;
-                Column = column;
-                Description = description;
-            }
-
-            public override bool Equals(object obj) {
-                RowsErrors objCast = obj as RowsErrors;
-                if (objCast == null) {
-                    return false;
-                }
-
-                return RowIndex == objCast.RowIndex
-                    && Column == objCast.Column
-                    && Description == objCast.Description;
-            }
-
-            public override int GetHashCode() {
-                return base.GetHashCode();
             }
         }
     }
