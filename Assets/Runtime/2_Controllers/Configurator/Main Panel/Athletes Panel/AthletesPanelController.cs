@@ -239,16 +239,18 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 ValidateStyles(_currentAthletes[i].Styles, i);
                 ValidateColor(_currentAthletes[i].SaberColor, i);
             }
+
+            UpdateErrorsPanel();
         }
 
         private bool ValidateAthletesMinimum() {
-            if (_currentAthletes.Count >= MIN_ATHLETES) {
+            if (_currentAthletes.Count < MIN_ATHLETES) {
                 AddError($"At least {MIN_ATHLETES} athletes");
-                return true;
+                return false;
             }
 
             RemoveError($"At least {MIN_ATHLETES} athletes");
-            return false;
+            return true;
         }
 
         private bool ValidateCountry(string toValidate, int athleteIndex) {
@@ -380,7 +382,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private void RemoveAllErrors(int index, AthleteInfoType column) {
             List<RowsErrors> errors = _errorsList.Where(x => !x.IsGeneric && x.RowIndex == index && x.Column == column).ToList();
             for (int i = 0; i < errors.Count; ++i) {
-                RemoveError(_errorsList[i]);
+                RemoveError(errors[i]);
             }
         }
 
@@ -394,7 +396,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private void UpdateErrorsPanel() {
             string errors = string.Empty;
             foreach (RowsErrors error in _errorsList) {
-                errors += $"Row {error.RowIndex + 1} ({Enum.GetName(typeof(AthleteInfoType), error.Column)}): {error.Description}\n";
+                if (error.IsGeneric) {
+                    errors += $" - Generic error: {error.Description}\n";
+                } else {
+                    errors += $" - Row {error.RowIndex + 1} ({Enum.GetName(typeof(AthleteInfoType), error.Column)}): {error.Description}\n";
+                }
             }
 
             _bottomView.SetErrorPanelText(errors);
@@ -407,7 +413,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             public bool IsGeneric;
 
             public RowsErrors(string description) {
-                IsGeneric = false;
+                IsGeneric = true;
 
                 Description = description;
             }
