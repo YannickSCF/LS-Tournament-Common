@@ -156,6 +156,14 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         }
         #endregion
 
+        #region Protected overrrided methods
+        protected override void SetSelectablesInteractables(bool isInteractable) {
+            _dayInputField.interactable = isInteractable;
+            _monthInputField.interactable = isInteractable;
+            _yearInputField.interactable = isInteractable;
+        }
+        #endregion
+
         public DateTime GetDate() {
             return DateTime.ParseExact(GetDateString(), DATE_FORMAT, CultureInfo.InvariantCulture);
         }

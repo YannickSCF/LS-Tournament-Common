@@ -1,6 +1,8 @@
 // Dependencies
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols {
     public class DropdownColView : RowColumnView {
@@ -16,11 +18,39 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         private void OnDisable() {
             _dropdown.onValueChanged.RemoveAllListeners();
         }
+
+        private void Update() {
+            if (EventSystem.current.currentSelectedGameObject == _dropdown.gameObject) {
+                if (Input.GetKeyDown(KeyCode.DownArrow)) {
+                    if (_dropdown.value + 1 >= _dropdown.options.Count) {
+                        _dropdown.SetValueWithoutNotify(0);
+                    } else {
+                        _dropdown.SetValueWithoutNotify(_dropdown.value + 1);
+                    }
+                    ThrowColumnValueSetted((RankType)_dropdown.value);
+                }
+
+                if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                    if (_dropdown.value - 1 < 0) {
+                        _dropdown.SetValueWithoutNotify(_dropdown.options.Count);
+                    } else {
+                        _dropdown.SetValueWithoutNotify(_dropdown.value - 1);
+                    }
+                    ThrowColumnValueSetted((RankType)_dropdown.value);
+                }
+            }
+        } 
         #endregion
 
         #region Event Listeners methods
         private void DropdownSelected(int selectionIndex) {
             ThrowColumnValueSetted((RankType)selectionIndex, _dropdown);
+        }
+        #endregion
+
+        #region Protected overrrided methods
+        protected override void SetSelectablesInteractables(bool isInteractable) {
+            _dropdown.interactable = isInteractable;
         }
         #endregion
 

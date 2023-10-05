@@ -74,6 +74,12 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         }
         #endregion
 
+        #region Protected overrrided methods
+        protected override void SetSelectablesInteractables(bool isInteractable) {
+            _inputField.interactable = isInteractable;
+        }
+        #endregion
+
         public Color GetColor() {
             if (string.IsNullOrEmpty(_inputField.text)) {
                 return Color.black;

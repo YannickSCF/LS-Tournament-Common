@@ -50,6 +50,14 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         }
         #endregion
 
+        #region Protected overrrided methods
+        protected override void SetSelectablesInteractables(bool isInteractable) {
+            for (int i = 1; i < _styleToggles.Count; ++i) {
+                _styleToggles[i].interactable = isInteractable;
+            }
+        }
+        #endregion
+
         public void SetStyles(List<bool> stylesStatus, bool withoutNotify = false) {
             for (int i = 1; i < stylesStatus.Count; ++i) {
                 _styleSelections[i] = stylesStatus[i];

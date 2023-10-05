@@ -48,12 +48,19 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         [SerializeField] private AthleteInfoType _infoType;
         [SerializeField] private Image _hidder;
 
+        protected virtual void SetSelectablesInteractables(bool isInteractable) { }
+
         public void SetBackgroundColor(Color bgColor) {
             _hidder.color = bgColor;
         }
 
         public void EnableColumn(bool enable) {
             _hidder.gameObject.SetActive(!enable);
+            SetSelectablesInteractables(enable);
+        }
+
+        public bool IsColumnEnabled() {
+            return !_hidder.gameObject.activeSelf;
         }
 
         private void GoNextSelectable(Selectable currentField) {

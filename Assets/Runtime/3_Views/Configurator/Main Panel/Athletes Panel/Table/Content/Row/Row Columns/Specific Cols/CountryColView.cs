@@ -40,6 +40,12 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         }
         #endregion
 
+        #region Protected overrrided methods
+        protected override void SetSelectablesInteractables(bool isInteractable) {
+            _inputField.interactable = isInteractable;
+        }
+        #endregion
+
         public bool SetInitValue(string countryCode, bool setToTwoDigitCode) {
             _twoDigitCode = setToTwoDigitCode;
 
