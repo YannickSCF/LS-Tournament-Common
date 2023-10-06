@@ -4,8 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using YannickSCF.CountriesData;
 // Custom Dependencies
+using YannickSCF.CountriesData;
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Tools.Importers;
@@ -15,7 +15,7 @@ using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Conten
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Header;
 
 namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
-    public class AthletesPanelController : MonoBehaviour {
+    public class AthletesPanelController : PanelController {
 
         private const int MIN_ATHLETES = 4;
 
@@ -31,9 +31,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
         private List<AthleteInfoModel> _currentAthletes;
         private List<RowsErrors> _errorsList;
-
-        private bool _isTableValidated = false;
-        public bool IsTableValidated { get => _isTableValidated; }
 
         #region Mono
         private void Awake() {
@@ -367,7 +364,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private void AddError(RowsErrors error) {
             if (!_errorsList.Contains(error)) {
                 _errorsList.Add(error);
-                _isTableValidated = _errorsList.Count == 0;
+                _IsDataValidated = _errorsList.Count == 0;
             }
         }
 
@@ -389,7 +386,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private void RemoveError(RowsErrors error) {
             if (_errorsList.Contains(error)) {
                 _errorsList.Remove(error);
-                _isTableValidated = _errorsList.Count == 0;
+                _IsDataValidated = _errorsList.Count == 0;
             }
         }
 
@@ -444,14 +441,30 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         #endregion
         #endregion
 
-        public void FillData(TournamentData data) {
+        #region PanelController abstract methods overrided
+        public override string GetTitle() { return "Athletes"; }
+
+        public override void GiveData(TournamentData data) {
             data.Athletes = _currentAthletes;
 
             Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
-            foreach(AthleteInfoType type in infoTypes) {
+            foreach (AthleteInfoType type in infoTypes) {
                 data.AthletesInfoUsed[type] = _columnsShown[type] && _columnsEnabled[type];
             }
         }
+
+        public override TournamentData RetrieveData(TournamentData data) {
+            Dictionary<AthleteInfoType, bool> infoUsed = new Dictionary<AthleteInfoType, bool>();
+            foreach (Enum infoType in Enum.GetValues(typeof(AthleteInfoType))) {
+                infoUsed[(AthleteInfoType)infoType] =
+                    _columnsShown[(AthleteInfoType)infoType] && _columnsEnabled[(AthleteInfoType)infoType];
+            }
+
+            data.AthletesInfoUsed = infoUsed;
+            data.Athletes = _currentAthletes;
+            return data;
+        }
+        #endregion
 
         public void ShowColumn(AthleteInfoType columnToShow, bool show) {
             switch (columnToShow) {
