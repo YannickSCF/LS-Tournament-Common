@@ -1,4 +1,5 @@
 // Dependencies
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,6 +19,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
         [SerializeField] private TextMeshProUGUI _formulaDescription;
 
         #region Mono
+        private void Awake() {
+            _type.ClearOptions();
+            _type.AddOptions(new List<string>(Enum.GetNames(typeof(TournamentType))));
+        }
+
         private void OnEnable() {
             _type.onValueChanged.AddListener(OnTypeChanged);
             _formula.onValueChanged.AddListener(OnFormulaChanged);
@@ -46,11 +52,6 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
             FormulaChanged?.Invoke(newFormulaIndex);
         }
         #endregion
-
-        public void FillTypeDropdown(List<string> enumNames) {
-            _type.ClearOptions();
-            _type.AddOptions(new List<string>(enumNames));
-        }
 
         public void FillFormulaDropdown(List<string> formulaNames) {
             _formula.ClearOptions();

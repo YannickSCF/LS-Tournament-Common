@@ -8,6 +8,7 @@ using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Tools.Poule.Filler;
 using YannickSCF.LSTournaments.Common.Tools.Poule.Filler.Specific;
+using System;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Poule {
     public struct PouleNamingObject {
@@ -105,7 +106,11 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
         public static List<string> GetPoulesNames(PouleNamingType pouleNaming, int numPoules, int rounds = 1) {
             List<string> pouleNames = new List<string>();
 
-            int roundSize = numPoules / rounds;
+            int roundSize = 0;
+            if (pouleNaming == PouleNamingType.Letters) {
+                roundSize = (int)Math.Ceiling((double)numPoules / rounds);
+            }
+
             for (int i = 0; i < numPoules; ++i) {
                 string index;
                 if (pouleNaming == PouleNamingType.Numbers) {
@@ -125,26 +130,26 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
         #endregion
 
         #region Poules count and size - METHODS
-        public static int[,] GetPoulesAndSize(int numberOfParticipants, TournamentFormula formula) {
+        public static int[,] GetPoulesAndSize(int athletesCount, TournamentFormula formula) {
             int[,] poulesRes;
 
             if (!formula.InfinitePoules) {
-                poulesRes = GetPoulesAndSize(numberOfParticipants, formula.PossibleNumberOfPoules.ToArray());
+                poulesRes = GetPoulesAndSize(athletesCount, formula.PossibleNumberOfPoules.ToArray());
                 if (poulesRes != null) return poulesRes;
             }
 
             Vector2 minMaxPouleSize = new Vector2(formula.MinPouleSize, formula.MaxPouleSize);
-            poulesRes = GetPoulesAndSize(numberOfParticipants, minMaxPouleSize);
+            poulesRes = GetPoulesAndSize(athletesCount, minMaxPouleSize);
             return poulesRes;
         }
 
-        public static int[,] GetPoulesAndSize(int numberOfParticipants, int[] posibleNumberOfPoules) {
+        public static int[,] GetPoulesAndSize(int athletesCount, int[] posibleNumberOfPoules) {
             int[,] poulesRes;
 
             if (posibleNumberOfPoules != null && posibleNumberOfPoules[0] != 0) {
                 int[] numberOfPoules = new int[1] { posibleNumberOfPoules[0] };
                 for (int i = DEFAULT_MIN_POULE_SIZE; i < DEFAULT_MAX_POULE_SIZE; ++i) {
-                    poulesRes = CalculateNumberOfPoulesAndSizes(numberOfParticipants, numberOfPoules, new Vector2(i, i + 1));
+                    poulesRes = CalculateNumberOfPoulesAndSizes(athletesCount, numberOfPoules, new Vector2(i, i + 1));
                     if (poulesRes != null) {
                         return poulesRes;
                     }
@@ -154,13 +159,13 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
             return null;
         }
 
-        public static int[,] GetPoulesAndSize(int numberOfParticipants, Vector2 minMaxPouleSize) {
+        public static int[,] GetPoulesAndSize(int athletesCount, Vector2 minMaxPouleSize) {
             int[,] poulesRes;
             int[] posibleNumberOfPoules;
 
             if (minMaxPouleSize != null && minMaxPouleSize.x >= DEFAULT_MIN_POULE_SIZE && minMaxPouleSize.y <= DEFAULT_MAX_POULE_SIZE) {
-                posibleNumberOfPoules = Enumerable.Range(1, numberOfParticipants / (int)minMaxPouleSize.x).ToArray();
-                poulesRes = CalculateNumberOfPoulesAndSizes(numberOfParticipants, posibleNumberOfPoules, minMaxPouleSize);
+                posibleNumberOfPoules = Enumerable.Range(1, athletesCount / (int)minMaxPouleSize.x).ToArray();
+                poulesRes = CalculateNumberOfPoulesAndSizes(athletesCount, posibleNumberOfPoules, minMaxPouleSize);
                 return poulesRes;
             }
 
@@ -168,7 +173,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
         }
 
         #region Poules count and size - PRIVATE METHODS
-        private static int[,] CalculateNumberOfPoulesAndSizes(int numberOfParticipants, int[] posibleNumberOfPoules, Vector2 minMaxPouleSize) {
+        private static int[,] CalculateNumberOfPoulesAndSizes(int athletesCount, int[] posibleNumberOfPoules, Vector2 minMaxPouleSize) {
             int[,] res = null;
 
             int[] simulatedPoules;
@@ -179,26 +184,26 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
                     simulatedPoules[j] = (int)minMaxPouleSize.x;
                 }
 
-                res = GetPoulesOnArrayWithSizes(simulatedPoules, numberOfParticipants, (int)minMaxPouleSize.y, numberOfPools);
+                res = GetPoulesOnArrayWithSizes(simulatedPoules, athletesCount, (int)minMaxPouleSize.y, numberOfPools);
                 if (res != null) break;
             }
 
             return res;
         }
 
-        private static int[,] GetPoulesOnArrayWithSizes(int[] simulatedPoules, int numberOfParticipants, int maxPouleSize, int numberOfPools) {
+        private static int[,] GetPoulesOnArrayWithSizes(int[] simulatedPoules, int athletesCount, int maxPouleSize, int numberOfPools) {
             int[,] res = null;
             bool exitCondition = false;
             int participantsOnPoules = 0;
             do {
                 participantsOnPoules = CalculateWithPoules(simulatedPoules);
-                exitCondition = participantsOnPoules >= numberOfParticipants;
+                exitCondition = participantsOnPoules >= athletesCount;
                 if (!exitCondition) {
                     simulatedPoules = AddParticipantToSimulatedPoules(simulatedPoules);
                 }
             } while (!exitCondition && participantsOnPoules < maxPouleSize * numberOfPools);
 
-            if (participantsOnPoules == numberOfParticipants) {
+            if (participantsOnPoules == athletesCount) {
                 res = new int[2, 2];
                 if (simulatedPoules.Max() == simulatedPoules.Min()) {
                     res[0, 0] = simulatedPoules.Count(x => x == simulatedPoules.Max());
@@ -234,6 +239,63 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
 
             return simulatedPoules;
         }
+
+        public static Dictionary<int, int[,]> GetPossiblePoulesByNumberOfPoules(int athletesCount) {
+            Dictionary<int, int[,]> res = new Dictionary<int, int[,]>();
+
+            List<int> optionsList = NumberOfPoulesOptionsList(athletesCount);
+            foreach (int option in optionsList) {
+                res.Add(option, GetPoulesAndSize(athletesCount, new int[1] { option }));
+            }
+
+            return res;
+        }
+
+        private static List<int> NumberOfPoulesOptionsList(int athletesCount) {
+            int numMaxOfPoules = athletesCount / 3;
+            int[] posibleNumberOfPoules = Enumerable.Range(1, numMaxOfPoules).ToArray();
+
+            return CleanNumberOfPoulesOptions(athletesCount, posibleNumberOfPoules);
+        }
+        private static List<int> CleanNumberOfPoulesOptions(int athletesCount, int[] posibleNumberOfPoules) {
+            List<int> res = new List<int>();
+            foreach (int numberOfPoules in posibleNumberOfPoules) {
+                if (GetPoulesAndSize(athletesCount, new int[1] { numberOfPoules }) != null) {
+                    res.Add(numberOfPoules);
+                }
+            }
+
+            return res;
+        }
+
+        public static Dictionary<int, int[,]> GetPossiblePoulesByMaxPouleSize(int athletesCount) {
+            Dictionary<int, int[,]> res = new Dictionary<int, int[,]>();
+
+            List<int> optionsList = MaxPouleSizeOptionsList(athletesCount);
+            foreach (int option in optionsList) {
+                res.Add(option, GetPoulesAndSize(athletesCount, new Vector2(option - 1, option)));
+            }
+
+            return res;
+        }
+
+        private static List<int> MaxPouleSizeOptionsList(int athletesCount) {
+            int maxPouleSize = athletesCount < 11 ? athletesCount : 11;
+            int[] posibleMaxPouleSize = Enumerable.Range(3, maxPouleSize - 2).ToArray();
+
+            return CleanMaxPouleSizeOptions(athletesCount, posibleMaxPouleSize);
+        }
+        private static List<int> CleanMaxPouleSizeOptions(int athletesCount, int[] posibleNumberOfPoules) {
+            List<int> res = new List<int>();
+            foreach (int maxPouleSize in posibleNumberOfPoules) {
+                Vector2 minMaxSize = new Vector2(maxPouleSize - 1, maxPouleSize);
+                if (GetPoulesAndSize(athletesCount, minMaxSize)!= null) {
+                    res.Add(maxPouleSize);
+                }
+            }
+
+            return res;
+        }
         #endregion
         #endregion
 
@@ -263,8 +325,8 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
             }
         }
 
-        public static int GetNumberOfMatches(int numberOfParticipants) {
-            switch ((PouleSize)numberOfParticipants) {
+        public static int GetNumberOfMatches(int athletesCount) {
+            switch ((PouleSize)athletesCount) {
                 case PouleSize.Three:
                     return POULE_OF_THREE.GetLength(0);
                 case PouleSize.Four:

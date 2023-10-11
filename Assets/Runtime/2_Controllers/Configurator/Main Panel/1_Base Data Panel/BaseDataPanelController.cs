@@ -23,8 +23,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             _allFormulas = TournamentFormulaUtils.GetTournamentFormulasNames();
             _baseDataPanelView.FillFormulaDropdown(_allFormulas);
             UpdateFormulaDescription();
-
-            _baseDataPanelView.FillTypeDropdown(new List<string>(Enum.GetNames(typeof(TournamentType))));
         }
 
         private void OnEnable() {

@@ -19,6 +19,7 @@ namespace YannickSCF.LSTournaments.Common {
 
     // -------------- Poules Builder Enumerators --------------
 
+    public enum PoulesBy { NumberOfPoules, MaxPoulesSize }
     public enum PouleNamingType { Letters, Numbers }
     public enum PouleFillerType { TBD, Random, ByRank, ByStyle, ByTier }
     public enum PouleFillerSubtype { None, Country, Academy, School }
