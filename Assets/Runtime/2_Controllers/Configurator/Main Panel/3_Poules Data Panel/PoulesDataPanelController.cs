@@ -57,28 +57,23 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
             UpdatePouleSelectionOptions();
             UpdatePouleAttribute(-1);
             UpdateNamingExample(_namingType, _pouleRounds);
+
+            ValidateAll();
         }
 
         private void OnSelectedPouleDataChanged(int selectedValue) {
             UpdatePouleAttribute(selectedValue);
             UpdateNamingExample(_namingType, _pouleRounds);
+
+            ValidateAll();
         }
         #endregion
 
         #region PanelController abstract methods overrided
         public override string GetTitle() { return "Poules Data"; }
 
-        [ContextMenu("Set Default")]
-        public void SetDataDefault() {
-            _athletesCount = 64;
-            _poulesDataPanelView.SetSelectableCountSize(true);
-
-            _possiblePoulesByPouleCount = PouleUtils.GetPossiblePoulesByNumberOfPoules(_athletesCount);
-            _possiblePoulesByMaxSize = PouleUtils.GetPossiblePoulesByMaxPouleSize(_athletesCount);
-            UpdatePouleSelectionOptions();
-            UpdatePouleAttribute(-1);
-
-            UpdateNamingExample(_namingType, _pouleRounds);
+        public override void ValidateAll() {
+            _IsDataValidated = _currentPouleCountAndSize != null;
         }
 
         public override void GiveData(TournamentData data) {

@@ -87,7 +87,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             _columnsEnabled[checkboxInfo] = isChecked;
             _contentView.EnableRowColumns(checkboxInfo, isChecked);
 
-            ValidateCurrent();
+            ValidateAll();
         }
 
         private void OnAthleteStringUpdated(AthleteInfoType infoType, string updatedData, int athleteIndex) {
@@ -164,7 +164,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             UpdateAllHiddenAndDisableColumnsInARow(athleteCount - 1);
             UpdateBottomButtons(athleteCount);
 
-            ValidateCurrent();
+            ValidateAll();
         }
 
         private void OnAthleteRemovedByButton() {
@@ -175,7 +175,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
             UpdateBottomButtons(athleteCount);
 
-            ValidateCurrent();
+            ValidateAll();
         }
 
         private void OnAthletesLoadedByFile() {
@@ -215,31 +215,12 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 UpdateAllHiddenAndDisableColumnsInARow(i);
             }
 
-            ValidateCurrent();
+            ValidateAll();
             _loadingPanel.SetActive(false);
         }
         #endregion
 
         #region Validators
-        private void ValidateCurrent() {
-            ValidateAthletesMinimum();
-
-            for (int i = 0; i < _currentAthletes.Count; ++i) {
-                ValidateCountry(_currentAthletes[i].Country, i);
-                ValidateSimpleName(AthleteInfoType.Surname ,_currentAthletes[i].Surname, i);
-                ValidateSimpleName(AthleteInfoType.Name, _currentAthletes[i].Name, i);
-                ValidateSimpleName(AthleteInfoType.Academy, _currentAthletes[i].Academy, i);
-                ValidateSimpleName(AthleteInfoType.School, _currentAthletes[i].School, i);
-                ValidateIntInString(_currentAthletes[i].Tier.ToString(), i);
-                ValidateDate(AthleteInfoType.BirthDate, _currentAthletes[i].BirthDate, i);
-                ValidateDate(AthleteInfoType.StartDate, _currentAthletes[i].StartDate, i);
-                ValidateStyles(_currentAthletes[i].Styles, i);
-                ValidateColor(_currentAthletes[i].SaberColor, i);
-            }
-
-            UpdateErrorsPanel();
-        }
-
         private bool ValidateAthletesMinimum() {
             if (_currentAthletes.Count < MIN_ATHLETES) {
                 AddError($"At least {MIN_ATHLETES} athletes");
@@ -443,6 +424,25 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
         #region PanelController abstract methods overrided
         public override string GetTitle() { return "Athletes"; }
+
+        public override void ValidateAll() {
+            ValidateAthletesMinimum();
+
+            for (int i = 0; i < _currentAthletes.Count; ++i) {
+                ValidateCountry(_currentAthletes[i].Country, i);
+                ValidateSimpleName(AthleteInfoType.Surname, _currentAthletes[i].Surname, i);
+                ValidateSimpleName(AthleteInfoType.Name, _currentAthletes[i].Name, i);
+                ValidateSimpleName(AthleteInfoType.Academy, _currentAthletes[i].Academy, i);
+                ValidateSimpleName(AthleteInfoType.School, _currentAthletes[i].School, i);
+                ValidateIntInString(_currentAthletes[i].Tier.ToString(), i);
+                ValidateDate(AthleteInfoType.BirthDate, _currentAthletes[i].BirthDate, i);
+                ValidateDate(AthleteInfoType.StartDate, _currentAthletes[i].StartDate, i);
+                ValidateStyles(_currentAthletes[i].Styles, i);
+                ValidateColor(_currentAthletes[i].SaberColor, i);
+            }
+
+            UpdateErrorsPanel();
+        }
 
         public override void GiveData(TournamentData data) {
             data.Athletes = _currentAthletes;

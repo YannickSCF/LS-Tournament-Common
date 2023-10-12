@@ -41,12 +41,12 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         #region Events Listeners methods
         private void OnTypeChanged(int typeIndex) {
             _type = (TournamentType)typeIndex;
-            ExecuteValidations();
+            ValidateAll();
         }
 
         private void OnNameChanged(string newName) {
             _name = newName;
-            ExecuteValidations();
+            ValidateAll();
         }
 
         private void OnFormulaChanged(int formulaIndex) {
@@ -55,12 +55,16 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
                 UpdateFormulaDescription();
             }
 
-            ExecuteValidations();
+            ValidateAll();
         }
         #endregion
 
         #region Validators
-        private void ExecuteValidations() {
+        #endregion
+
+        #region PanelController abstract methods overrided
+        public override string GetTitle() { return "Base Data"; }
+        public override void ValidateAll() {
             bool res = true;
 
             res &= !string.IsNullOrEmpty(_name);
@@ -68,10 +72,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
 
             _IsDataValidated = res;
         }
-        #endregion
-
-        #region PanelController abstract methods overrided
-        public override string GetTitle() { return "Base Data"; }
 
         public override void GiveData(TournamentData data) {
             _type = data.TournamentType;
@@ -84,7 +84,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             _baseDataPanelView.SetTournamentFormula(_allFormulas.IndexOf(_formula), true);
             UpdateFormulaDescription();
 
-            ExecuteValidations();
+            ValidateAll();
         }
 
         public override TournamentData RetrieveData(TournamentData data) {

@@ -36,5 +36,40 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
         public Dictionary<AthleteInfoType, bool> AthletesInfoUsed { get => _athletesInfoUsed; set => _athletesInfoUsed = value; }
         public List<AthleteInfoModel> Athletes { get => _athletes; set => _athletes = value; }
         public List<AthleteTournamentStatsModel> AthletesStats { get => _athletesStats; set => _athletesStats = value; }
+
+
+        public List<PouleFillerSubtype> GetFillerSubtypesCanBeUsed() {
+            List<PouleFillerSubtype> result = new List<PouleFillerSubtype>();
+            if (_athletesInfoUsed[AthleteInfoType.Country]) {
+                result.Add(PouleFillerSubtype.Country);
+            }
+
+            if (_athletesInfoUsed[AthleteInfoType.Academy]) {
+                result.Add(PouleFillerSubtype.Academy);
+            }
+
+            if (_athletesInfoUsed[AthleteInfoType.School]) {
+                result.Add(PouleFillerSubtype.School);
+            }
+
+            return result;
+        }
+
+        public List<PouleFillerSubtype> GetFillerSubtypesCannotBeUsed() {
+            List<PouleFillerSubtype> result = new List<PouleFillerSubtype>();
+            if (!_athletesInfoUsed[AthleteInfoType.Country]) {
+                result.Add(PouleFillerSubtype.Country);
+            }
+
+            if (!_athletesInfoUsed[AthleteInfoType.Academy]) {
+                result.Add(PouleFillerSubtype.Academy);
+            }
+
+            if (!_athletesInfoUsed[AthleteInfoType.School]) {
+                result.Add(PouleFillerSubtype.School);
+            }
+
+            return result;
+        }
     }
 }
