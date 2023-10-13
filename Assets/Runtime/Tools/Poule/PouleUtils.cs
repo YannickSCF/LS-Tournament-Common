@@ -66,6 +66,18 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
             return _filler.FillPoules(names, athletes, fillerSubtype, formula.MaxPouleSize);
         }
 
+        public static List<PouleDataModel> CreatePoules(
+            PouleNamingObject namingParams, List<AthleteInfoModel> athletes, int maxPouleSize,
+            PouleFillerType fillerType, PouleFillerSubtype fillerSubtype) {
+
+            // Get poules names
+            List<string> names = GetPoulesNames(namingParams);
+            // Get poules filler
+            PoulesFiller _filler = GetFiller(fillerType);
+            // Return poules filled
+            return _filler.FillPoules(names, athletes, fillerSubtype, maxPouleSize);
+        }
+
         public static PoulesFiller GetFiller(PouleFillerType builder) {
             switch (builder) {
                 default:

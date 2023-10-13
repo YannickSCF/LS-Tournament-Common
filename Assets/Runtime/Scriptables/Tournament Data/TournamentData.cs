@@ -1,10 +1,11 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Models.Matches;
 using YannickSCF.LSTournaments.Common.Models.Poules;
-using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
+using YannickSCF.LSTournaments.Common.Tools.Poule;
 
 namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
     [CreateAssetMenu(fileName = "Tournament Data", menuName = "YannickSCF/LS Tournaments/New Tournament Data")]
@@ -33,23 +34,39 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
 
         public Dictionary<EliminationRound, List<MatchModel>> EliminationBracket { get => _eliminationBracket; set => _eliminationBracket = value; }
 
-        public Dictionary<AthleteInfoType, bool> AthletesInfoUsed { get => _athletesInfoUsed; set => _athletesInfoUsed = value; }
+        public Dictionary<AthleteInfoType, bool> AthletesInfoUsed {
+            get {
+                if (_athletesInfoUsed == null || _athletesInfoUsed.Count != Enum.GetValues(typeof(AthleteInfoType)).Length) {
+                    _athletesInfoUsed = new Dictionary<AthleteInfoType, bool>();
+                    Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
+                    foreach (Enum infoType in infoTypes) {
+                        _athletesInfoUsed.Add((AthleteInfoType)infoType, true);
+                    }
+                }
+                return _athletesInfoUsed;
+            }
+            set => _athletesInfoUsed = value;
+        }
+
         public List<AthleteInfoModel> Athletes { get => _athletes; set => _athletes = value; }
         public List<AthleteTournamentStatsModel> AthletesStats { get => _athletesStats; set => _athletesStats = value; }
 
+        public AthleteInfoModel GetAthleteById(string athleteId) {
+            return _athletes.FirstOrDefault(x => x.Id == athleteId);
+        }
 
-        public List<PouleFillerSubtype> GetFillerSubtypesCanBeUsed() {
-            List<PouleFillerSubtype> result = new List<PouleFillerSubtype>();
-            if (_athletesInfoUsed[AthleteInfoType.Country]) {
-                result.Add(PouleFillerSubtype.Country);
+        public List<PouleFillerType> GetFillerTypesCannotBeUsed() {
+            List<PouleFillerType> result = new List<PouleFillerType>();
+            if (!_athletesInfoUsed[AthleteInfoType.Rank]) {
+                result.Add(PouleFillerType.ByRank);
             }
 
-            if (_athletesInfoUsed[AthleteInfoType.Academy]) {
-                result.Add(PouleFillerSubtype.Academy);
+            if (!_athletesInfoUsed[AthleteInfoType.Styles]) {
+                result.Add(PouleFillerType.ByStyle);
             }
 
-            if (_athletesInfoUsed[AthleteInfoType.School]) {
-                result.Add(PouleFillerSubtype.School);
+            if (!_athletesInfoUsed[AthleteInfoType.Tier]) {
+                result.Add(PouleFillerType.ByTier);
             }
 
             return result;
@@ -70,6 +87,20 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
             }
 
             return result;
+        }
+
+        public PouleNamingObject? GetNamingData() {
+            if (_pouleInfo.GetPouleCount() <= 0) {
+                return null;
+            }
+
+            switch (_pouleInfo.NamingInfo) {
+                default:
+                case PouleNamingType.Letters:
+                    return new PouleNamingObject(_pouleInfo.NamingInfo, _pouleInfo.GetPouleCount(), _pouleInfo.RoundsOfPoules);
+                case PouleNamingType.Numbers:
+                    return new PouleNamingObject(_pouleInfo.NamingInfo, _pouleInfo.GetPouleCount());
+            }
         }
     }
 }

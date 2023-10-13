@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea546a798974544abfc9dfd4567d70d, type: 3}
+  m_Name: Data
+  m_EditorClassIdentifier: 
+  _tournamentName: 
+  _tournamentType: 0
+  _tournamentFormulaName: 
+  _seed: 0
+  _pouleInfo:
+    _namingInfo: 0
+    _roundsOfPoules: 0
+    _fillerSubtypeInfo: 0
+    _data: []
+  _athletes: []
+  _athletesStats: []

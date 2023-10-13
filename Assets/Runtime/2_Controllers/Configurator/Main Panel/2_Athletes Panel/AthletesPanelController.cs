@@ -451,6 +451,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             foreach (AthleteInfoType type in infoTypes) {
                 data.AthletesInfoUsed[type] = _columnsShown[type] && _columnsEnabled[type];
             }
+
+            // TODO: block columns as active if there is formula defined (Alpha and Bravo needs of Ranks, for example)
         }
 
         public override TournamentData RetrieveData(TournamentData data) {

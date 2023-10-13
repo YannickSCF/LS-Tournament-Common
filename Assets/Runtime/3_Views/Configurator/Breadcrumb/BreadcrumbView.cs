@@ -47,11 +47,14 @@ namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
 
                 crumbs.Add(newCrumb);
             }
+
+            crumbs.Reverse();
         }
 
         public void UpdateCurrentCrumb(int indexCurrentCrumb) {
             for (int i = 0; i < crumbs.Count; ++i) {
                 crumbs[i].EnableCrumb(i <= indexCurrentCrumb);
+                crumbs[i].FocusCrumb(i == indexCurrentCrumb);
             }
 
             _prevStepButton.interactable = indexCurrentCrumb != 0;

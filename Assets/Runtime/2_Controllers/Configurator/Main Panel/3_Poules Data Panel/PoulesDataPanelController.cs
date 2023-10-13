@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using YannickSCF.LSTournaments.Common.Models.Poules;
 // Custom dependencies
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
@@ -11,7 +12,7 @@ using YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel;
 namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel {
     public class PoulesDataPanelController : PanelController {
 
-        private const string TRANSAPARENT_TAG = "<color=#00000000></color>";
+        private const string TRANSAPARENT_TAG = "<color=#00000000>{0}</color>";
 
         [SerializeField] private PoulesDataPanelView _poulesDataPanelView;
 
@@ -98,7 +99,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
         }
 
         public override TournamentData RetrieveData(TournamentData data) {
-            // TODO: Define returned data
+            PouleInfoModel pouleInfo = new PouleInfoModel(_namingType, _pouleRounds);
+            pouleInfo.PouleCountAndSizes = _currentPouleCountAndSize;
+            data.PouleInfo = pouleInfo;
             return data;
         }
         #endregion
@@ -164,7 +167,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
 
             if (exampleNames.Count % poulesByLine != 0) {
                 int pouleIndex = exampleNames.Count;
-                string transparentName = TRANSAPARENT_TAG.Replace("><", ">" + exampleNames[exampleNames.Count - 1] + "<");
+                string transparentName = string.Format(TRANSAPARENT_TAG, exampleNames[exampleNames.Count - 1]);
                 while (pouleIndex % poulesByLine != 0) {
                     example += "\t\t" + transparentName;
                     ++pouleIndex;

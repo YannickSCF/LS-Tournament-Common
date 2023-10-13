@@ -42,7 +42,8 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Formulas {
         }
 
         private static void CheckUtilsInitialized() {
-            throw new Exception("List of Formulas is not set up!");
+            if (_allTournamentFormulas == null || _allTournamentFormulas.Count <= 0 || _customFormula == null)
+                throw new Exception("List of Formulas is not set up!");
         }
     }
 }
