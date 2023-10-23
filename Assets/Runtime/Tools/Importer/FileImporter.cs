@@ -26,6 +26,22 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importers {
             return deserializer.ImportAthletesFromFile(filePath);
         }
 
+        public static List<AthleteInfoType> ImportAthletesInfoFromFile(string filePath) {
+            IDeserializer deserializer;
+
+            if (filePath.ToLower().EndsWith(".json")) {
+                deserializer = new JSONDeserializer();
+            } else if (filePath.ToLower().EndsWith(".csv")) {
+                deserializer = new CSVDeserializer();
+            } else if (filePath.ToLower().EndsWith(".tsv")) {
+                deserializer = new TSVDeserializer();
+            } else {
+                throw new Exception("File with incorrect extension");
+            }
+
+            return deserializer.ImportAthletesInfoFromFile(filePath);
+        }
+
         //public static DrawConfiguration ImportDrawFormJSON(string filePath) {
         //    JSONDeserializer deserializer = new JSONDeserializer();
         //    return deserializer.ImportDrawFormJSON(filePath);

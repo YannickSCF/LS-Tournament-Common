@@ -32,6 +32,19 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
             return null;
         }
 
+        public List<AthleteInfoType> ImportAthletesInfoFromFile(string path) {
+            List<AthleteInfoType> result = new List<AthleteInfoType>();
+
+            string[] allLines = GetArrayOfEntries(path);
+            Dictionary<int, AthleteInfoType> infoIndexes = GetIndexForEachValue(allLines[0]);
+
+            foreach (KeyValuePair<int, AthleteInfoType> infoIndex in infoIndexes) {
+                result.Add(infoIndex.Value);
+            }
+
+            return result;
+        }
+
         #region Methods to deserialize list of athletes
         public List<AthleteInfoModel> ImportAthletesFromFile(string path) {
             string[] allLines = GetArrayOfEntries(path);
@@ -160,6 +173,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
             throw new Exception("ERROR: No coincidence for Country '" + countryStr + "'. Please, review your CSV");
         }
         #endregion
+
 
         private string[] GetArrayOfEntries(string path) {
             // Read CSV text from file

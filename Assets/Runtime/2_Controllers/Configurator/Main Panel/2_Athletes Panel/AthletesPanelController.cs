@@ -82,10 +82,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
         #region Events Listeners methods
         private void OnToggleHeaderHide(AthleteInfoType checkboxInfo, bool isChecked) {
-            _headerView.EnableHeader(checkboxInfo, isChecked);
-
-            _columnsEnabled[checkboxInfo] = isChecked;
-            _contentView.EnableRowColumns(checkboxInfo, isChecked);
+            EnableColumn(checkboxInfo, isChecked);
 
             ValidateAll();
         }
@@ -183,6 +180,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             if (!string.IsNullOrEmpty(filePath)) {
                 // Get all participants
                 List<AthleteInfoModel> athletes = FileImporter.ImportAthletesFromFile(filePath);
+                GetAthleteInfoImported(filePath);
+
                 if (athletes != null && athletes.Count > 0) {
                     _loadingPanel.SetActive(true);
                     // Reset all table content
@@ -192,6 +191,17 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                     _currentAthletes = athletes;
                 }
             }
+        }
+        private void GetAthleteInfoImported(string filePath) {
+            List<AthleteInfoType> athleteInfo = FileImporter.ImportAthletesInfoFromFile(filePath);
+
+            Dictionary<AthleteInfoType, bool> data = new Dictionary<AthleteInfoType, bool>();
+            Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
+            foreach (AthleteInfoType type in infoTypes) {
+                data[type] = athleteInfo.Contains(type);
+            }
+
+            UpdateColumnsEnabled(data);
         }
         private IEnumerator AddRowsCoroutine(List<AthleteInfoModel> athletes) {
             yield return new WaitForSeconds(0.25f);
@@ -447,12 +457,15 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         public override void GiveData(TournamentData data) {
             data.Athletes = _currentAthletes;
 
+            UpdateColumnsToShow(data.TournamentType);
+            UpdateColumnsEnabled(data.AthletesInfoUsed);
+
+            // TODO: block columns as active if there is formula defined (Alpha and Bravo needs of Ranks, for example)
+
             Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
             foreach (AthleteInfoType type in infoTypes) {
                 data.AthletesInfoUsed[type] = _columnsShown[type] && _columnsEnabled[type];
             }
-
-            // TODO: block columns as active if there is formula defined (Alpha and Bravo needs of Ranks, for example)
         }
 
         public override TournamentData RetrieveData(TournamentData data) {
@@ -472,6 +485,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             switch (columnToShow) {
                 case AthleteInfoType.Country:
                 case AthleteInfoType.Academy:
+                case AthleteInfoType.School:
                     _headerView.ShowColumn(columnToShow, show);
 
                     _columnsShown[columnToShow] = show;
@@ -480,6 +494,34 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 default:
                     Debug.LogWarning($"You cannot Show/Hide {Enum.GetName(typeof(AthleteInfoType), columnToShow)} column!");
                     break;
+            }
+        }
+
+        public void EnableColumn(AthleteInfoType checkboxInfo, bool isChecked) {
+            _headerView.EnableHeader(checkboxInfo, isChecked);
+
+            _columnsEnabled[checkboxInfo] = isChecked;
+            _contentView.EnableRowColumns(checkboxInfo, isChecked);
+        }
+
+        private void UpdateColumnsToShow(TournamentType tournamentType) {
+            ShowColumn(AthleteInfoType.Country,
+                tournamentType != TournamentType.School &&
+                tournamentType != TournamentType.Academy &&
+                tournamentType != TournamentType.National);
+
+
+            ShowColumn(AthleteInfoType.Academy,
+                tournamentType != TournamentType.School &&
+                tournamentType != TournamentType.Academy);
+
+            ShowColumn(AthleteInfoType.School,
+                tournamentType != TournamentType.School);
+        }
+
+        private void UpdateColumnsEnabled(Dictionary<AthleteInfoType, bool> athletesInfoUsed) {
+            foreach (KeyValuePair<AthleteInfoType, bool> infoUsed in athletesInfoUsed) {
+                EnableColumn(infoUsed.Key, infoUsed.Value);
             }
         }
 

@@ -47,6 +47,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.He
                 _headerText.color.g,
                 _headerText.color.b,
                 enable ? 1 : 0.5f);
+
+            _toggleToHide.SetIsOnWithoutNotify(enable);
         }
 
         public void ShowHeader(bool show) {

@@ -11,6 +11,10 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
             throw new System.NotImplementedException();
         }
 
+        public List<AthleteInfoType> ImportAthletesInfoFromFile(string path) {
+            throw new System.NotImplementedException();
+        }
+
         public List<AthleteInfoModel> ImportAthletesFromFile(string path) {
             throw new System.NotImplementedException();
         }
