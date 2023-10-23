@@ -7,6 +7,16 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.He
 
         [SerializeField] private List<HeaderColumnView> _allHeaders;
 
+        public void BlockHeader(AthleteInfoType column, bool block) {
+            foreach (HeaderColumnView header in _allHeaders) {
+                if (header.HeaderType == column) {
+                    header.SetHeaderEnabled(block);
+                    header.SetHeaderBlocked(block);
+                    break;
+                }
+            }
+        }
+
         public void EnableHeader(AthleteInfoType column, bool enable) {
             foreach (HeaderColumnView header in _allHeaders) {
                 if (header.HeaderType == column) {

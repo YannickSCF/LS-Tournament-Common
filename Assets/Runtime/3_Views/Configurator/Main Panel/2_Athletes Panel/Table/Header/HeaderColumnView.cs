@@ -51,6 +51,10 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.He
             _toggleToHide.SetIsOnWithoutNotify(enable);
         }
 
+        public void SetHeaderBlocked(bool block) {
+            _toggleToHide.interactable = !block;
+        }
+
         public void ShowHeader(bool show) {
             gameObject.SetActive(show);
         }

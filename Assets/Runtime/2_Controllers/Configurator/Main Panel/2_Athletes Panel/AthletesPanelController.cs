@@ -8,6 +8,7 @@ using UnityEngine;
 using YannickSCF.CountriesData;
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
+using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Tools.Importers;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Bottom;
@@ -460,7 +461,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             UpdateColumnsToShow(data.TournamentType);
             UpdateColumnsEnabled(data.AthletesInfoUsed);
 
-            // TODO: block columns as active if there is formula defined (Alpha and Bravo needs of Ranks, for example)
+            UpdateColumnsBlocked(data.TournamentFormulaName);
 
             Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
             foreach (AthleteInfoType type in infoTypes) {
@@ -522,6 +523,15 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private void UpdateColumnsEnabled(Dictionary<AthleteInfoType, bool> athletesInfoUsed) {
             foreach (KeyValuePair<AthleteInfoType, bool> infoUsed in athletesInfoUsed) {
                 EnableColumn(infoUsed.Key, infoUsed.Value);
+            }
+        }
+
+        private void UpdateColumnsBlocked(string tournamentFormulaName) {
+            // TODO: block columns as active if there is formula defined (Alpha and Bravo needs of Ranks, for example)
+
+            TournamentFormula formula = TournamentFormulaUtils.GetFormulaByName(tournamentFormulaName);
+            if (!TournamentFormulaUtils.IsCustomFormula(tournamentFormulaName)) {
+                _headerView.BlockHeader(AthleteInfoType.Rank, formula.FillerType == PouleFillerType.ByRank);
             }
         }
 
