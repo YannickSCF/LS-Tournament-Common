@@ -1,4 +1,5 @@
 // Dependencies
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 // Custom dependencies
@@ -14,6 +15,11 @@ namespace YannickSCF.LSTournaments.Common.Models.Poules {
         #region Properties
         public string Name { get => _name; }
         public List<string> AthletesIds { get => _athletesIds; }
+
+        internal object OrderBy(Func<object, object> p) {
+            throw new NotImplementedException();
+        }
+
         public List<MatchModel> Matches { get => _matches; }
         #endregion
 

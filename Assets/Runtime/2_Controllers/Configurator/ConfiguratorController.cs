@@ -51,7 +51,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
                 return;
             }
 
-            if (!clickedNext && _panelIndex >= _allConfiguratorPanels.Count - 1) {
+            if (clickedNext && _panelIndex >= _allConfiguratorPanels.Count - 1) {
                 Debug.Log("Finished!");
                 return;
             }

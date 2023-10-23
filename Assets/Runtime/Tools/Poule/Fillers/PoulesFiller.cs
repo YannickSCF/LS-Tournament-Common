@@ -26,6 +26,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
         
         // ABSTRACT METHODS
         protected abstract List<AthleteInfoModel> GetListReadyToFill(List<AthleteInfoModel> athletes);
+        protected abstract Dictionary<int, List<AthleteInfoModel>>  GetFinalListReordered(Dictionary<int, List<AthleteInfoModel>> poules, PouleFillerSubtype subtype);
 
         // PUBLIC METHODS
         public List<PouleDataModel> FillPoules(List<string> pouleNames,
@@ -84,8 +85,8 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule.Filler {
                     }
                 }
             }
-
-            return poulesData;
+            
+            return GetFinalListReordered(poulesData, subtype);
         }
 
         private bool TryToAddAthlete(ref List<AthleteInfoModel> pouleAthletes,

@@ -18,6 +18,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
 
         private PouleNamingType _namingType;
         private int _pouleRounds;
+        private int _pouleSizeCountDropdownValue;
 
         private PoulesBy _howToDefine = PoulesBy.NumberOfPoules;
         private int _athletesCount = 0;
@@ -56,14 +57,15 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
         private void OnHowToDefinePoulesChanged(int hotToDefineIndex) {
             _howToDefine = (PoulesBy)hotToDefineIndex;
             UpdatePouleSelectionOptions();
-            UpdatePouleAttribute(-1);
+            UpdatePouleAttribute(true);
             UpdateNamingExample(_namingType, _pouleRounds);
 
             ValidateAll();
         }
 
         private void OnSelectedPouleDataChanged(int selectedValue) {
-            UpdatePouleAttribute(selectedValue);
+            _pouleSizeCountDropdownValue = selectedValue;
+            UpdatePouleAttribute();
             UpdateNamingExample(_namingType, _pouleRounds);
 
             ValidateAll();
@@ -81,21 +83,24 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
             _namingType = data.PouleInfo.NamingInfo;
             _pouleRounds = data.PouleInfo.RoundsOfPoules;
             _poulesDataPanelView.SetPouleNamingType((int)_namingType, _pouleRounds);
-            UpdateNamingExample(_namingType, _pouleRounds);
 
             _athletesCount = data.Athletes.Count;
-            _poulesDataPanelView.SetSelectableCountSize(data.PouleInfo.Data.Count <= 0);
-            if (data.PouleInfo.Data.Count <= 0) {
+
+            _poulesDataPanelView.SetSelectableCountSize(TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName));
+            if (TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName)) {
                 _possiblePoulesByPouleCount = PouleUtils.GetPossiblePoulesByNumberOfPoules(_athletesCount);
                 _possiblePoulesByMaxSize = PouleUtils.GetPossiblePoulesByMaxPouleSize(_athletesCount);
                 UpdatePouleSelectionOptions();
-                UpdatePouleAttribute(-1);
+                UpdatePouleAttribute();
             } else {
                 _currentPouleCountAndSize = PouleUtils.GetPoulesAndSize(_athletesCount,
                         TournamentFormulaUtils.GetFormulaByName(data.TournamentFormulaName));
 
                 _poulesDataPanelView.SetPoulesCountSizeAttributes(_athletesCount, _currentPouleCountAndSize);
             }
+
+            ValidateAll();
+            UpdateNamingExample(_namingType, _pouleRounds);
         }
 
         public override TournamentData RetrieveData(TournamentData data) {
@@ -158,7 +163,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
                     if (i % poulesByLine == poulesByLine - 1) {
                         example += exampleNames[i] + "\n";
                     } else {
-                        example += exampleNames[i] + "\t\t";
+                        example += exampleNames[i] + "\t";
                     }
                 } else {
                     example += exampleNames[i];
@@ -169,7 +174,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
                 int pouleIndex = exampleNames.Count;
                 string transparentName = string.Format(TRANSAPARENT_TAG, exampleNames[exampleNames.Count - 1]);
                 while (pouleIndex % poulesByLine != 0) {
-                    example += "\t\t" + transparentName;
+                    example += "\t" + transparentName;
                     ++pouleIndex;
                 }
             }
@@ -194,15 +199,20 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
                 options);
         }
 
-        private void UpdatePouleAttribute(int valueSelected) {
-            if (valueSelected >= 0) {
+        private void UpdatePouleAttribute(bool noValue = false) {
+            if (!noValue) {
+                _poulesDataPanelView.SetPoulesCountSizeDropdownOptionSelected(_pouleSizeCountDropdownValue);
                 switch (_howToDefine) {
                     case PoulesBy.MaxPoulesSize:
-                        _currentPouleCountAndSize = _possiblePoulesByMaxSize[valueSelected];
+                        if (_possiblePoulesByMaxSize.ContainsKey(_pouleSizeCountDropdownValue)) {
+                            _currentPouleCountAndSize = _possiblePoulesByMaxSize[_pouleSizeCountDropdownValue];
+                        }
                         break;
                     case PoulesBy.NumberOfPoules:
                     default:
-                        _currentPouleCountAndSize = _possiblePoulesByPouleCount[valueSelected];
+                        if (_possiblePoulesByPouleCount.ContainsKey(_pouleSizeCountDropdownValue)) {
+                            _currentPouleCountAndSize = _possiblePoulesByPouleCount[_pouleSizeCountDropdownValue];
+                        }
                         break;
                 }
             } else {

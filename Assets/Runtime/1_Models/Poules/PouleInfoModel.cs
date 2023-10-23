@@ -17,6 +17,7 @@ namespace YannickSCF.LSTournaments.Common.Models.Poules {
             _namingInfo = namingInfo;
             _roundsOfPoules = roundsOfPoules;
             _fillerSubtypeInfo = fillerSubtypeInfo;
+            _data = new List<PouleDataModel>();
         }
 
         public PouleInfoModel(PouleNamingType namingInfo, int roundsOfPoules, PouleFillerSubtype fillerSubtypeInfo, List<PouleDataModel> data) {

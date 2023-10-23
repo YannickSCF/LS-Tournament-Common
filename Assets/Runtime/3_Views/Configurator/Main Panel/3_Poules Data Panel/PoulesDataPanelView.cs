@@ -1,6 +1,7 @@
 // Dependencies
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
@@ -114,6 +115,15 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
             }
 
             _selectedHowToDefineDropdown.AddOptions(optionsString);
+        }
+
+        public void SetPoulesCountSizeDropdownOptionSelected(int optionValue) {
+            TMP_Dropdown.OptionData optionData = _selectedHowToDefineDropdown.options.FirstOrDefault(x => x.text == optionValue.ToString());
+
+            if (optionData != null) {
+                int selectedOption = _selectedHowToDefineDropdown.options.IndexOf(optionData);
+                _selectedHowToDefineDropdown.SetValueWithoutNotify(selectedOption);
+            }
         }
 
         public void SetPoulesCountSizeAttributes(int totalAthletes, int[,] poulesCountAndSizes) {

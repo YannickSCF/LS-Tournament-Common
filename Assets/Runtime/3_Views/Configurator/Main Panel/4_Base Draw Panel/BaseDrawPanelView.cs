@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 // Custom Dependencies
+using YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel.ExamplePoules;
 using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
@@ -16,15 +18,19 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
         [SerializeField] private TMP_Dropdown _fillerTypeDropdown;
         [SerializeField] private TMP_Dropdown _fillerSubtypeDropdown;
         [Header("Example references")]
-        [SerializeField] private List<TextMeshProUGUI> _examplePouleTexts;
-        [SerializeField] private TextMeshProUGUI _exampleLegendText;
-        [SerializeField] private TextMeshProUGUI _exampleCompelteText;
+        [SerializeField] private TextMeshProUGUI _exampleCompleteText;
+        [SerializeField] private ScrollRect _examplePoulesScroll;
+        [SerializeField] private ExamplePoulesView _examplePoulePrefab;
+
+        private List<ExamplePoulesView> _examplePoules;
 
         private List<PouleFillerType> _addedTypes;
         private List<PouleFillerSubtype> _addedSubtypes;
 
         #region Mono
         private void Awake() {
+            _examplePoules = new List<ExamplePoulesView>();
+
             _addedTypes = Enum.GetValues(typeof(PouleFillerType)).Cast<PouleFillerType>().ToList();
             _fillerTypeDropdown.ClearOptions();
             _fillerTypeDropdown.AddOptions(new List<string>(Enum.GetNames(typeof(PouleFillerType))));
@@ -103,30 +109,38 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
         }
 
         public void SetExample(string completePanelText) {
-            _examplePouleTexts.ForEach(x => x.gameObject.SetActive(false));
-            _exampleLegendText.gameObject.SetActive(false);
-
-            _exampleCompelteText.gameObject.SetActive(true);
-            _exampleCompelteText.text = completePanelText;
-        }
-
-        public void SetExample(Dictionary<int, string> poulesExamples, string legendString = null) {
-            _examplePouleTexts.ForEach(x => x.gameObject.SetActive(true));
-            _exampleLegendText.gameObject.SetActive(true);
-
-            _exampleCompelteText.gameObject.SetActive(false);
-
-            for (int i = 0; i < poulesExamples.Count; ++i) {
-                _examplePouleTexts[i].text = poulesExamples[i];
+            foreach (Transform child in _examplePoulesScroll.content) {
+                DestroyImmediate(child.gameObject);
             }
 
-            _exampleLegendText.text = legendString != null ? legendString : string.Empty;
+            _examplePoulesScroll.gameObject.SetActive(false);
 
-            // TODO
-            // 1º: One TextMeshProUGUI for each line 
-            // 2º: All TextMeshProUGUI with same font size, wrapping disabled and overflos as elipsis
-            // 3º: Adapt script to this feature
-            // 4º: Manage how many poules are visible (can be less than 4)
+            _exampleCompleteText.gameObject.SetActive(true);
+            _exampleCompleteText.text = completePanelText;
+        }
+
+        public void SetExample(Dictionary<string, List<string>> poulesExamples) {
+            _examplePoulesScroll.gameObject.SetActive(true);
+            _exampleCompleteText.gameObject.SetActive(false);
+
+            if (poulesExamples.Count != _examplePoulesScroll.content.childCount) {
+                foreach (Transform child in _examplePoulesScroll.content) {
+                    DestroyImmediate(child.gameObject);
+                }
+                _examplePoules.Clear();
+
+                foreach (KeyValuePair<string, List<string>> pouleExample in poulesExamples) {
+                    ExamplePoulesView examplePoule = Instantiate(_examplePoulePrefab, _examplePoulesScroll.content);
+                    examplePoule.SetPouleContent(pouleExample.Key, pouleExample.Value);
+                    _examplePoules.Add(examplePoule);
+                }
+            } else {
+                int exampleCount = 0;
+                foreach (KeyValuePair<string, List<string>> pouleExample in poulesExamples) {
+                    _examplePoules[exampleCount].SetPouleContent(pouleExample.Key, pouleExample.Value);
+                    ++exampleCount;
+                }
+            }
         }
     }
 }
