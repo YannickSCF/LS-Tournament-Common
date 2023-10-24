@@ -304,6 +304,7 @@ MonoBehaviour:
   _headerType: 0
   _headerText: {fileID: 2856196234161235940}
   _toggleToHide: {fileID: 4871344178909139239}
+  _toggleCanvasGroup: {fileID: 3140626689806907464}
 --- !u!1 &7682408746437027779
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8842339607782860323}
   - component: {fileID: 4871344178909139239}
+  - component: {fileID: 3140626689806907464}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -603,3 +605,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!225 &3140626689806907464
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105875691577382072}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

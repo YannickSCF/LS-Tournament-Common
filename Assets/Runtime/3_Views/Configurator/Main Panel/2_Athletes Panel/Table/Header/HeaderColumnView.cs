@@ -11,6 +11,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.He
         [SerializeField] private AthleteInfoType _headerType;
         [SerializeField] private TextMeshProUGUI _headerText;
         [SerializeField] private Toggle _toggleToHide;
+        [SerializeField] private CanvasGroup _toggleCanvasGroup;
 
         public AthleteInfoType HeaderType { get => _headerType; }
 
@@ -52,6 +53,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.He
         }
 
         public void SetHeaderBlocked(bool block) {
+            _toggleCanvasGroup.alpha = block ? 0.3f : 1f;
             _toggleToHide.interactable = !block;
         }
 
