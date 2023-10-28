@@ -87,7 +87,7 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
                 if (formula != null && formula.FillerType == PouleFillerType.TBD) {
                     _fillerTypeInfo = value;
                 } else {
-                    Debug.LogError($"The formula '{_tournamentFormulaName}' doesn't exists or cannot set Poule Filler Type");
+                    Debug.LogWarning($"The formula '{_tournamentFormulaName}' doesn't exists or cannot set Poule Filler Type");
                 }
             }
         }
