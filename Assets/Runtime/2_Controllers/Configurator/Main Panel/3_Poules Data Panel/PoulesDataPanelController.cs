@@ -80,8 +80,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
         }
 
         public override void GiveData(TournamentData data) {
-            _namingType = data.PouleInfo.NamingInfo;
-            _pouleRounds = data.PouleInfo.RoundsOfPoules;
+            _namingType = data.NamingInfo;
+            _pouleRounds = data.RoundsOfPoules;
             _poulesDataPanelView.SetPouleNamingType((int)_namingType, _pouleRounds);
 
             _athletesCount = data.Athletes.Count;
@@ -104,9 +104,10 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
         }
 
         public override TournamentData RetrieveData(TournamentData data) {
-            PouleInfoModel pouleInfo = new PouleInfoModel(_namingType, _pouleRounds);
-            pouleInfo.PouleCountAndSizes = _currentPouleCountAndSize;
-            data.PouleInfo = pouleInfo;
+            data.NamingInfo = _namingType;
+            data.RoundsOfPoules = _pouleRounds;
+            data.PouleCountAndSizes = _currentPouleCountAndSize;
+
             return data;
         }
         #endregion

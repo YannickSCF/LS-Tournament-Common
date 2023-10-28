@@ -63,13 +63,13 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
         public override void GiveData(TournamentData data) {
             _tempData = data;
 
-            TournamentFormula formula = TournamentFormulaUtils.GetFormulaByName(data.TournamentFormulaName);
-            _fillerType = formula.FillerType;
-            _fillerSubtype = data.PouleInfo.FillerSubtypeInfo;
+            _fillerType = data.FillerTypeInfo;
+            _fillerSubtype = data.FillerSubtypeInfo;
 
             _baseDrawPanelView.RemoveSelectableTypes(data.GetFillerTypesCannotBeUsed());
             _baseDrawPanelView.RemoveSelectableSubtypes(data.GetFillerSubtypesCannotBeUsed());
 
+            TournamentFormula formula = TournamentFormulaUtils.GetFormulaByName(data.TournamentFormulaName);
             _baseDrawPanelView.SetFillerType(_fillerType, TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName) || formula.FillerType == PouleFillerType.TBD);
             _baseDrawPanelView.SetFillerSubtype(_fillerSubtype);
 
@@ -78,7 +78,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
         }
 
         public override TournamentData RetrieveData(TournamentData data) {
-            // TODO
+            data.FillerTypeInfo =_fillerType;
+            data.FillerSubtypeInfo = _fillerSubtype;
             return data;
         }
         #endregion
@@ -97,7 +98,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
             }
 
             Dictionary<string, List<string>> examplePoules = new Dictionary<string, List<string>>();
-            List<PouleDataModel> tempPoules = PouleUtils.CreatePoules(_tempData.GetNamingData().Value, _tempData.Athletes, _fillerType, _fillerSubtype, _tempData.PouleInfo.GetPouleMaxSize());
+            List<PouleDataModel> tempPoules = PouleUtils.CreatePoules(_tempData.GetNamingData().Value, _tempData.Athletes, _fillerType, _fillerSubtype, _tempData.GetPouleMaxSize());
 
             for(int i = 0; i < tempPoules.Count; ++i) {
                 examplePoules.Add(tempPoules[i].Name, GetPouleText(tempPoules[i]));

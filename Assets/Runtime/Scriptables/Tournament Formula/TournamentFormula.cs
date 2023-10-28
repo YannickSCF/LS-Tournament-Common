@@ -79,7 +79,6 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Formulas {
         public WarRankingType WarSorter { get => _warSorter; }
         internal void SetWarSorter(WarRankingType newWarSorter) { _warSorter = newWarSorter; }
 
-
         public MixedRankingType MixedSorter { get => _mixedSorter; }
         internal void SetMixedSorter(MixedRankingType newMixedSorter) { _mixedSorter = newMixedSorter; }
         #endregion
