@@ -356,8 +356,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private void AddError(RowsErrors error) {
             if (!_errorsList.Contains(error)) {
                 _errorsList.Add(error);
-                _IsDataValidated = _errorsList.Count == 0;
             }
+
+            _IsDataValidated = _errorsList?.Count == 0;
         }
 
         private void RemoveError(string errorId) {
@@ -378,8 +379,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private void RemoveError(RowsErrors error) {
             if (_errorsList.Contains(error)) {
                 _errorsList.Remove(error);
-                _IsDataValidated = _errorsList.Count == 0;
             }
+
+            _IsDataValidated = _errorsList?.Count == 0;
         }
 
         private void UpdateErrorsPanel() {
