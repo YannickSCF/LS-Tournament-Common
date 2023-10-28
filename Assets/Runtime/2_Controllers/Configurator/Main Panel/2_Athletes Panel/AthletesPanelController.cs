@@ -529,11 +529,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         }
 
         private void UpdateColumnsBlocked(string tournamentFormulaName) {
-            // TODO: block columns as active if there is formula defined (Alpha and Bravo needs of Ranks, for example)
-
             TournamentFormula formula = TournamentFormulaUtils.GetFormulaByName(tournamentFormulaName);
             if (!TournamentFormulaUtils.IsCustomFormula(tournamentFormulaName)) {
                 _headerView.BlockHeader(AthleteInfoType.Rank, formula.FillerType == PouleFillerType.ByRank);
+                _headerView.BlockHeader(AthleteInfoType.Styles, formula.FillerType == PouleFillerType.ByStyle);
+                _headerView.BlockHeader(AthleteInfoType.Tier, formula.FillerType == PouleFillerType.ByTier);
             }
         }
 
