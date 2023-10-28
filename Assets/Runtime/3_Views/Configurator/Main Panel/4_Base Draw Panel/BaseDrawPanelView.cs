@@ -15,7 +15,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
         public event IntegerEventDelegate FillerTypeChanged;
         public event IntegerEventDelegate FillerSubtypeChanged;
 
+        [SerializeField] private CanvasGroup _fillerTypeCanvasGroup;
         [SerializeField] private TMP_Dropdown _fillerTypeDropdown;
+        [SerializeField] private GameObject _fillerSubtypeGameObject;
         [SerializeField] private TMP_Dropdown _fillerSubtypeDropdown;
         [Header("Example references")]
         [SerializeField] private TextMeshProUGUI _exampleCompleteText;
@@ -96,11 +98,15 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
             }
 
             _fillerSubtypeDropdown.AddOptions(optionsToAdd);
+
+            _fillerSubtypeGameObject.SetActive(optionsToAdd.Count != 1);
         }
 
         public void SetFillerType(PouleFillerType fillerType, bool isInteractable = false) {
             _fillerTypeDropdown.SetValueWithoutNotify((int)fillerType);
             _fillerTypeDropdown.interactable = isInteractable;
+
+            _fillerTypeCanvasGroup.alpha = isInteractable ? 1f : 0.5f;
         }
 
         public void SetFillerSubtype(PouleFillerSubtype fillerSubtype) {

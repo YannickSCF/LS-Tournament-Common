@@ -236,6 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1636400359044594814}
   - component: {fileID: 546154441391411395}
+  - component: {fileID: 2694839887350068554}
   m_Layer: 5
   m_Name: Duplicities Selector
   m_TagString: Untagged
@@ -291,6 +292,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!225 &2694839887350068554
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677718834840466367}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2945820845477157194
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,7 +832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff2c19afe4035c4ca7eb6cc8eaee6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fillerTypeCanvasGroup: {fileID: 7923496043253228238}
   _fillerTypeDropdown: {fileID: 3629791830151610058}
+  _fillerSubtypeGameObject: {fileID: 1677718834840466367}
   _fillerSubtypeDropdown: {fileID: 5615519414016601560}
   _exampleCompleteText: {fileID: 8227077402988384260}
   _examplePoulesScroll: {fileID: 3928148410796111696}
@@ -910,6 +925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5280460508788049440}
   - component: {fileID: 2907273943673742927}
+  - component: {fileID: 7923496043253228238}
   m_Layer: 5
   m_Name: Generator Selector
   m_TagString: Untagged
@@ -965,6 +981,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!225 &7923496043253228238
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5645997799290462941}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7719754495121561284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1221,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 51.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1356,7 +1384,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1144991607932832530}
   m_HandleRect: {fileID: 1028204453890202488}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1410,6 +1438,10 @@ PrefabInstance:
     - target: {fileID: 1739753789783868297, guid: 8fb27f13c555bbc46a568b6c55c18447, type: 3}
       propertyPath: m_Name
       value: Filler Type Dropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404541854216321375, guid: 8fb27f13c555bbc46a568b6c55c18447, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2404541854216321375, guid: 8fb27f13c555bbc46a568b6c55c18447, type: 3}
       propertyPath: m_Options.m_Options.Array.size
@@ -1521,7 +1553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7076344339057666269, guid: 8fb27f13c555bbc46a568b6c55c18447, type: 3}
       propertyPath: m_fontSize
-      value: 42
+      value: 25.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fb27f13c555bbc46a568b6c55c18447, type: 3}
@@ -1994,7 +2026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7076344339057666269, guid: 8fb27f13c555bbc46a568b6c55c18447, type: 3}
       propertyPath: m_fontSize
-      value: 42
+      value: 25.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fb27f13c555bbc46a568b6c55c18447, type: 3}

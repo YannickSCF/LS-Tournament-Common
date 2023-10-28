@@ -18,7 +18,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
 
         [Header("Poule Naming Fields")]
         [SerializeField] private TMP_Dropdown _pouleNamingType;
-        [SerializeField] private TextMeshProUGUI _pouleRoundsTitle;
+        [SerializeField] private CanvasGroup _pouleRoundsCanvasGroup;
         [SerializeField] private TMP_InputField _pouleRoundsInput;
         [SerializeField] private TextMeshProUGUI _pouleNamingExample;
 
@@ -90,8 +90,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
 
         public void SetInteractablePouleRounds(bool isInteractable) {
             _pouleRoundsInput.interactable = isInteractable;
-            _pouleRoundsTitle.color = isInteractable ?
-                _pouleRoundsInput.colors.normalColor : _pouleRoundsInput.colors.disabledColor;
+            _pouleRoundsCanvasGroup.alpha = isInteractable ? 1f : 0.5f;
         }
 
         public void SetPouleNamingExample(string example) {
