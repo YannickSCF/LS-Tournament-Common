@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 289233bc6d8fc684f91a86c3e6ef6280, type: 3}
-  m_Name: Tournament Custom
+  m_Name: Custom Formula
   m_EditorClassIdentifier: 
   _formulaName: Custom
   _infinitePoules: 1

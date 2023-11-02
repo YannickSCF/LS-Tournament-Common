@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 289233bc6d8fc684f91a86c3e6ef6280, type: 3}
-  m_Name: Tournament Bravo
+  m_Name: Formula Alpha
   m_EditorClassIdentifier: 
-  _formulaName: Bravo
+  _formulaName: Alpha
   _infinitePoules: 0
-  _possibleNumberOfPoules: 02000000040000000800000010000000
+  _possibleNumberOfPoules: 020000000400000008000000
   _minPouleSize: 3
-  _maxPouleSize: 10
+  _maxPouleSize: 8
   _fillerType: 2
   _scoring: 1
   _classification: 1
