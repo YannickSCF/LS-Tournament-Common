@@ -1,4 +1,5 @@
 using AnotherFileBrowser.Windows;
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -13,11 +14,16 @@ namespace YannickSCF.LSTournaments.Common.Tools.FileManagement {
                 Debug.Log(path);
 
                 if(path != null) {
-                    using (StreamWriter writer = File.CreateText(path)) {
-                        {
-                            writer.Write(jsonContent);
+                    try {
+                        using (StreamWriter writer = File.CreateText(path)) {
+                            {
+                                writer.Write(jsonContent);
+                            }
+                            writer.Close();
                         }
-                        writer.Close();
+                    } catch (Exception e) {
+                        Debug.LogWarning(e.StackTrace);
+                        CommonExceptionEvents.ThrowExportError(path);
                     }
                 }
             });

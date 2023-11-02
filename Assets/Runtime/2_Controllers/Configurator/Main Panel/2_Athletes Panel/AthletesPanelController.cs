@@ -177,7 +177,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         }
 
         private void OnAthletesLoadedByFile() {
-            string filePath = FileImporter.SelectFileWithBrowser();
+            string filePath = FileImporter.SelectAthletesFileWithBrowser();
             if (!string.IsNullOrEmpty(filePath)) {
                 // Get all participants
                 List<AthleteInfoModel> athletes = FileImporter.ImportAthletesFromFile(filePath);

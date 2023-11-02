@@ -59,9 +59,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         }
 
         public bool SetInitValue(string countryCode) {
-            if (countryCode.Length == 2 && _twoDigitCode) {
+            if (countryCode != null && countryCode.Length == 2 && _twoDigitCode) {
                 _captionImage.sprite = CountriesDataUtils.GetFlagByCode(countryCode);
-            } else if (countryCode.Length == 3 && !_twoDigitCode) {
+            } else if (countryCode != null && countryCode.Length == 3 && !_twoDigitCode) {
                 _captionImage.sprite = CountriesDataUtils.GetFlagByLongCode(countryCode);
             } else {
                 return false;
