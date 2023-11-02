@@ -1,0 +1,208 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Configurator Texts Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Configurator Texts
+  m_TableCollectionNameGuidString: bb2d78d8b9dee9b46a86bcf92169a56c
+  m_Entries:
+  - m_Id: 299536465920
+    m_Key: FormulaDescription_Alpha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7434706075648
+    m_Key: FormulaDescription_Bravo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7434735435776
+    m_Key: FormulaDescription_Fencing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7434735435777
+    m_Key: FormulaDescription_Custom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505216
+    m_Key: BaseDataPanel_BreadcrumbTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505217
+    m_Key: BaseDataPanel_Title_TournamentType
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505218
+    m_Key: BaseDataPanel_Title_TournamentName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505219
+    m_Key: BaseDataPanel_InputPlaceholder_TournamentName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505220
+    m_Key: BaseDataPanel_Title_Formula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505221
+    m_Key: AthletesPanel_BreadcrumbTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505222
+    m_Key: AthletesPanel_NumberOfAthletes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505223
+    m_Key: AthletesPanel_InputPlaceholder_Surname
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505224
+    m_Key: AthletesPanel_InputPlaceholder_Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505225
+    m_Key: AthletesPanel_InputPlaceholder_Academy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505226
+    m_Key: AthletesPanel_InputPlaceholder_School
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505227
+    m_Key: AthletesPanel_BaseGenericError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505228
+    m_Key: AthletesPanel_BaseRowError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505229
+    m_Key: AthletesPanel_EmptyError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699520
+    m_Key: AthletesPanel_CodeLengthError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699521
+    m_Key: AthletesPanel_NonExistentCodeError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699522
+    m_Key: AthletesPanel_AddTierError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699523
+    m_Key: AthletesPanel_IntTypeError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699524
+    m_Key: AthletesPanel_AddDateError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699525
+    m_Key: AthletesPanel_InvalidDateError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699526
+    m_Key: AthletesPanel_SelectStylesError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699527
+    m_Key: AthletesPanel_SelectForm1Error
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699528
+    m_Key: AthletesPanel_EmptyColorError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699529
+    m_Key: AthletesPanel_MinAthletesError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699530
+    m_Key: AthletesPanel_LoadFromFile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699531
+    m_Key: PoulesData_BreadcrumbTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699532
+    m_Key: PoulesData_Title_Naming
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699533
+    m_Key: PoulesData_Title_Naming_Type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699534
+    m_Key: PoulesData_Title_Naming_Rounds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699535
+    m_Key: PoulesData_Title_Naming_EmptyError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699536
+    m_Key: PoulesData_Title_CountAndSize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699537
+    m_Key: PoulesData_Title_CountAndSize_DefineBy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699538
+    m_Key: PoulesData_Title_CountAndSize_PoulesBy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699539
+    m_Key: PoulesData_Title_CountAndSize_Result
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699540
+    m_Key: PoulesData_Title_CountAndSize_ErrorSize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699541
+    m_Key: BaseDraw_BreadcrumbTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699542
+    m_Key: BaseDraw_Title_Conditions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699543
+    m_Key: BaseDraw_Title_Conditions_PouleBy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699544
+    m_Key: BaseDraw_Title_Conditions_Avoid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699545
+    m_Key: BaseDraw_Title_Conditions_Example
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699546
+    m_Key: BaseDraw_Title_Conditions_Example_Styles
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5454720124064890984
+  references:
+    version: 2
+    RefIds:
+    - rid: 5454720124064890984
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1698954230656

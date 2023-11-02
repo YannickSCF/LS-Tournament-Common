@@ -1,0 +1,336 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Common Enums Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Common Enums
+  m_TableCollectionNameGuidString: d67b121927964614e9e0d6d020c6ca6f
+  m_Entries:
+  - m_Id: 14755807232
+    m_Key: TournamentType.Unrated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5784134205440
+    m_Key: TournamentType.School
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5784134205441
+    m_Key: TournamentType.Academy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5784134205442
+    m_Key: TournamentType.National
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5784138399744
+    m_Key: TournamentType.International
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483904
+    m_Key: AthleteInfoType.Country
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483905
+    m_Key: AthleteInfoType.Surname
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483906
+    m_Key: AthleteInfoType.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483907
+    m_Key: AthleteInfoType.Academy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483908
+    m_Key: AthleteInfoType.School
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483909
+    m_Key: AthleteInfoType.Rank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483910
+    m_Key: AthleteInfoType.Styles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483911
+    m_Key: AthleteInfoType.Tier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483912
+    m_Key: AthleteInfoType.SaberColor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483913
+    m_Key: AthleteInfoType.BirthDate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483914
+    m_Key: AthleteInfoType.StartDate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483915
+    m_Key: RankType.Novizio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483916
+    m_Key: RankType.Iniziato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483917
+    m_Key: RankType.Accademico
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483918
+    m_Key: RankType.Cavaliere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483919
+    m_Key: RankType.MaestroDiScuola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082943483920
+    m_Key: SubRankType.Long
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678208
+    m_Key: SubRankType.Dual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678209
+    m_Key: SubRankType.Staff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678210
+    m_Key: StyleType.Form1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678211
+    m_Key: StyleType.Form2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678212
+    m_Key: StyleType.CourseY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678213
+    m_Key: StyleType.Form3Long
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678214
+    m_Key: StyleType.Form4Long
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678215
+    m_Key: StyleType.Form5Long
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678216
+    m_Key: StyleType.Form3Dual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678217
+    m_Key: StyleType.Form4Dual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678218
+    m_Key: StyleType.Form5Dual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678219
+    m_Key: StyleType.Form3Staff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678220
+    m_Key: StyleType.Form4Staff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678221
+    m_Key: StyleType.Form5Staff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678222
+    m_Key: StyleType.Form6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678223
+    m_Key: StyleType.Form7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678224
+    m_Key: FullNameType.SurnameName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678225
+    m_Key: FullNameType.NameSurname
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678226
+    m_Key: TournamentPhase.Poules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678227
+    m_Key: TournamentPhase.EliminationPhase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678228
+    m_Key: PoulesBy.NumberOfPoules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678229
+    m_Key: PoulesBy.MaxPoulesSize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678230
+    m_Key: PouleNamingType.Letters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678231
+    m_Key: PouleNamingType.Numbers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678232
+    m_Key: PouleFillerType.TBD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678233
+    m_Key: PouleFillerType.Random
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678234
+    m_Key: PouleFillerType.ByRank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678235
+    m_Key: PouleFillerType.ByStyle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678236
+    m_Key: PouleFillerType.ByTier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678237
+    m_Key: PouleFillerSubtype.None
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678238
+    m_Key: PouleFillerSubtype.Country
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678239
+    m_Key: PouleFillerSubtype.Academy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678240
+    m_Key: PouleFillerSubtype.School
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678241
+    m_Key: ScoringType.TBD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678242
+    m_Key: ScoringType.LS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678243
+    m_Key: ScoringType.Fencing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678244
+    m_Key: ClassificationType.TBD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678245
+    m_Key: ClassificationType.GeneralRanking
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678246
+    m_Key: ClassificationType.BetweenPoules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678247
+    m_Key: EliminationRound.T128
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678248
+    m_Key: EliminationRound.T64
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678249
+    m_Key: EliminationRound.T32
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678250
+    m_Key: EliminationRound.T16
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678251
+    m_Key: EliminationRound.T8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678252
+    m_Key: EliminationRound.T4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678253
+    m_Key: EliminationRound.T2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678254
+    m_Key: StyleRankingType.TBD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678255
+    m_Key: StyleRankingType.Style
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678256
+    m_Key: WarRankingType.TBD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678257
+    m_Key: WarRankingType.LS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678258
+    m_Key: WarRankingType.Fencing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678259
+    m_Key: WarRankingType.Style
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678260
+    m_Key: MixedRankingType.TBD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678261
+    m_Key: MixedRankingType.PrefStyle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678262
+    m_Key: MixedRankingType.PrefWar
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5454720124064890976
+  references:
+    version: 2
+    RefIds:
+    - rid: 5454720124064890976
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1698953183491
