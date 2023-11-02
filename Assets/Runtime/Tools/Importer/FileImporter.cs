@@ -7,6 +7,8 @@ using AnotherFileBrowser.Windows;
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers;
 using static YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers.AthletesListDeserializer;
+using YannickSCF.LSTournaments.Common.Scriptables.Data;
+using Newtonsoft.Json;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Importers {
     public static class FileImporter {
@@ -54,6 +56,32 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importers {
         #endregion
 
         #region Draw Importer
+        public static string SelectTournamentDataFileWithBrowser() {
+            BrowserProperties browserProperties = new BrowserProperties();
+            browserProperties.filter = "*.json";
+            string res = "";
+
+            new FileBrowser().OpenFileBrowser(browserProperties, path => {
+                if (path.ToLower().EndsWith(".json")) {
+                    res = path;
+                } else {
+                    CommonExceptionEvents.ThrowImportError(
+                        CommonExceptionEvents.ImportErrorType.BadExtension, path);
+                }
+            });
+
+            return res;
+        }
+
+        public static TournamentData ImportTournamentData(string filePath) {
+            TournamentData res = JsonConvert.DeserializeObject<TournamentData>(filePath);
+            if (res != null) {
+                CommonExceptionEvents.ThrowImportError(
+                    CommonExceptionEvents.ImportErrorType.EmptyFile, filePath);
+            }
+
+            return res;
+        }
         #endregion
     }
 }
