@@ -31,6 +31,22 @@ MonoBehaviour:
     m_Key: FormulaDescription_Custom
     m_Metadata:
       m_Items: []
+  - m_Id: 258983021756416
+    m_Key: FormulaName_Alpha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756417
+    m_Key: FormulaName_Bravo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756418
+    m_Key: FormulaName_Fencing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756419
+    m_Key: FormulaName_Custom
+    m_Metadata:
+      m_Items: []
   - m_Id: 12870490505216
     m_Key: BaseDataPanel_BreadcrumbTitle
     m_Metadata:
@@ -55,8 +71,12 @@ MonoBehaviour:
     m_Key: AthletesPanel_BreadcrumbTitle
     m_Metadata:
       m_Items: []
-  - m_Id: 12870490505222
-    m_Key: AthletesPanel_NumberOfAthletes
+  - m_Id: 288066837397504
+    m_Key: AthletesPanel_Athlete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 288066841591808
+    m_Key: AthletesPanel_Athletes
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505223
@@ -159,10 +179,6 @@ MonoBehaviour:
     m_Key: PoulesData_Title_CountAndSize_DefineBy
     m_Metadata:
       m_Items: []
-  - m_Id: 12870494699538
-    m_Key: PoulesData_Title_CountAndSize_PoulesBy
-    m_Metadata:
-      m_Items: []
   - m_Id: 12870494699539
     m_Key: PoulesData_Title_CountAndSize_Result
     m_Metadata:
@@ -189,6 +205,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 12870494699545
     m_Key: BaseDraw_Title_Conditions_Example
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226364657745920
+    m_Key: BaseDraw_Title_Conditions_Example_Empty
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699546

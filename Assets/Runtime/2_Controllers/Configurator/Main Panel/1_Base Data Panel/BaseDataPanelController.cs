@@ -1,7 +1,7 @@
 // Dependencies
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 // Custom Dependencies
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
@@ -63,7 +63,10 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         #endregion
 
         #region PanelController abstract methods overrided
-        public override string GetTitle() { return "Base Data"; }
+        public override string GetTitle() {
+            return LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "BaseDataPanel_BreadcrumbTitle");
+        }
+
         public override void ValidateAll() {
             bool res = true;
 
@@ -80,7 +83,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             _name = data.TournamentName;
             _baseDataPanelView.SetTournamentName(_name, true);
 
-            _formula = data.TournamentFormulaName;
+            _formula = string.IsNullOrEmpty(data.TournamentFormulaName) ? _allFormulas[0] : data.TournamentFormulaName;
             _baseDataPanelView.SetTournamentFormula(_allFormulas.IndexOf(_formula), true);
             UpdateFormulaDescription();
 
@@ -97,7 +100,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         #endregion
 
         private void UpdateFormulaDescription() {
-            _baseDataPanelView.SetFormulaDescription("Description of " + _formula);  // TODO: Add formula description
+            _baseDataPanelView.SetFormulaDescription(
+                LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "FormulaDescription_" + _formula));
         }
     }
 }

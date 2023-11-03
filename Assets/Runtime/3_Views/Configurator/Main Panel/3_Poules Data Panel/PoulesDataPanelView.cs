@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 // Custom dependencies
 using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
@@ -25,7 +26,6 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
         [Header("Poule Count and Size Fields")]
         [SerializeField] private Transform _pouleCountSizeContent;
         [SerializeField] private TMP_Dropdown _howToDefinePouleAttributes;
-        [SerializeField] private TextMeshProUGUI _selectedHowToDefineTitle;
         [SerializeField] private TMP_Dropdown _selectedHowToDefineDropdown;
         [SerializeField] private TextMeshProUGUI _numberOfAthletesText;
         [SerializeField] private TextMeshProUGUI _pouleAttributesResultText;
@@ -103,9 +103,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
             }
         }
 
-        public void SetPoulesCountSizeDropdownOptions(string selectedText, List<int> options) {
-            _selectedHowToDefineTitle.text = selectedText;
-
+        public void SetPoulesCountSizeDropdownOptions(List<int> options) {
             _selectedHowToDefineDropdown.ClearOptions();
             List<string> optionsString = new List<string>();
             optionsString.Add("-");
@@ -126,7 +124,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
         }
 
         public void SetPoulesCountSizeAttributes(int totalAthletes, int[,] poulesCountAndSizes) {
-            string textToWrite = "{numPoules1} poules de {sizePoules1} atletas\n{numPoules2} poules de {sizePoules2} atletas";
+            string textToWrite = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "PoulesData_Title_CountAndSize_Result");
 
             _numberOfAthletesText.gameObject.SetActive(poulesCountAndSizes != null);
             _pouleAttributesResultText.gameObject.SetActive(poulesCountAndSizes != null);
@@ -136,13 +134,15 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
                 _numberOfAthletesText.text = totalAthletes + " =";
                 _pouleAttributesResultAdd.SetActive(poulesCountAndSizes[1, 0] != 0);
 
-                textToWrite = textToWrite.Replace("{numPoules1}", poulesCountAndSizes[0, 0].ToString());
-                textToWrite = textToWrite.Replace("{sizePoules1}", poulesCountAndSizes[0, 1].ToString());
                 if (poulesCountAndSizes[1, 0] != 0) {
-                    textToWrite = textToWrite.Replace("{numPoules2}", poulesCountAndSizes[1, 0].ToString());
-                    textToWrite = textToWrite.Replace("{sizePoules2}", poulesCountAndSizes[1, 1].ToString());
+                    textToWrite = string.Format(textToWrite,
+                        poulesCountAndSizes[0, 0].ToString(), poulesCountAndSizes[0, 1].ToString(),
+                        poulesCountAndSizes[1, 0].ToString(), poulesCountAndSizes[1, 1].ToString());
                 } else {
-                    textToWrite = Regex.Replace(textToWrite, @"\n.+", "");
+                    textToWrite = Regex.Replace(textToWrite, @"<br>.+", "");
+
+                    textToWrite = string.Format(textToWrite,
+                        poulesCountAndSizes[0, 0].ToString(), poulesCountAndSizes[0, 1].ToString());
                 }
 
                 _pouleAttributesResultText.text = textToWrite;

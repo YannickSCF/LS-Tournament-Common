@@ -35,11 +35,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699525
-    m_Localized: You must add at least {0} athletes
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699546
     m_Localized: '{0} Styles'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699529
+    m_Localized: You must add at least {0} athletes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505217
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505216
+    m_Localized: 
     m_Metadata:
       m_Items: []
   references:

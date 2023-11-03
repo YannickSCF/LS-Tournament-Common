@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using YannickSCF.LSTournaments.Common.Models.Poules;
+using UnityEngine.Localization.Settings;
 // Custom dependencies
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
@@ -73,7 +73,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
         #endregion
 
         #region PanelController abstract methods overrided
-        public override string GetTitle() { return "Poules Data"; }
+        public override string GetTitle() {
+            return LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "PoulesData_BreadcrumbTitle");
+        }
 
         public override void ValidateAll() {
             _IsDataValidated = _currentPouleCountAndSize != null;
@@ -138,7 +140,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
 
         private string GetNamingText() {
             if (_currentPouleCountAndSize == null) {
-                return "Set Poule Count and size to visuelize example!";
+                return LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "PoulesData_Title_Naming_EmptyError");
             }
 
             int poulesCount = _currentPouleCountAndSize[0, 0] + _currentPouleCountAndSize[1, 0];
@@ -195,9 +197,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
                     break;
             }
 
-            _poulesDataPanelView.SetPoulesCountSizeDropdownOptions(
-                "Poules by" + Enum.GetName(typeof(PoulesBy), _howToDefine),
-                options);
+            _poulesDataPanelView.SetPoulesCountSizeDropdownOptions(options);
         }
 
         private void UpdatePouleAttribute(bool noValue = false) {

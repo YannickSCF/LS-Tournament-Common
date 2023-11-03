@@ -1,8 +1,8 @@
 // Dependencies
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 // Custom Dependencies
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Models.Poules;
@@ -54,7 +54,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
         #endregion
 
         #region PanelController abstract methods overrided
-        public override string GetTitle() { return "Draw Options"; }
+        public override string GetTitle() {
+            return LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "BaseDraw_BreadcrumbTitle");
+        }
 
         public override void ValidateAll() {
             _IsDataValidated = _fillerType != PouleFillerType.TBD;

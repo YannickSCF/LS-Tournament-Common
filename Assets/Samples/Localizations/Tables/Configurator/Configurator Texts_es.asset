@@ -35,12 +35,185 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699539
-    m_Localized: '{numPoules1} poules de {sizePoules1} atletas\n{numPoules2} poules
+    m_Localized: '{numPoules1} poules de {sizePoules1} atletas<br>{numPoules2} poules
       de {sizePoules2} atletas'
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699546
-    m_Localized: '{0} Estilos'
+    m_Localized: '{0} {0:p:{} Estilo|{} Estilos}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505216
+    m_Localized: Nombre y Tipo de torneo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505217
+    m_Localized: Tipo de torneo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505218
+    m_Localized: Nombre del torneo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505219
+    m_Localized: Introduce un nombre...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505220
+    m_Localized: Formula de torneo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505221
+    m_Localized: Atletas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505223
+    m_Localized: Apellidos...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505224
+    m_Localized: Nombre...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505225
+    m_Localized: Academia...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505226
+    m_Localized: Escuela...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505227
+    m_Localized: '- Error general: {0}<br>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505228
+    m_Localized: '- Fila {0} ({1}): {2}<br>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505229
+    m_Localized: Rellena este campo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699520
+    m_Localized: "Longitud de c\xF3digo err\xF3nea"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699521
+    m_Localized: "Este c\xF3digo no existe en la base de datos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699522
+    m_Localized: "A\xF1ade un valor de 'tier'"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699523
+    m_Localized: "Este campo debe ser un n\xFAmero entero"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699524
+    m_Localized: "A\xF1ade una fecha completa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699525
+    m_Localized: Formato de fecha incorrecta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699526
+    m_Localized: "Selecciona alg\xFAn estilo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699527
+    m_Localized: Selecciona al menos Forma 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699528
+    m_Localized: "A\xF1ade un color"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699529
+    m_Localized: "Debe a\xF1adir al menos {0} atletas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699530
+    m_Localized: "A\xF1adir atletas desde..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699531
+    m_Localized: Datos de las poules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699532
+    m_Localized: Nombre de las poules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699533
+    m_Localized: 'Tipo de identificador:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699534
+    m_Localized: "N\xFAmero de rondas de poule:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699535
+    m_Localized: "Selecciona un n\xFAmero  de poules y un tama\xF1o m\xE1ximo de
+      poule"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699536
+    m_Localized: "Tama\xF1o y n\xFAmero de poules"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699537
+    m_Localized: 'Definir poules mediante:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699541
+    m_Localized: Opciones del sorteo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699542
+    m_Localized: Condiciones del sorteo de poules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699543
+    m_Localized: 'Generar poules por:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699544
+    m_Localized: 'Evitar duplicidades de:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699545
+    m_Localized: 'Ejemplo:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226364657745920
+    m_Localized: Selecciona una opcion para generar las poules...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756416
+    m_Localized: Formula Alpha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756417
+    m_Localized: Formula Bravo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756418
+    m_Localized: Formula Esgrima
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756419
+    m_Localized: Formula Personalizada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 288066837397504
+    m_Localized: '{0} Atleta'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 288066841591808
+    m_Localized: '{0} Atletas'
     m_Metadata:
       m_Items: []
   references:

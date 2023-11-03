@@ -115,7 +115,215 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10082947678249
+    m_Localized: 16avos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678210
+    m_Localized: Forma 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678211
+    m_Localized: Forma 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678212
+    m_Localized: Curso Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678213
+    m_Localized: Forma 3 Sable Largo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678214
+    m_Localized: Forma 4 Sable Largo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678215
+    m_Localized: Forma 5 Sable Largo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678216
+    m_Localized: Forma 3 Dagas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678217
+    m_Localized: Forma 4 Dagas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678218
+    m_Localized: Forma 5 Dagas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678219
+    m_Localized: "Forma 3 Bast\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678220
+    m_Localized: "Forma 4 Bast\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678221
+    m_Localized: "Forma 5 Bast\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678222
+    m_Localized: Forma 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678223
+    m_Localized: Forma 7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678224
+    m_Localized: Apellido, Nombre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678225
+    m_Localized: Nombre Apellido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678226
+    m_Localized: Fase de poules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678227
+    m_Localized: Fase de eliminatorias
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678228
+    m_Localized: "N\xFAmero de Poules"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678229
+    m_Localized: "Tama\xF1o M\xE1ximo de Poule"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678230
+    m_Localized: Letras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678231
+    m_Localized: "N\xFAmeros"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678232
+    m_Localized: 'Por determinar '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678233
+    m_Localized: 'Aleatorio '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678234
+    m_Localized: Rango
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678235
+    m_Localized: Estilo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678236
+    m_Localized: Tier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678237
+    m_Localized: '-'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678238
+    m_Localized: "Pa\xEDses"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678239
+    m_Localized: 'Academias '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678240
+    m_Localized: Escuelas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678241
+    m_Localized: 'Por determinar '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678242
+    m_Localized: Ludosport
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678243
+    m_Localized: Esgrima
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678244
+    m_Localized: 'Por determinar '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678245
+    m_Localized: Ranking general
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678246
+    m_Localized: 'Cruce de Poules '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678247
+    m_Localized: 64avos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678248
     m_Localized: 32avos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678250
+    m_Localized: 8avos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678251
+    m_Localized: 4os
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678252
+    m_Localized: Semifinal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678253
+    m_Localized: Final
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678254
+    m_Localized: Por determinar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678255
+    m_Localized: "Puntuaci\xF3n de estilo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678256
+    m_Localized: 'Por determinar '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678257
+    m_Localized: "Puntuaci\xF3n de Ludosport"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678258
+    m_Localized: "Puntuaci\xF3n de Esgrima"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678259
+    m_Localized: "Puntuaci\xF3n de Estilo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678260
+    m_Localized: 'Por determinar '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678261
+    m_Localized: Priorizar puesto de Estilo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678262
+    m_Localized: Priorizar puesto de Guerra
     m_Metadata:
       m_Items: []
   references:

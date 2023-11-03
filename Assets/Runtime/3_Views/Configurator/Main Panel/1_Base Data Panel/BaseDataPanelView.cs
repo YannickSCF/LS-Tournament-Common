@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 // Custom dependencies
 using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
@@ -21,7 +22,14 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
         #region Mono
         private void Awake() {
             _type.ClearOptions();
-            _type.AddOptions(new List<string>(Enum.GetNames(typeof(TournamentType))));
+
+            List<string> typeOptions = new List<string>();
+            Array types = Enum.GetValues(typeof(TournamentType));
+            foreach (Enum type in types) {
+                string localized = LocalizationSettings.StringDatabase.GetLocalizedString("Common Enums", nameof(TournamentType) + "." + type.ToString());
+                typeOptions.Add(localized);
+            }
+            _type.AddOptions(typeOptions);
         }
 
         private void OnEnable() {
@@ -55,7 +63,13 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
 
         public void FillFormulaDropdown(List<string> formulaNames) {
             _formula.ClearOptions();
-            _formula.AddOptions(new List<string>(formulaNames));
+
+            List<string> formulaOptions = new List<string>();
+            foreach (string formulaName in formulaNames) {
+                string localized = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "FormulaName_" + formulaName);
+                formulaOptions.Add(localized);
+            }
+            _formula.AddOptions(formulaOptions);
         }
 
         public void SetTournamentType(int tournamentType, bool withoutNotify = false) {

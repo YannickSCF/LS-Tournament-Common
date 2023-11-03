@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 // Custom Dependencies
 using YannickSCF.CountriesData;
 using YannickSCF.LSTournaments.Common.Models.Athletes;
@@ -233,34 +234,39 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
         #region Validators
         private bool ValidateAthletesMinimum() {
+            string minAthletes = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_MinAthletesError");
             if (_currentAthletes.Count < MIN_ATHLETES) {
-                AddError($"At least {MIN_ATHLETES} athletes");
+                AddError(string.Format(minAthletes, MIN_ATHLETES));
                 return false;
             }
 
-            RemoveError($"At least {MIN_ATHLETES} athletes");
+            RemoveError(string.Format(minAthletes, MIN_ATHLETES));
             return true;
         }
 
         private bool ValidateCountry(string toValidate, int athleteIndex) {
             if (_columnsShown[AthleteInfoType.Country] && _columnsEnabled[AthleteInfoType.Country]) {
                 if (string.IsNullOrEmpty(toValidate)) {
-                    AddError(athleteIndex, AthleteInfoType.Country, "Empty value");
+                    AddError(athleteIndex, AthleteInfoType.Country,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_EmptyError"));
                     return false;
                 }
 
                 if (toValidate.Length != 3 && toValidate.Length != 2) {
-                    AddError(athleteIndex, AthleteInfoType.Country, "Invalid code lenght");
+                    AddError(athleteIndex, AthleteInfoType.Country,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_CodeLengthError"));
                     return false;
                 }
 
                 if (toValidate.Length == 2 && !CountriesDataUtils.IsCountryCodeInList(toValidate)) {
-                    AddError(athleteIndex, AthleteInfoType.Country, "This code doesn´t exist in database");
+                    AddError(athleteIndex, AthleteInfoType.Country,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_NonExistentCodeError"));
                     return false;
                 }
 
                 if (toValidate.Length == 3 && !CountriesDataUtils.IsCountryLongCodeInList(toValidate)) {
-                    AddError(athleteIndex, AthleteInfoType.Country, "This code doesn´t exist in database");
+                    AddError(athleteIndex, AthleteInfoType.Country,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_NonExistentCodeError"));
                     return false;
                 }
             }
@@ -272,7 +278,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private bool ValidateSimpleName(AthleteInfoType infoType, string toValidate, int athleteIndex) {
             if (_columnsShown[infoType] && _columnsEnabled[infoType]) {
                 if (string.IsNullOrEmpty(toValidate)) {
-                    AddError(athleteIndex, infoType, "Empty value");
+                    AddError(athleteIndex, infoType,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_EmptyError"));
                     return false;
                 }
             }
@@ -284,12 +291,14 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private bool ValidateIntInString(string toValidate, int athleteIndex) {
             if (_columnsShown[AthleteInfoType.Tier] && _columnsEnabled[AthleteInfoType.Tier]) {
                 if (string.IsNullOrEmpty(toValidate) || toValidate == "0") {
-                    AddError(athleteIndex, AthleteInfoType.Tier, "No tier added");
+                    AddError(athleteIndex, AthleteInfoType.Tier,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_AddTierError"));
                     return false;
                 }
 
                 if (!int.TryParse(toValidate, out int newInt)) {
-                    AddError(athleteIndex, AthleteInfoType.Tier, "Tier must be a number");
+                    AddError(athleteIndex, AthleteInfoType.Tier,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_IntTypeError"));
                     return false;
                 }
             }
@@ -301,12 +310,14 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private bool ValidateDate(AthleteInfoType infoType, DateTime toValidate, int athleteIndex) {
             if (_columnsShown[infoType] && _columnsEnabled[infoType]) {
                 if (toValidate == DateTime.MinValue) {
-                    AddError(athleteIndex, infoType, "Date not setted");
+                    AddError(athleteIndex, infoType,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_AddDateError"));
                     return false;
                 }
 
                 if (toValidate > DateTime.Now) {
-                    AddError(athleteIndex, infoType, "Invalid Date");
+                    AddError(athleteIndex, infoType,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_InvalidDateError"));
                     return false;
                 }
             }
@@ -318,12 +329,14 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private bool ValidateStyles(List<StyleType> toValidate, int athleteIndex) {
             if (_columnsShown[AthleteInfoType.Styles] && _columnsEnabled[AthleteInfoType.Styles]) {
                 if (toValidate == null || toValidate.Count == 0) {
-                    AddError(athleteIndex, AthleteInfoType.Styles, "No styles selected");
+                    AddError(athleteIndex, AthleteInfoType.Styles,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_SelectStylesError"));
                     return false;
                 }
 
                 if (!toValidate.Contains(StyleType.Form1)) {
-                    AddError(athleteIndex, AthleteInfoType.Styles, "At least form 1");
+                    AddError(athleteIndex, AthleteInfoType.Styles,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_SelectForm1Error"));
                     return false;
                 }
             }
@@ -335,7 +348,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private bool ValidateColor(Color toValidate, int athleteIndex) {
             if (_columnsShown[AthleteInfoType.SaberColor] && _columnsEnabled[AthleteInfoType.SaberColor]) {
                 if (toValidate == new Color(0, 0, 0, 0)) {
-                    AddError(athleteIndex, AthleteInfoType.SaberColor, "Empty Color");
+                    AddError(athleteIndex, AthleteInfoType.SaberColor,
+                        LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_EmptyColorError"));
                     return false;
                 }
             }
@@ -388,9 +402,12 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             string errors = string.Empty;
             foreach (RowsErrors error in _errorsList) {
                 if (error.IsGeneric) {
-                    errors += $" - Generic error: {error.Description}\n";
+                    string genericText = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_BaseGenericError");
+                    errors += string.Format(genericText, error.Description);
                 } else {
-                    errors += $" - Row {error.RowIndex + 1} ({Enum.GetName(typeof(AthleteInfoType), error.Column)}): {error.Description}\n";
+                    string rowText = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_BaseRowError");
+                    string columnText = LocalizationSettings.StringDatabase.GetLocalizedString("Common Enums", nameof(AthleteInfoType) + "." + error.Column.ToString());
+                    errors += string.Format(rowText, error.RowIndex + 1, columnText, error.Description);
                 }
             }
 
@@ -436,7 +453,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         #endregion
 
         #region PanelController abstract methods overrided
-        public override string GetTitle() { return "Athletes"; }
+        public override string GetTitle() {
+            return LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_BreadcrumbTitle");
+        }
 
         public override void ValidateAll() {
             ValidateAthletesMinimum();
@@ -538,7 +557,10 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         }
 
         private string GetAthletesCountText(int count) {
-            return count + " Athletes";
+            string finalText = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", count != 1 ? "AthletesPanel_Athletes" : "AthletesPanel_Athlete");
+            finalText = string.Format(finalText, count);
+
+            return finalText;
         }
 
         private void UpdateBottomButtons(int athleteCount) {

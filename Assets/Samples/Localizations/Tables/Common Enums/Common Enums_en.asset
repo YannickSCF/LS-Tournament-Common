@@ -114,6 +114,26 @@ MonoBehaviour:
     m_Localized: Saber Staff
     m_Metadata:
       m_Items: []
+  - m_Id: 10082947678210
+    m_Localized: Form 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678211
+    m_Localized: Form 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678212
+    m_Localized: Course Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678213
+    m_Localized: Form 3 Long Saber
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678214
+    m_Localized: Form 4 Long Saber
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
