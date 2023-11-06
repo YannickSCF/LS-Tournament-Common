@@ -171,6 +171,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             int athleteCount = _contentView.RemoveLastAthleteRow();
             _bottomView.SetAthletesCount(GetAthletesCountText(athleteCount));
 
+            RemoveAllIndexErrors(_currentAthletes.Count - 1);
             _currentAthletes.RemoveAt(_currentAthletes.Count - 1);
 
             UpdateBottomButtons(athleteCount);
@@ -181,6 +182,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         private void OnAthletesLoadedByFile() {
             string filePath = FileImporter.SelectAthletesFileWithBrowser();
             if (!string.IsNullOrEmpty(filePath)) {
+                RemoveAllErrors();
                 // Get all participants
                 List<AthleteInfoModel> athletes = FileImporter.ImportAthletesFromFile(filePath);
                 GetAthleteInfoImported(filePath);
@@ -391,6 +393,18 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             }
         }
 
+        private void RemoveAllIndexErrors(int index) {
+            List<RowsErrors> errors = _errorsList.Where(x => !x.IsGeneric && x.RowIndex == index).ToList();
+            for (int i = 0; i < errors.Count; ++i) {
+                RemoveError(errors[i]);
+            }
+        }
+
+        private void RemoveAllErrors() {
+            _errorsList?.Clear();
+            _IsDataValidated = _errorsList?.Count == 0;
+        }
+
         private void RemoveError(RowsErrors error) {
             if (_errorsList.Contains(error)) {
                 _errorsList.Remove(error);
@@ -497,6 +511,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             foreach (AthleteInfoType type in infoTypes) {
                 data.AthletesInfoUsed[type] = _columnsShown[type] && _columnsEnabled[type];
             }
+
+            ValidateAll();
         }
 
         public override TournamentData RetrieveData(TournamentData data) {

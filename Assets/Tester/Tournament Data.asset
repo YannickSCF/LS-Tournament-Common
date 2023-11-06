@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea546a798974544abfc9dfd4567d70d, type: 3}
   m_Name: Tournament Data
   m_EditorClassIdentifier: 
-  _tournamentName: asd
+  _tournamentName: 
   _tournamentType: 0
-  _tournamentFormulaName: Custom
+  _tournamentFormulaName: 
   _seed: 0
   _namingInfo: 0
   _roundsOfPoules: 0
@@ -24,28 +24,6 @@ MonoBehaviour:
   _pouleCountMinSize: {x: 0, y: 0}
   _data: []
   _eliminationBracket: []
-  _athletesInfoUsed:
-  - Info: 0
-    IsUsed: 1
-  - Info: 1
-    IsUsed: 1
-  - Info: 2
-    IsUsed: 1
-  - Info: 3
-    IsUsed: 1
-  - Info: 4
-    IsUsed: 1
-  - Info: 5
-    IsUsed: 1
-  - Info: 6
-    IsUsed: 1
-  - Info: 7
-    IsUsed: 1
-  - Info: 8
-    IsUsed: 1
-  - Info: 9
-    IsUsed: 1
-  - Info: 10
-    IsUsed: 1
+  _athletesInfoUsed: []
   _athletes: []
   _athletesStats: []
