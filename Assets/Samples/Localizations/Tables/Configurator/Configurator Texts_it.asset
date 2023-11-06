@@ -16,28 +16,211 @@ MonoBehaviour:
     m_Code: it
   m_SharedData: {fileID: 11400000, guid: bb2d78d8b9dee9b46a86bcf92169a56c, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 5454720212849655817
   m_TableData:
   - m_Id: 299536465920
-    m_Localized: Alpha IT
+    m_Localized: Alpha (IT)
     m_Metadata:
       m_Items: []
   - m_Id: 7434706075648
-    m_Localized: Bravo IT
+    m_Localized: Bravo (IT)
     m_Metadata:
       m_Items: []
   - m_Id: 7434735435776
-    m_Localized: Fencing IT
+    m_Localized: Fencing (IT)
     m_Metadata:
       m_Items: []
   - m_Id: 7434735435777
-    m_Localized: Custom IT
+    m_Localized: Custom (IT)
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699546
-    m_Localized: '{0} Styles (IT)'
+    m_Localized: '{0:plural:{} Stile|{} Stili}'
+    m_Metadata:
+      m_Items:
+      - rid: 5454720212849655817
+  - m_Id: 288066841591808
+    m_Localized: '{0:plural:{} Athlete|{} Athletes} (IT)'
+    m_Metadata:
+      m_Items:
+      - rid: 5454720212849655817
+  - m_Id: 258983021756416
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756417
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756418
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756419
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505216
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505217
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505218
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505219
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505220
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505221
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505223
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505224
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505225
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505226
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505227
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505228
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505229
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699520
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699521
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699522
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699523
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699524
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699525
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699526
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699527
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699528
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699529
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699530
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699531
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699532
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699533
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699534
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699535
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699536
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699537
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699539
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699540
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699541
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699542
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699543
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699544
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699545
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226364657745920
+    m_Localized: ' (IT)'
     m_Metadata:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5454720212849655817
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 1ac043a5b40b000000c0c3c9fe050100

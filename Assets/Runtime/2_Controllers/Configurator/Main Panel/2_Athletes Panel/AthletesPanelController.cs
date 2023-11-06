@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 // Custom Dependencies
 using YannickSCF.CountriesData;
@@ -477,7 +478,15 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         }
 
         public override void GiveData(TournamentData data) {
-            data.Athletes = _currentAthletes;
+            _currentAthletes = data.Athletes;
+            _bottomView.SetAthletesCount(GetAthletesCountText(_currentAthletes.Count));
+            if (_currentAthletes.Count != 0) {
+                _loadingPanel.SetActive(true);
+                // Reset all table content
+                _contentView.ResetContent();
+                // Add all needed rows with the athlete information
+                StartCoroutine(AddRowsCoroutine(_currentAthletes));
+            }
 
             UpdateColumnsToShow(data.TournamentType);
             UpdateColumnsEnabled(data.AthletesInfoUsed);
@@ -557,10 +566,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         }
 
         private string GetAthletesCountText(int count) {
-            string finalText = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", count != 1 ? "AthletesPanel_Athletes" : "AthletesPanel_Athlete");
-            finalText = string.Format(finalText, count);
-
-            return finalText;
+            var localizedString = new LocalizedString("Configurator Texts", "AthletesPanel_Athletes");
+            localizedString.Arguments = new object[] { count };
+            return localizedString.GetLocalizedString();
         }
 
         private void UpdateBottomButtons(int athleteCount) {

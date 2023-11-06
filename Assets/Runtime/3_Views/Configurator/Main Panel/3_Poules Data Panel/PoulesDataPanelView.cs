@@ -34,10 +34,10 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
         #region Mono
         private void Awake() {
             _pouleNamingType.ClearOptions();
-            _pouleNamingType.AddOptions(new List<string>(Enum.GetNames(typeof(PouleNamingType))));
+            _pouleNamingType.AddOptions(LSTournamentEnums.GetEnumsLocalizations<PouleNamingType>());
 
             _howToDefinePouleAttributes.ClearOptions();
-            _howToDefinePouleAttributes.AddOptions(new List<string>(Enum.GetNames(typeof(PoulesBy))));
+            _howToDefinePouleAttributes.AddOptions(LSTournamentEnums.GetEnumsLocalizations<PoulesBy>());
         }
 
         private void OnEnable() {

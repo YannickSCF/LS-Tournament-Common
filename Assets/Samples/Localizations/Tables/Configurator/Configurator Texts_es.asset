@@ -16,43 +16,44 @@ MonoBehaviour:
     m_Code: es
   m_SharedData: {fileID: 11400000, guid: bb2d78d8b9dee9b46a86bcf92169a56c, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 5454720212849655815
   m_TableData:
   - m_Id: 299536465920
-    m_Localized: Alpha ES
+    m_Localized: Alpha (ES)
     m_Metadata:
       m_Items: []
   - m_Id: 7434706075648
-    m_Localized: Bravo ES
+    m_Localized: Bravo (ES)
     m_Metadata:
       m_Items: []
   - m_Id: 7434735435776
-    m_Localized: Fencing ES
+    m_Localized: Fencing (ES)
     m_Metadata:
       m_Items: []
   - m_Id: 7434735435777
-    m_Localized: Custom ES
+    m_Localized: Custom (ES)
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699539
-    m_Localized: '{numPoules1} poules de {sizePoules1} atletas<br>{numPoules2} poules
-      de {sizePoules2} atletas'
+    m_Localized: '{0} poules de {1} atletas<br>{2} poules de {3} atletas'
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699546
-    m_Localized: '{0} {0:p:{} Estilo|{} Estilos}'
+    m_Localized: '{0:plural:{} Estilo|{} Estilos}'
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 5454720212849655815
   - m_Id: 12870490505216
     m_Localized: Nombre y Tipo de torneo
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505217
-    m_Localized: Tipo de torneo
+    m_Localized: 'Tipo de torneo:'
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505218
-    m_Localized: Nombre del torneo
+    m_Localized: 'Nombre del torneo:'
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505219
@@ -60,7 +61,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505220
-    m_Localized: Formula de torneo
+    m_Localized: 'Formula de torneo:'
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505221
@@ -68,7 +69,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505223
-    m_Localized: Apellidos...
+    m_Localized: Apellido...
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505224
@@ -156,8 +157,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699535
-    m_Localized: "Selecciona un n\xFAmero  de poules y un tama\xF1o m\xE1ximo de
-      poule"
+    m_Localized: "Selecciona un n\xFAmero de poules y un tama\xF1o m\xE1ximo de poule"
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699536
@@ -177,11 +177,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699543
-    m_Localized: 'Generar poules por:'
+    m_Localized: "Criterio de constituci\xF3n de poules:"
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699544
-    m_Localized: 'Evitar duplicidades de:'
+    m_Localized: "Criterio de distribuci\xF3n de atletas:"
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699545
@@ -208,14 +208,19 @@ MonoBehaviour:
     m_Localized: Formula Personalizada
     m_Metadata:
       m_Items: []
-  - m_Id: 288066837397504
-    m_Localized: '{0} Atleta'
-    m_Metadata:
-      m_Items: []
   - m_Id: 288066841591808
-    m_Localized: '{0} Atletas'
+    m_Localized: '{0:plural:{} Atleta|{} Atletas}'
+    m_Metadata:
+      m_Items:
+      - rid: 5454720212849655815
+  - m_Id: 12870494699540
+    m_Localized: ' (ES)'
     m_Metadata:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5454720212849655815
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 1ac043a5b40b000000c0c3c9fe050100

@@ -35,11 +35,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
 
             _addedTypes = Enum.GetValues(typeof(PouleFillerType)).Cast<PouleFillerType>().ToList();
             _fillerTypeDropdown.ClearOptions();
-            _fillerTypeDropdown.AddOptions(new List<string>(Enum.GetNames(typeof(PouleFillerType))));
+            _fillerTypeDropdown.AddOptions(LSTournamentEnums.GetEnumsLocalizations<PouleFillerType>());
 
             _addedSubtypes = Enum.GetValues(typeof(PouleFillerSubtype)).Cast<PouleFillerSubtype>().ToList();
             _fillerSubtypeDropdown.ClearOptions();
-            _fillerSubtypeDropdown.AddOptions(new List<string>(Enum.GetNames(typeof(PouleFillerSubtype))));
+            _fillerSubtypeDropdown.AddOptions(LSTournamentEnums.GetEnumsLocalizations<PouleFillerSubtype>());
         }
 
         private void OnEnable() {
@@ -70,16 +70,14 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
             _fillerTypeDropdown.ClearOptions();
             _addedTypes.Clear();
 
-            List<string> optionsToAdd = new List<string>();
             List<PouleFillerType> allTypes = Enum.GetValues(typeof(PouleFillerType)).Cast<PouleFillerType>().ToList();
             foreach (PouleFillerType type in allTypes) {
                 if (!typesToRemove.Contains(type)) {
                     _addedTypes.Add(type);
-                    optionsToAdd.Add(Enum.GetName(typeof(PouleFillerType), type));
                 }
             }
 
-            _fillerTypeDropdown.AddOptions(optionsToAdd);
+            _fillerTypeDropdown.AddOptions(LSTournamentEnums.GetEnumsLocalizations(_addedTypes));
         }
 
         public void RemoveSelectableSubtypes(List<PouleFillerSubtype> subtypesToRemove) {
@@ -88,17 +86,16 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
             _fillerSubtypeDropdown.ClearOptions();
             _addedSubtypes.Clear();
 
-            List<string> optionsToAdd = new List<string>();
             List<PouleFillerSubtype> allSubtypes = Enum.GetValues(typeof(PouleFillerSubtype)).Cast<PouleFillerSubtype>().ToList();
             foreach (PouleFillerSubtype subtype in allSubtypes) {
                 if (!subtypesToRemove.Contains(subtype)) {
                     _addedSubtypes.Add(subtype);
-                    optionsToAdd.Add(Enum.GetName(typeof(PouleFillerSubtype), subtype));
                 }
             }
 
-            _fillerSubtypeDropdown.AddOptions(optionsToAdd);
+            List<string> optionsToAdd = LSTournamentEnums.GetEnumsLocalizations(_addedSubtypes);
 
+            _fillerSubtypeDropdown.AddOptions(optionsToAdd);
             _fillerSubtypeGameObject.SetActive(optionsToAdd.Count != 1);
         }
 

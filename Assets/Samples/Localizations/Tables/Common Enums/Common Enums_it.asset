@@ -103,15 +103,227 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10082943483920
-    m_Localized: Long Saber (IT)
+    m_Localized: Spada Lunga
     m_Metadata:
       m_Items: []
   - m_Id: 10082947678208
-    m_Localized: Daggers (IT)
+    m_Localized: Doppia Spada Corta
     m_Metadata:
       m_Items: []
   - m_Id: 10082947678209
-    m_Localized: Saber Staff (IT)
+    m_Localized: Bastone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678210
+    m_Localized: Forma 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678211
+    m_Localized: Forma 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678212
+    m_Localized: Corso Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678213
+    m_Localized: Forma 3 Spada Lunga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678214
+    m_Localized: Forma 4 Spada Lunga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678215
+    m_Localized: Forma 5 Spada Lunga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678216
+    m_Localized: Forma 3 Doppia Spada Corta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678217
+    m_Localized: Forma 4 Doppia Spada Corta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678218
+    m_Localized: Forma 5 Doppia Spada Corta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678219
+    m_Localized: Forma 3 Bastone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678220
+    m_Localized: Forma 4 Bastone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678221
+    m_Localized: 'Forma 5 Bastone '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678222
+    m_Localized: Forma 7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678223
+    m_Localized: Forma 8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678224
+    m_Localized: Surname, Name (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678225
+    m_Localized: Name Surname (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678226
+    m_Localized: Poule Phase (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678227
+    m_Localized: Elimination Phase (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678228
+    m_Localized: Poules Count (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678229
+    m_Localized: Max Poule Size (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678230
+    m_Localized: Letters (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678231
+    m_Localized: Numbers (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678232
+    m_Localized: To be determined (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678233
+    m_Localized: Random (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678234
+    m_Localized: Rank (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678235
+    m_Localized: Style (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678236
+    m_Localized: Tier (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678237
+    m_Localized: '-'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678238
+    m_Localized: Country (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678239
+    m_Localized: Academy (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678240
+    m_Localized: School (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678241
+    m_Localized: To be determined (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678242
+    m_Localized: Ludosport
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678243
+    m_Localized: Fencing (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678244
+    m_Localized: To be determined (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678245
+    m_Localized: General ranking (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678246
+    m_Localized: Crossing between poules (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678247
+    m_Localized: 64ths (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678248
+    m_Localized: 32nds (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678249
+    m_Localized: 16ths (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678250
+    m_Localized: 8ths (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678251
+    m_Localized: 4ths (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678252
+    m_Localized: Semifinals (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678253
+    m_Localized: Finals (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678254
+    m_Localized: To be determined (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678255
+    m_Localized: Style Score (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678256
+    m_Localized: To be determined (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678257
+    m_Localized: Ludosport Score (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678258
+    m_Localized: Fencing Score (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678259
+    m_Localized: Style Score (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678260
+    m_Localized: To be determined (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678261
+    m_Localized: Prioritize Style Position (IT)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10082947678262
+    m_Localized: Prioritize War Position (IT)
     m_Metadata:
       m_Items: []
   references:

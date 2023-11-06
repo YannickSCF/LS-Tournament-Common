@@ -1,3 +1,8 @@
+// Dependencies
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 namespace YannickSCF.LSTournaments.Common {
     public enum TournamentType { Unrated, School, Academy, National, International }
@@ -38,4 +43,30 @@ namespace YannickSCF.LSTournaments.Common {
     public enum StyleRankingType { TBD, Style }
     public enum WarRankingType { TBD, LS, Fencing, Style }
     public enum MixedRankingType { TBD, PrefStyle, PrefWar }
+
+    public static class LSTournamentEnums {
+        public static List<string> GetEnumsLocalizations<T>(List<T> enumValues = null) {
+            List<string> typeOptions = new List<string>();
+
+            if (typeof(T).BaseType != typeof(Enum)) {
+                Debug.LogWarning("The value introduced must be an enum");
+                return null;
+            }
+
+            if (enumValues == null) {
+                enumValues = new List<T>();
+                Array types = Enum.GetValues(typeof(T));
+                foreach (Enum type in types) {
+                    enumValues.Add((T)(object)type);
+                }
+            }
+
+            foreach (T enumValue in enumValues) {
+                string localized = LocalizationSettings.StringDatabase.GetLocalizedString("Common Enums", typeof(T).Name + "." + enumValue.ToString());
+                typeOptions.Add(localized);
+            }
+
+            return typeOptions;
+        }
+    }
 }

@@ -22,14 +22,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
         #region Mono
         private void Awake() {
             _type.ClearOptions();
-
-            List<string> typeOptions = new List<string>();
-            Array types = Enum.GetValues(typeof(TournamentType));
-            foreach (Enum type in types) {
-                string localized = LocalizationSettings.StringDatabase.GetLocalizedString("Common Enums", nameof(TournamentType) + "." + type.ToString());
-                typeOptions.Add(localized);
-            }
-            _type.AddOptions(typeOptions);
+            _type.AddOptions(LSTournamentEnums.GetEnumsLocalizations<TournamentType>());
         }
 
         private void OnEnable() {

@@ -16,44 +16,211 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: bb2d78d8b9dee9b46a86bcf92169a56c, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 5454720212849655816
   m_TableData:
   - m_Id: 299536465920
-    m_Localized: Alpha EN
+    m_Localized: Alpha (EN)
     m_Metadata:
       m_Items: []
   - m_Id: 7434706075648
-    m_Localized: Bravo EN
+    m_Localized: Bravo (EN)
     m_Metadata:
       m_Items: []
   - m_Id: 7434735435776
-    m_Localized: Fencing EN
+    m_Localized: Fencing (EN)
     m_Metadata:
       m_Items: []
   - m_Id: 7434735435777
-    m_Localized: Custom EN
+    m_Localized: Custom (EN)
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699525
-    m_Localized: 
+    m_Localized: Incorrect date format
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699546
-    m_Localized: '{0} Styles'
+    m_Localized: '{0:plural:{} Style|{} Styles}'
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 5454720212849655816
   - m_Id: 12870494699529
     m_Localized: You must add at least {0} athletes
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505217
-    m_Localized: 
+    m_Localized: 'Tournament Type:'
     m_Metadata:
       m_Items: []
   - m_Id: 12870490505216
-    m_Localized: 
+    m_Localized: Tournament Name and Type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756416
+    m_Localized: Alpha Formula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756417
+    m_Localized: Bravo Formula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756418
+    m_Localized: Fencing Formula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258983021756419
+    m_Localized: Custom Formula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505218
+    m_Localized: 'Tournament Name:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505219
+    m_Localized: Enter a name...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505220
+    m_Localized: 'Tournament Formula:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505221
+    m_Localized: Athletes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 288066841591808
+    m_Localized: '{0:plural:{} Athlete|{} Athletes}'
+    m_Metadata:
+      m_Items:
+      - rid: 5454720212849655816
+  - m_Id: 12870490505223
+    m_Localized: Surname...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505224
+    m_Localized: Name...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505225
+    m_Localized: Academy...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505226
+    m_Localized: School...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505227
+    m_Localized: '- Generic error: {0}<br>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505228
+    m_Localized: '- Row {0} ({1}): {2}<br>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870490505229
+    m_Localized: Fill this field
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699520
+    m_Localized: Incorrect code length
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699521
+    m_Localized: This code does not exists in database
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699522
+    m_Localized: Add a tier value
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699523
+    m_Localized: This field must be an integer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699524
+    m_Localized: Add a complete date
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699526
+    m_Localized: Select any style
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699527
+    m_Localized: Select at least Form 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699528
+    m_Localized: Add a color
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699530
+    m_Localized: Load athletes from...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699531
+    m_Localized: Poules Data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699532
+    m_Localized: Poule Names
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699533
+    m_Localized: 'Identifier type:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699534
+    m_Localized: 'Count of poule rounds:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699535
+    m_Localized: Select a number of poules and a max poule size
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699536
+    m_Localized: Count and size of poules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699537
+    m_Localized: 'Define poules by:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699539
+    m_Localized: '{0} poules of {1} athletes<br>{2} poules of {3} athletes'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699541
+    m_Localized: Draw options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699542
+    m_Localized: Draw options conditions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699543
+    m_Localized: 'Poule constitution criteria:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699544
+    m_Localized: 'Athletes distribution criteria:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699545
+    m_Localized: 'Example:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12870494699540
+    m_Localized: ' (EN)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226364657745920
+    m_Localized: ' (EN)'
     m_Metadata:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5454720212849655816
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 1ac043a5b40b000000c0c3c9fe050100

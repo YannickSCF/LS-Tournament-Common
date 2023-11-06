@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.Core.Extensions;
+using UnityEngine.Localization.SmartFormat.Extensions;
 // Custom Dependencies
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Models.Poules;
@@ -90,7 +93,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
             Randomizer.SetSeed(0);
 
             if (_fillerType == PouleFillerType.TBD) {
-                _baseDrawPanelView.SetExample("Select a Filler type...");
+                _baseDrawPanelView.SetExample(LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "BaseDraw_Title_Conditions_Example_Empty"));
                 return;
             }
             PouleNamingObject? namingData = _tempData.GetNamingData();
@@ -119,7 +122,13 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
                     athlete.Country + " | " : string.Empty;
                 switch (_fillerType) {
                     case PouleFillerType.ByRank: entryResult += GetRankWithColor(athlete.Rank); break;
-                    case PouleFillerType.ByStyle: entryResult += athlete.Styles.Count.ToString() + " Styles"; break;
+                    case PouleFillerType.ByStyle:
+                        var localizedString = new LocalizedString("Configurator Texts", "BaseDraw_Title_Conditions_Example_Styles");
+                        localizedString.Arguments = new object[] { athlete.Styles.Count };
+                        string baseData = localizedString.GetLocalizedString();
+
+                        entryResult += baseData;
+                        break;
                     case PouleFillerType.ByTier: entryResult += athlete.Tier.ToString(); break;
                     case PouleFillerType.Random: entryResult += athlete.Name; break;
                     case PouleFillerType.TBD:

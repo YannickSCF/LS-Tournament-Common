@@ -71,10 +71,6 @@ MonoBehaviour:
     m_Key: AthletesPanel_BreadcrumbTitle
     m_Metadata:
       m_Items: []
-  - m_Id: 288066837397504
-    m_Key: AthletesPanel_Athlete
-    m_Metadata:
-      m_Items: []
   - m_Id: 288066841591808
     m_Key: AthletesPanel_Athletes
     m_Metadata:

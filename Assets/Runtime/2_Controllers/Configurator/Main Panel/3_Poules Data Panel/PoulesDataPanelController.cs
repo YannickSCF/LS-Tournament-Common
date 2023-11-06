@@ -108,7 +108,10 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
         public override TournamentData RetrieveData(TournamentData data) {
             data.NamingInfo = _namingType;
             data.RoundsOfPoules = _pouleRounds;
-            data.PouleCountAndSizes = _currentPouleCountAndSize;
+
+            if (_currentPouleCountAndSize != null) {
+                data.PouleCountAndSizes = _currentPouleCountAndSize;
+            }
 
             return data;
         }
