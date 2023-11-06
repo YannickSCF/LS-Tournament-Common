@@ -96,8 +96,8 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
         #region Poules names - METHODS
         public static List<string> GetPoulesNames(PouleNamingObject namingParams) {
             List<string> pouleNames = new List<string>();
-
-            int roundSize = namingParams.NumOfPoules / namingParams.PouleRounds;
+            
+            int roundSize = (int)Math.Ceiling((double)namingParams.NumOfPoules / namingParams.PouleRounds);
             for (int i = 0; i < namingParams.NumOfPoules; ++i) {
                 string index;
                 if (namingParams.PouleNaming == PouleNamingType.Numbers) {

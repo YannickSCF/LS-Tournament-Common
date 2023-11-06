@@ -27,6 +27,7 @@ namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
 
         public void FocusCrumb(bool focus) {
             _crumbTransform.localScale = focus ? Vector3.one : new Vector3(1f, 0.9f, 1);
+            _crumbText.fontStyle = focus ? FontStyles.Bold : FontStyles.Normal;
         }
     }
 }

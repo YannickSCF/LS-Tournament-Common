@@ -1,11 +1,12 @@
 // Dependencies
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
+using UnityEngine.UI;
 // Custom dependencies
 using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
@@ -30,6 +31,12 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
         [SerializeField] private TextMeshProUGUI _numberOfAthletesText;
         [SerializeField] private TextMeshProUGUI _pouleAttributesResultText;
         [SerializeField] private GameObject _pouleAttributesResultAdd;
+
+        [SerializeField] private Image _solutionTextArea;
+        [SerializeField] private TextMeshProUGUI _errorCountAndSizeText;
+
+        private Coroutine _incorrectNaming;
+        private Coroutine _incorrectCountAndSize;
 
         #region Mono
         private void Awake() {
@@ -63,7 +70,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
         }
 
         private void PouleNamingRoundsChanged(string pouleRounds) {
-            PouleRoundChanged?.Invoke(int.Parse(pouleRounds));
+            if (string.IsNullOrEmpty(pouleRounds)) {
+                _pouleRoundsInput.text = "1";
+            } else {
+                PouleRoundChanged?.Invoke(int.Parse(pouleRounds));
+            }
         }
 
         private void HowToDefinePouleAttributesChanged(int howToDefinePoulesIndex) {
@@ -82,7 +93,6 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
         public void SetPouleNamingType(int namingTypeIndex, int pouleRounds = 0) {
             _pouleNamingType.SetValueWithoutNotify(namingTypeIndex);
 
-            SetInteractablePouleRounds(pouleRounds > 0);
             if (pouleRounds > 0) {
                 _pouleRoundsInput.SetTextWithoutNotify(pouleRounds.ToString());
             }
@@ -125,10 +135,12 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
 
         public void SetPoulesCountSizeAttributes(int totalAthletes, int[,] poulesCountAndSizes) {
             string textToWrite = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "PoulesData_Title_CountAndSize_Result");
-
+            
             _numberOfAthletesText.gameObject.SetActive(poulesCountAndSizes != null);
             _pouleAttributesResultText.gameObject.SetActive(poulesCountAndSizes != null);
             _pouleAttributesResultAdd.SetActive(poulesCountAndSizes != null);
+
+            _errorCountAndSizeText.gameObject.SetActive(poulesCountAndSizes == null);
 
             if (poulesCountAndSizes != null) {
                 _numberOfAthletesText.text = totalAthletes + " =";
@@ -146,6 +158,82 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
                 }
 
                 _pouleAttributesResultText.text = textToWrite;
+            } else {
+                _errorCountAndSizeText.text =
+                    string.Format(LocalizationSettings.StringDatabase.GetLocalizedString(
+                            "Configurator Texts", "PoulesData_Title_CountAndSize_ErrorSelect"),
+                        _howToDefinePouleAttributes.options[_howToDefinePouleAttributes.value].text);
+            }
+        }
+
+        public void SetPoulesCountSizeAttributes(string formula, int totalAthletes, int[,] poulesCountAndSizes) {
+            SetPoulesCountSizeAttributes(totalAthletes, poulesCountAndSizes);
+
+            if (poulesCountAndSizes == null) {
+                string baseString = LocalizationSettings.StringDatabase.GetLocalizedString(
+                        "Configurator Texts", "PoulesData_Title_CountAndSize_ErrorSize");
+                _errorCountAndSizeText.text = string.Format(
+                    baseString,
+                    LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "FormulaName_" + formula),
+                    totalAthletes.ToString());
+            }
+        }
+
+        public void ShowNamingNotValidated(bool show) {
+            if (_incorrectNaming != null) {
+                StopCoroutine(_incorrectNaming);
+            }
+
+            if (show) {
+                _incorrectNaming = StartCoroutine(ShowAndHideIncorrectNamingCoroutine());
+            } else {
+                _pouleNamingType.targetGraphic.color = Color.white;
+                _pouleRoundsInput.targetGraphic.color = Color.white;
+            }
+        }
+        private IEnumerator ShowAndHideIncorrectNamingCoroutine() {
+            _pouleNamingType.targetGraphic.color = Color.red;
+            _pouleRoundsInput.targetGraphic.color = Color.red;
+
+            yield return new WaitForSeconds(1f);
+
+            float timeLeft = 2f;
+            while (timeLeft > 0f) {
+                _pouleNamingType.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
+                _pouleRoundsInput.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
+
+                yield return new WaitForEndOfFrame();
+                timeLeft -= Time.deltaTime;
+            }
+        }
+
+
+
+        public void ShowCountAndSizeNotValidated(bool show) {
+            if (_incorrectCountAndSize != null) {
+                StopCoroutine(_incorrectCountAndSize);
+            }
+
+            if (show) {
+                _incorrectCountAndSize = StartCoroutine(ShowAndHideIncorrectCountAndSizeCoroutine());
+            } else {
+                _selectedHowToDefineDropdown.targetGraphic.color = Color.white;
+                _solutionTextArea.CrossFadeColor(Color.white, 0f, true, true);
+            }
+        }
+        private IEnumerator ShowAndHideIncorrectCountAndSizeCoroutine() {
+            _selectedHowToDefineDropdown.targetGraphic.color = Color.red;
+            _solutionTextArea.CrossFadeColor(Color.red, 0f, true, true);
+
+            yield return new WaitForSeconds(1f);
+
+            float timeLeft = 2f;
+            _solutionTextArea.CrossFadeColor(Color.white, timeLeft, true, true);
+            while (timeLeft > 0f) {
+                _selectedHowToDefineDropdown.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
+
+                yield return new WaitForEndOfFrame();
+                timeLeft -= Time.deltaTime;
             }
         }
     }

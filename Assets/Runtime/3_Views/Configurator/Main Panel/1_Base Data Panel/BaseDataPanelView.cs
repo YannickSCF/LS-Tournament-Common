@@ -1,5 +1,5 @@
 // Dependencies
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,6 +18,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
         [SerializeField] private TMP_InputField _name;
         [SerializeField] private TMP_Dropdown _formula;
         [SerializeField] private TextMeshProUGUI _formulaDescription;
+
+        private Coroutine _incorrectTournamentName;
 
         #region Mono
         private void Awake() {
@@ -91,6 +93,32 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
 
         public void SetFormulaDescription(string text) {
             _formulaDescription.text = text;
+        }
+
+        public void ShowTournamentNameNotValidated(bool show) {
+            if (_incorrectTournamentName != null) {
+                StopCoroutine(_incorrectTournamentName);
+            }
+
+            if (show) {
+                _incorrectTournamentName = StartCoroutine(ShowAndHideIncorrectTournamentNameCoroutine());
+            } else {
+                _name.targetGraphic.color = Color.white;
+            }
+        }
+
+        private IEnumerator ShowAndHideIncorrectTournamentNameCoroutine() {
+            _name.targetGraphic.color = Color.red;
+
+            yield return new WaitForSeconds(1f);
+
+            float timeLeft = 2f;
+            while (timeLeft > 0f) {
+                _name.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
+
+                yield return new WaitForEndOfFrame();
+                timeLeft -= Time.deltaTime;
+            }
         }
     }
 }

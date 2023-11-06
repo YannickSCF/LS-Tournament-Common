@@ -1358,6 +1358,7 @@ MonoBehaviour:
   _removeLastAthleteButton: {fileID: 3276055344987152683}
   _athletesCountText: {fileID: 2147155851041008775}
   _addAthletesFromFileButton: {fileID: 4973136737453020063}
+  _errorsPanelsImage: {fileID: 9048681405710394171}
   _errorsPanels: {fileID: 6497981377353791203}
 --- !u!1 &4398785873337723344
 GameObject:

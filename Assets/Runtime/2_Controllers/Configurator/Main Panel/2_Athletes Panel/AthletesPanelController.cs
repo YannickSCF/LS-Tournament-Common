@@ -194,6 +194,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                     // Add all needed rows with the athlete information
                     StartCoroutine(AddRowsCoroutine(athletes));
                     _currentAthletes = athletes;
+
+                    UpdateBottomButtons(_currentAthletes.Count);
                 }
             }
         }
@@ -473,22 +475,24 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         }
 
         public override void ValidateAll() {
-            ValidateAthletesMinimum();
+            bool res = true;
+            res &= ValidateAthletesMinimum();
 
             for (int i = 0; i < _currentAthletes.Count; ++i) {
-                ValidateCountry(_currentAthletes[i].Country, i);
-                ValidateSimpleName(AthleteInfoType.Surname, _currentAthletes[i].Surname, i);
-                ValidateSimpleName(AthleteInfoType.Name, _currentAthletes[i].Name, i);
-                ValidateSimpleName(AthleteInfoType.Academy, _currentAthletes[i].Academy, i);
-                ValidateSimpleName(AthleteInfoType.School, _currentAthletes[i].School, i);
-                ValidateIntInString(_currentAthletes[i].Tier.ToString(), i);
-                ValidateDate(AthleteInfoType.BirthDate, _currentAthletes[i].BirthDate, i);
-                ValidateDate(AthleteInfoType.StartDate, _currentAthletes[i].StartDate, i);
-                ValidateStyles(_currentAthletes[i].Styles, i);
-                ValidateColor(_currentAthletes[i].SaberColor, i);
+                res &= ValidateCountry(_currentAthletes[i].Country, i);
+                res &= ValidateSimpleName(AthleteInfoType.Surname, _currentAthletes[i].Surname, i);
+                res &= ValidateSimpleName(AthleteInfoType.Name, _currentAthletes[i].Name, i);
+                res &= ValidateSimpleName(AthleteInfoType.Academy, _currentAthletes[i].Academy, i);
+                res &= ValidateSimpleName(AthleteInfoType.School, _currentAthletes[i].School, i);
+                res &= ValidateIntInString(_currentAthletes[i].Tier.ToString(), i);
+                res &= ValidateDate(AthleteInfoType.BirthDate, _currentAthletes[i].BirthDate, i);
+                res &= ValidateDate(AthleteInfoType.StartDate, _currentAthletes[i].StartDate, i);
+                res &= ValidateStyles(_currentAthletes[i].Styles, i);
+                res &= ValidateColor(_currentAthletes[i].SaberColor, i);
             }
 
             UpdateErrorsPanel();
+            _bottomView.ShowAthletesNotValidated(!res);
         }
 
         public override void GiveData(TournamentData data) {

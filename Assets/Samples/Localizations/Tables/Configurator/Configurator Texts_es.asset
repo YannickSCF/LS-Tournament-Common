@@ -214,7 +214,17 @@ MonoBehaviour:
       m_Items:
       - rid: 5454720212849655815
   - m_Id: 12870494699540
-    m_Localized: ' (ES)'
+    m_Localized: "No existe una forma de crear unas poules con la formula introducida
+      ({0}) y el n\xFAmero de atletas a\xF1adidos ({1}). Prueba con una \"Formula
+      Personalizada\" y a\xF1adiendo los par\xE1metros espec\xEDficos deseados"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1392166702399488
+    m_Localized: "Configuraci\xF3n de torneo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1441865606086656
+    m_Localized: Selecciona un "{0}"
     m_Metadata:
       m_Items: []
   references:

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.SmartFormat.Core.Extensions;
-using UnityEngine.Localization.SmartFormat.Extensions;
 // Custom Dependencies
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Models.Poules;
@@ -18,10 +16,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
     public class BaseDrawPanelController : PanelController {
 
         private const string COLOR_TAG = "<color={0}>{1}</color>";
-        private const string RETURN_CARRIAGE = "\n";
 
         private readonly List<Color> RANK_COLORS = new List<Color>(){ Color.blue, Color.yellow, Color.red, Color.green, Color.magenta };
-        private const string RANK_SEPARATOR = " / ";
 
         [SerializeField] private BaseDrawPanelView _baseDrawPanelView;
 
@@ -63,6 +59,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
 
         public override void ValidateAll() {
             _IsDataValidated = _fillerType != PouleFillerType.TBD;
+            _baseDrawPanelView.ShowFillerTypeNotValidated(!IsDataValidated);
         }
 
         public override void GiveData(TournamentData data) {

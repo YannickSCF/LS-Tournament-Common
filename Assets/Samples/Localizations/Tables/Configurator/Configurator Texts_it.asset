@@ -217,6 +217,14 @@ MonoBehaviour:
     m_Localized: ' (IT)'
     m_Metadata:
       m_Items: []
+  - m_Id: 1392166702399488
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1441865606086656
+    m_Localized: ' (IT)'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

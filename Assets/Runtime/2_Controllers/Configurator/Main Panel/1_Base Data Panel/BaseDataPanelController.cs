@@ -70,10 +70,15 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         public override void ValidateAll() {
             bool res = true;
 
-            res &= !string.IsNullOrEmpty(_name);
-            res &= !string.IsNullOrEmpty(_formula);
+            res &= ValidateName();
 
             _IsDataValidated = res;
+        }
+
+        private bool ValidateName() {
+            bool res = !string.IsNullOrEmpty(_name);
+            _baseDataPanelView.ShowTournamentNameNotValidated(!res);
+            return res;
         }
 
         public override void GiveData(TournamentData data) {

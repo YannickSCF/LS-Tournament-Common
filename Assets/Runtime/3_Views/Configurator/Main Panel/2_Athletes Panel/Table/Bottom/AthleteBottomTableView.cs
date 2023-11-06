@@ -1,4 +1,5 @@
 // Dependencies
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,10 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Bo
 
         [SerializeField] private Button _addAthletesFromFileButton;
 
+        [SerializeField] private Image _errorsPanelsImage;
         [SerializeField] private TextMeshProUGUI _errorsPanels;
+
+        private Coroutine _incorrectAthletes;
 
         #region Mono
         private void OnEnable() {
@@ -45,6 +49,25 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Bo
 
         public void SetErrorPanelText(string errorText) {
             _errorsPanels.text = errorText;
+        }
+
+        public void ShowAthletesNotValidated(bool show) {
+            if (_incorrectAthletes != null) {
+                StopCoroutine(_incorrectAthletes);
+            }
+
+            if (show) {
+                _incorrectAthletes = StartCoroutine(ShowAndHideIncorrectAtheletesCoroutine());
+            } else {
+                _errorsPanelsImage.CrossFadeColor(Color.white, 0f, true, true);
+            }
+        }
+
+        private IEnumerator ShowAndHideIncorrectAtheletesCoroutine() {
+            _errorsPanelsImage.CrossFadeColor(Color.red, 0f, true, true);
+
+            yield return new WaitForSeconds(1f);
+            _errorsPanelsImage.CrossFadeColor(Color.white, 2f, true, true);
         }
     }
 }

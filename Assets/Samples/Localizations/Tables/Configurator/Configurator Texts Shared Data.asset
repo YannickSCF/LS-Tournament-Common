@@ -15,6 +15,10 @@ MonoBehaviour:
   m_TableCollectionName: Configurator Texts
   m_TableCollectionNameGuidString: bb2d78d8b9dee9b46a86bcf92169a56c
   m_Entries:
+  - m_Id: 1392166702399488
+    m_Key: TournamentConfiguration_Title
+    m_Metadata:
+      m_Items: []
   - m_Id: 299536465920
     m_Key: FormulaDescription_Alpha
     m_Metadata:
@@ -181,6 +185,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 12870494699540
     m_Key: PoulesData_Title_CountAndSize_ErrorSize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1441865606086656
+    m_Key: PoulesData_Title_CountAndSize_ErrorSelect
     m_Metadata:
       m_Items: []
   - m_Id: 12870494699541

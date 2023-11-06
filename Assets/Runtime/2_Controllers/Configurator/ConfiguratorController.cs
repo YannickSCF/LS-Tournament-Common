@@ -48,6 +48,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             if ((clickedNext && !_allConfiguratorPanels[_panelIndex].IsDataValidated)
                 || (!clickedNext && _panelIndex <= 0)) {
                 Debug.LogWarning("Not validated Yet!");
+                _allConfiguratorPanels[_panelIndex].ValidateAll();
                 return;
             }
 

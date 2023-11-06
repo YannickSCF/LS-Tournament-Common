@@ -12,18 +12,200 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea546a798974544abfc9dfd4567d70d, type: 3}
   m_Name: Tournament Data
   m_EditorClassIdentifier: 
-  _tournamentName: 
+  _tournamentName: asdf
   _tournamentType: 0
-  _tournamentFormulaName: 
+  _tournamentFormulaName: Custom
   _seed: 0
-  _namingInfo: 0
-  _roundsOfPoules: 0
+  _namingInfo: 1
+  _roundsOfPoules: 1
   _fillerTypeInfo: 0
   _fillerSubtypeInfo: 0
-  _pouleCountMaxSize: {x: 0, y: 0}
-  _pouleCountMinSize: {x: 0, y: 0}
+  _pouleCountMaxSize: {x: 1, y: 4}
+  _pouleCountMinSize: {x: 4, y: 3}
   _data: []
   _eliminationBracket: []
-  _athletesInfoUsed: []
-  _athletes: []
+  _athletesInfoUsed:
+  - Info: 0
+    IsUsed: 1
+  - Info: 1
+    IsUsed: 1
+  - Info: 2
+    IsUsed: 1
+  - Info: 3
+    IsUsed: 1
+  - Info: 4
+    IsUsed: 1
+  - Info: 5
+    IsUsed: 1
+  - Info: 6
+    IsUsed: 1
+  - Info: 7
+    IsUsed: 0
+  - Info: 8
+    IsUsed: 0
+  - Info: 9
+    IsUsed: 0
+  - Info: 10
+    IsUsed: 0
+  _athletes:
+  - _id: 3187147c-980a-4807-b731-7afb705c0d91
+    _name: Daniel
+    _surname: "Mart\xEDnez Oller"
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: c2b7105a-bb68-4f1e-bfb0-d3c8717c56c4
+    _name: Arnau
+    _surname: "P\xE9rez"
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: b808bd73-c2b9-4b16-9333-13bde806764d
+    _name: "Adri\xE0"
+    _surname: "Balc\xE1zar"
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 79e036fd-08d7-45fc-a0aa-ebfe3d6ce4b9
+    _name: Roc
+    _surname: "Faixedas de Bol\xF3s"
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: d2f9ad3e-cb37-4e30-9b8f-a98576da3345
+    _name: Jordi
+    _surname: "Pallar\xE8s"
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: aa414cec-8552-418b-9f4d-0f2143e134a7
+    _name: Andrea
+    _surname: Bonet
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 4e681a4b-cab8-477d-a699-84a8dd8caa7b
+    _name: Guillermo
+    _surname: Torres
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 44c3deb0-8f4f-4c1a-b73b-04966981c47d
+    _name: Ariadna
+    _surname: "Rodr\xEDguez"
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 1
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 0bbe446d-c6c6-4e88-8ca4-b775910ff31d
+    _name: Albert
+    _surname: Lozano
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: f84fb123-44a5-4d1c-a183-0c8cc029b2f6
+    _name: Luciano
+    _surname: "P\xE1mpanas"
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: a64d71e4-1c77-4414-98c3-f7c6efe60614
+    _name: Vinicius
+    _surname: Todorovich
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 1
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: cbc0abee-4b5d-4f2c-adc5-b59116973ad2
+    _name: Marina
+    _surname: Delgado
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 1
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: b57a57a3-1aa7-48ae-b8f4-dd5492200435
+    _name: Cristina
+    _surname: Leandro
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 3
+    _styles: 000000000100000002000000030000000400000005000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 28a93922-3d00-4954-a39c-85efa61fbdc1
+    _name: Cristina
+    _surname: Beriso
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 1
+    _styles: 0000000001000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 220c5294-9440-4a47-9ad3-2e6226bfa5ab
+    _name: Carlos
+    _surname: Lizaga
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 1
+    _styles: 000000000100000006000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
+  - _id: 89d52dc7-f9fe-4650-929a-304b9791972f
+    _name: Julio
+    _surname: Altisent
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 0
+    _styles: 00000000010000000b000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _tier: 0
   _athletesStats: []

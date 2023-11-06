@@ -1,5 +1,6 @@
 // Dependencies
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -28,6 +29,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
 
         private List<PouleFillerType> _addedTypes;
         private List<PouleFillerSubtype> _addedSubtypes;
+
+        private Coroutine _incorrectFillerType;
 
         #region Mono
         private void Awake() {
@@ -112,9 +115,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
         }
 
         public void SetExample(string completePanelText) {
-            foreach (Transform child in _examplePoulesScroll.content) {
-                DestroyImmediate(child.gameObject);
-            }
+            CleanExample();
 
             _examplePoulesScroll.gameObject.SetActive(false);
 
@@ -127,10 +128,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
             _exampleCompleteText.gameObject.SetActive(false);
 
             if (poulesExamples.Count != _examplePoulesScroll.content.childCount) {
-                foreach (Transform child in _examplePoulesScroll.content) {
-                    DestroyImmediate(child.gameObject);
-                }
-                _examplePoules.Clear();
+                CleanExample();
 
                 foreach (KeyValuePair<string, List<string>> pouleExample in poulesExamples) {
                     ExamplePoulesView examplePoule = Instantiate(_examplePoulePrefab, _examplePoulesScroll.content);
@@ -143,6 +141,38 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
                     _examplePoules[exampleCount].SetPouleContent(pouleExample.Key, pouleExample.Value);
                     ++exampleCount;
                 }
+            }
+        }
+
+        public void CleanExample() {
+            foreach (Transform child in _examplePoulesScroll.content) {
+                DestroyImmediate(child.gameObject);
+            }
+            _examplePoules.Clear();
+        }
+
+        public void ShowFillerTypeNotValidated(bool show) {
+            if (_incorrectFillerType != null) {
+                StopCoroutine(_incorrectFillerType);
+            }
+
+            if (show) {
+                _incorrectFillerType = StartCoroutine(ShowAndHideIncorrectFillerTypeCoroutine());
+            } else {
+                _fillerTypeDropdown.targetGraphic.color = Color.white;
+            }
+        }
+        private IEnumerator ShowAndHideIncorrectFillerTypeCoroutine() {
+            _fillerTypeDropdown.targetGraphic.color = Color.red;
+
+            yield return new WaitForSeconds(1f);
+
+            float timeLeft = 2f;
+            while (timeLeft > 0f) {
+                _fillerTypeDropdown.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
+
+                yield return new WaitForEndOfFrame();
+                timeLeft -= Time.deltaTime;
             }
         }
     }
