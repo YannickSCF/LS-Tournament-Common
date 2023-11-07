@@ -60,6 +60,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         #endregion
 
         #region Validators
+        private bool ValidateName() {
+            bool res = !string.IsNullOrEmpty(_name);
+            _baseDataPanelView.ShowTournamentNameNotValidated(!res);
+            return res;
+        }
         #endregion
 
         #region PanelController abstract methods overrided
@@ -73,12 +78,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             res &= ValidateName();
 
             _IsDataValidated = res;
-        }
-
-        private bool ValidateName() {
-            bool res = !string.IsNullOrEmpty(_name);
-            _baseDataPanelView.ShowTournamentNameNotValidated(!res);
-            return res;
         }
 
         public override void GiveData(TournamentData data) {

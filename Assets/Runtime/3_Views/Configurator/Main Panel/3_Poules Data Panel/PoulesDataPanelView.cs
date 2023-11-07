@@ -1,5 +1,9 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     11/10/2023
+ **/
+
 // Dependencies
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -11,7 +15,7 @@ using UnityEngine.UI;
 using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
-    public class PoulesDataPanelView : MonoBehaviour {
+    public class PoulesDataPanelView : PanelView {
 
         public event IntegerEventDelegate NamingTypeChanged;
         public event IntegerEventDelegate PouleRoundChanged;
@@ -37,6 +41,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
 
         private Coroutine _incorrectNaming;
         private Coroutine _incorrectCountAndSize;
+        private Coroutine _incorrectCountAndSizePanel;
 
         #region Mono
         private void Awake() {
@@ -90,7 +95,16 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
         }
         #endregion
 
-        public void SetPouleNamingType(int namingTypeIndex, int pouleRounds = 0) {
+        #region (PUBLIC) Methods to set view values or characteristics
+        /// <summary>
+        /// Method to Set Poule naming type and count of rounds to know how to divide them.
+        /// </summary>
+        /// <param name="namingTypeIndex">Naming type value to set on dropdown</param>
+        /// <param name="pouleRounds">
+        /// Optional: Number of poule rounds.
+        /// If "namingTypeIndex" is setted to 'PouleNamingType.Letters', it is advisable to use set it.
+        /// </param>
+        public void SetPouleNamingType(int namingTypeIndex, int pouleRounds = 1) {
             _pouleNamingType.SetValueWithoutNotify(namingTypeIndex);
 
             if (pouleRounds > 0) {
@@ -103,20 +117,38 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
             _pouleRoundsCanvasGroup.alpha = isInteractable ? 1f : 0.5f;
         }
 
+        /// <summary>
+        /// Method to set poule naming example.
+        /// This method just represent string given, it must come formatted.
+        /// </summary>
+        /// <param name="example">Value to set on example</param>
         public void SetPouleNamingExample(string example) {
             _pouleNamingExample.text = example;
         }
 
+        /// <summary>
+        /// Method to show/hide objects to select count or size of poules.
+        /// This method can only be used to hide this objects if this size is defined
+        /// previously by a formula.
+        /// </summary>
+        /// <param name="isSelectable">Defines it this method is to show (true) or hide (false)</param>
         public void SetSelectableCountSize(bool isSelectable) {
             for (int i = 1; i < _pouleCountSizeContent.childCount; ++i) {
                 _pouleCountSizeContent.GetChild(i).gameObject.SetActive(isSelectable);
             }
         }
 
+        /// <summary>
+        /// Set the options of the dropdown to define count and size of poules.
+        /// This method includes a first option that represent an TBD value.
+        /// </summary>
+        /// <param name="options">List of options.</param>
         public void SetPoulesCountSizeDropdownOptions(List<int> options) {
             _selectedHowToDefineDropdown.ClearOptions();
+
             List<string> optionsString = new List<string>();
             optionsString.Add("-");
+
             foreach (int option in options) {
                 optionsString.Add(option.ToString());
             }
@@ -133,6 +165,14 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
             }
         }
 
+        /// <summary>
+        /// Method to set the calculation of poules by parameters given.
+        /// </summary>
+        /// <param name="totalAthletes">Total count of athletes</param>
+        /// <param name="poulesCountAndSizes">
+        /// The poules count and sizes.
+        /// Defined in array as defined in 'TournamentData.PouleCountAndSizes' property.
+        /// </param>
         public void SetPoulesCountSizeAttributes(int totalAthletes, int[,] poulesCountAndSizes) {
             string textToWrite = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "PoulesData_Title_CountAndSize_Result");
             
@@ -166,9 +206,20 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
             }
         }
 
+        /// <summary>
+        /// Method to set the calculation of poules by parameters given.
+        /// If it cannot have any combination, this manages the error and message too.
+        /// </summary>
+        /// <param name="formula">Formula name to show a guide on error (if it appears)</param>
+        /// <param name="totalAthletes">Total count of athletes</param>
+        /// <param name="poulesCountAndSizes">
+        /// The poules count and sizes.
+        /// Defined in array as defined in 'TournamentData.PouleCountAndSizes' property.
+        /// </param>
         public void SetPoulesCountSizeAttributes(string formula, int totalAthletes, int[,] poulesCountAndSizes) {
             SetPoulesCountSizeAttributes(totalAthletes, poulesCountAndSizes);
 
+            // If 'poulesCountAndSizes' is null, means that there is no possible combinations.
             if (poulesCountAndSizes == null) {
                 string baseString = LocalizationSettings.StringDatabase.GetLocalizedString(
                         "Configurator Texts", "PoulesData_Title_CountAndSize_ErrorSize");
@@ -178,62 +229,51 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel {
                     totalAthletes.ToString());
             }
         }
+        #endregion
 
+
+        /// <summary>
+        /// Method to Show/Hide validation error on Naming fields.
+        /// </summary>
+        /// <param name="show">
+        /// If this value is 'true' force to show (or reset) the validation animation.
+        /// If it is 'false', it cancels the animation.
+        /// </param>
         public void ShowNamingNotValidated(bool show) {
             if (_incorrectNaming != null) {
                 StopCoroutine(_incorrectNaming);
             }
 
             if (show) {
-                _incorrectNaming = StartCoroutine(ShowAndHideIncorrectNamingCoroutine());
+                _incorrectNaming = StartCoroutine(ShowAndHideSelectableErrorCoroutine(_pouleRoundsInput));
             } else {
-                _pouleNamingType.targetGraphic.color = Color.white;
-                _pouleRoundsInput.targetGraphic.color = Color.white;
-            }
-        }
-        private IEnumerator ShowAndHideIncorrectNamingCoroutine() {
-            _pouleNamingType.targetGraphic.color = Color.red;
-            _pouleRoundsInput.targetGraphic.color = Color.red;
-
-            yield return new WaitForSeconds(1f);
-
-            float timeLeft = 2f;
-            while (timeLeft > 0f) {
-                _pouleNamingType.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
-                _pouleRoundsInput.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
-
-                yield return new WaitForEndOfFrame();
-                timeLeft -= Time.deltaTime;
+                ResetSelectableError(_pouleRoundsInput);
             }
         }
 
-
-
+        /// <summary>
+        /// Method to Show/Hide validation error on Poules count and size fields.
+        /// </summary>
+        /// <param name="show">
+        /// If this value is 'true' force to show (or reset) the validation animation.
+        /// If it is 'false', it cancels the animation.
+        /// </param>
         public void ShowCountAndSizeNotValidated(bool show) {
             if (_incorrectCountAndSize != null) {
                 StopCoroutine(_incorrectCountAndSize);
             }
+            if (_incorrectCountAndSizePanel != null) {
+                StopCoroutine(_incorrectCountAndSizePanel);
+            }
 
             if (show) {
-                _incorrectCountAndSize = StartCoroutine(ShowAndHideIncorrectCountAndSizeCoroutine());
+                _incorrectCountAndSize =
+                    StartCoroutine(ShowAndHideSelectableErrorCoroutine(_selectedHowToDefineDropdown));
+                _incorrectCountAndSizePanel =
+                    StartCoroutine(ShowAndHideImageErrorCoroutine(_solutionTextArea));
             } else {
-                _selectedHowToDefineDropdown.targetGraphic.color = Color.white;
-                _solutionTextArea.CrossFadeColor(Color.white, 0f, true, true);
-            }
-        }
-        private IEnumerator ShowAndHideIncorrectCountAndSizeCoroutine() {
-            _selectedHowToDefineDropdown.targetGraphic.color = Color.red;
-            _solutionTextArea.CrossFadeColor(Color.red, 0f, true, true);
-
-            yield return new WaitForSeconds(1f);
-
-            float timeLeft = 2f;
-            _solutionTextArea.CrossFadeColor(Color.white, timeLeft, true, true);
-            while (timeLeft > 0f) {
-                _selectedHowToDefineDropdown.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
-
-                yield return new WaitForEndOfFrame();
-                timeLeft -= Time.deltaTime;
+                ResetSelectableError(_selectedHowToDefineDropdown);
+                ResetImageError(_solutionTextArea);
             }
         }
     }

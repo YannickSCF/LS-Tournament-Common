@@ -1,6 +1,10 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     12/10/2023
+ **/
+
 // Dependencies
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -11,7 +15,7 @@ using YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel.ExamplePoule
 using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
-    public class BaseDrawPanelView : MonoBehaviour {
+    public class BaseDrawPanelView : PanelView {
 
         public event IntegerEventDelegate FillerTypeChanged;
         public event IntegerEventDelegate FillerSubtypeChanged;
@@ -67,41 +71,13 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
         }
         #endregion
 
-        public void RemoveSelectableTypes(List<PouleFillerType> typesToRemove) {
-            if (typesToRemove == null || typesToRemove.Count <= 0) return;
-
-            _fillerTypeDropdown.ClearOptions();
-            _addedTypes.Clear();
-
-            List<PouleFillerType> allTypes = Enum.GetValues(typeof(PouleFillerType)).Cast<PouleFillerType>().ToList();
-            foreach (PouleFillerType type in allTypes) {
-                if (!typesToRemove.Contains(type)) {
-                    _addedTypes.Add(type);
-                }
-            }
-
-            _fillerTypeDropdown.AddOptions(LSTournamentEnums.GetEnumsLocalizations(_addedTypes));
-        }
-
-        public void RemoveSelectableSubtypes(List<PouleFillerSubtype> subtypesToRemove) {
-            if (subtypesToRemove == null || subtypesToRemove.Count <= 0) return;
-
-            _fillerSubtypeDropdown.ClearOptions();
-            _addedSubtypes.Clear();
-
-            List<PouleFillerSubtype> allSubtypes = Enum.GetValues(typeof(PouleFillerSubtype)).Cast<PouleFillerSubtype>().ToList();
-            foreach (PouleFillerSubtype subtype in allSubtypes) {
-                if (!subtypesToRemove.Contains(subtype)) {
-                    _addedSubtypes.Add(subtype);
-                }
-            }
-
-            List<string> optionsToAdd = LSTournamentEnums.GetEnumsLocalizations(_addedSubtypes);
-
-            _fillerSubtypeDropdown.AddOptions(optionsToAdd);
-            _fillerSubtypeGameObject.SetActive(optionsToAdd.Count != 1);
-        }
-
+        #region (PUBLIC) Methods to set view values
+        /// <summary>
+        /// Method to set filler type on view.
+        /// This sets interactability too (Optional).
+        /// </summary>
+        /// <param name="fillerType">New filler type to set.</param>
+        /// <param name="isInteractable">Optional: set interactability of this field.</param>
         public void SetFillerType(PouleFillerType fillerType, bool isInteractable = false) {
             _fillerTypeDropdown.SetValueWithoutNotify((int)fillerType);
             _fillerTypeDropdown.interactable = isInteractable;
@@ -114,6 +90,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
             _fillerSubtypeDropdown.SetValueWithoutNotify(subtypeIndex);
         }
 
+        /// <summary>
+        /// Method to set a complete panel text on example panel.
+        /// Usually to set an error o advice message.
+        /// </summary>
+        /// <param name="completePanelText">Message to show on complete example panel.</param>
         public void SetExample(string completePanelText) {
             CleanExample();
 
@@ -123,6 +104,15 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
             _exampleCompleteText.text = completePanelText;
         }
 
+        /// <summary>
+        /// Method to create an example with data given.
+        /// This method creates all objects needed to represent the poules
+        /// as they come in 'poulesExamples' dictionary data.
+        /// </summary>
+        /// <param name="poulesExamples">
+        /// Dictionary with data to show. This data is represented as a list (dictionary value) of
+        /// names, countries, number of styles, etc,... for each poule (dictionary key).
+        /// </param>
         public void SetExample(Dictionary<string, List<string>> poulesExamples) {
             _examplePoulesScroll.gameObject.SetActive(true);
             _exampleCompleteText.gameObject.SetActive(false);
@@ -144,35 +134,76 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
             }
         }
 
-        public void CleanExample() {
+        private void CleanExample() {
             foreach (Transform child in _examplePoulesScroll.content) {
                 DestroyImmediate(child.gameObject);
             }
             _examplePoules.Clear();
         }
+        #endregion
 
+        /// <summary>
+        /// Method to modify options of Filler types dropdown field.
+        /// The entry parameter indicates which enums remove from list of 'PouleFillerType'.
+        /// </summary>
+        /// <param name="typesToRemove">Enums from 'PouleFillerType' list to remove</param>
+        public void RemoveSelectableTypes(List<PouleFillerType> typesToRemove) {
+            if (typesToRemove == null || typesToRemove.Count <= 0) return;
+
+            _fillerTypeDropdown.ClearOptions();
+            _addedTypes.Clear();
+
+            List<PouleFillerType> allTypes = Enum.GetValues(typeof(PouleFillerType)).Cast<PouleFillerType>().ToList();
+            foreach (PouleFillerType type in allTypes) {
+                if (!typesToRemove.Contains(type)) {
+                    _addedTypes.Add(type);
+                }
+            }
+
+            _fillerTypeDropdown.AddOptions(LSTournamentEnums.GetEnumsLocalizations(_addedTypes));
+        }
+
+        /// <summary>
+        /// Method to modify options of Filler subtypes dropdown field.
+        /// The entry parameter indicates which enums remove from list of 'PouleFillerSubtype'.
+        /// </summary>
+        /// <param name="subtypesToRemove">Enums from 'PouleFillerSubtype' list to remove</param>
+        public void RemoveSelectableSubtypes(List<PouleFillerSubtype> subtypesToRemove) {
+            if (subtypesToRemove == null || subtypesToRemove.Count <= 0) return;
+
+            _fillerSubtypeDropdown.ClearOptions();
+            _addedSubtypes.Clear();
+
+            List<PouleFillerSubtype> allSubtypes = Enum.GetValues(typeof(PouleFillerSubtype)).Cast<PouleFillerSubtype>().ToList();
+            foreach (PouleFillerSubtype subtype in allSubtypes) {
+                if (!subtypesToRemove.Contains(subtype)) {
+                    _addedSubtypes.Add(subtype);
+                }
+            }
+
+            List<string> optionsToAdd = LSTournamentEnums.GetEnumsLocalizations(_addedSubtypes);
+
+            _fillerSubtypeDropdown.AddOptions(optionsToAdd);
+            _fillerSubtypeGameObject.SetActive(optionsToAdd.Count != 1);
+        }
+
+
+        /// <summary>
+        /// Method to Show/Hide validation error on Poule Filler type field.
+        /// </summary>
+        /// <param name="show">
+        /// If this value is 'true' force to show (or reset) the validation animation.
+        /// If it is 'false', it cancels the animation.
+        /// </param>
         public void ShowFillerTypeNotValidated(bool show) {
             if (_incorrectFillerType != null) {
                 StopCoroutine(_incorrectFillerType);
             }
 
             if (show) {
-                _incorrectFillerType = StartCoroutine(ShowAndHideIncorrectFillerTypeCoroutine());
+                _incorrectFillerType = StartCoroutine(ShowAndHideSelectableErrorCoroutine(_fillerTypeDropdown));
             } else {
-                _fillerTypeDropdown.targetGraphic.color = Color.white;
-            }
-        }
-        private IEnumerator ShowAndHideIncorrectFillerTypeCoroutine() {
-            _fillerTypeDropdown.targetGraphic.color = Color.red;
-
-            yield return new WaitForSeconds(1f);
-
-            float timeLeft = 2f;
-            while (timeLeft > 0f) {
-                _fillerTypeDropdown.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
-
-                yield return new WaitForEndOfFrame();
-                timeLeft -= Time.deltaTime;
+                ResetSelectableError(_fillerTypeDropdown);
             }
         }
     }

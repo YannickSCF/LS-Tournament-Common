@@ -1,5 +1,9 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     06/10/2023
+ **/
+
 // Dependencies
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,7 +12,7 @@ using UnityEngine.Localization.Settings;
 using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
-    public class BaseDataPanelView : MonoBehaviour {
+    public class BaseDataPanelView : PanelView {
 
         public event IntegerEventDelegate TypeChanged;
         public event StringEventDelegate NameChanged;
@@ -56,17 +60,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
         }
         #endregion
 
-        public void FillFormulaDropdown(List<string> formulaNames) {
-            _formula.ClearOptions();
-
-            List<string> formulaOptions = new List<string>();
-            foreach (string formulaName in formulaNames) {
-                string localized = LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "FormulaName_" + formulaName);
-                formulaOptions.Add(localized);
-            }
-            _formula.AddOptions(formulaOptions);
-        }
-
+        #region (PUBLIC) Methods to set view values
         public void SetTournamentType(int tournamentType, bool withoutNotify = false) {
             if (withoutNotify) {
                 _type.SetValueWithoutNotify(tournamentType);
@@ -94,30 +88,41 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel {
         public void SetFormulaDescription(string text) {
             _formulaDescription.text = text;
         }
+        #endregion
 
+        /// <summary>
+        /// Method to modify options of Formulas dropdown field.
+        /// </summary>
+        /// <param name="formulaNames">List of formulas names to show in view.</param>
+        public void FillFormulaDropdown(List<string> formulaNames) {
+            _formula.ClearOptions();
+
+            List<string> formulaOptions = new List<string>();
+            foreach (string formulaName in formulaNames) {
+                string localized = LocalizationSettings.StringDatabase.GetLocalizedString(
+                    "Configurator Texts", "FormulaName_" + formulaName);
+                formulaOptions.Add(localized);
+            }
+
+            _formula.AddOptions(formulaOptions);
+        }
+
+        /// <summary>
+        /// Method to Show/Hide validation error on Tournament Name field.
+        /// </summary>
+        /// <param name="show">
+        /// If this value is 'true' force to show (or reset) the validation animation.
+        /// If it is 'false', it cancels the animation.
+        /// </param>
         public void ShowTournamentNameNotValidated(bool show) {
             if (_incorrectTournamentName != null) {
                 StopCoroutine(_incorrectTournamentName);
             }
 
             if (show) {
-                _incorrectTournamentName = StartCoroutine(ShowAndHideIncorrectTournamentNameCoroutine());
+                _incorrectTournamentName = StartCoroutine(ShowAndHideSelectableErrorCoroutine(_name));
             } else {
-                _name.targetGraphic.color = Color.white;
-            }
-        }
-
-        private IEnumerator ShowAndHideIncorrectTournamentNameCoroutine() {
-            _name.targetGraphic.color = Color.red;
-
-            yield return new WaitForSeconds(1f);
-
-            float timeLeft = 2f;
-            while (timeLeft > 0f) {
-                _name.targetGraphic.color = Color.Lerp(Color.red, Color.white, (2f - timeLeft) / 2f);
-
-                yield return new WaitForEndOfFrame();
-                timeLeft -= Time.deltaTime;
+                ResetSelectableError(_name);
             }
         }
     }
