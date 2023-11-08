@@ -1,6 +1,6 @@
 {
   "name": "com.yannickscf.ls-tournament-common",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "Yannick - LS Tournament Common",
   "description": "Tournament C# files common on Ludosport tournament tools",
   "unity": "2021.3",
@@ -9,5 +9,27 @@
     "name": "Yannick Santa Cruz Feuillias",
     "email": "yannickscf@gmail.com",
     "url": "https://github.com/YannickSCF"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Localizations",
+      "description": "Contains basic Localization of Ludosport commons",
+      "path": "Samples/Localizations"
+    },
+    {
+      "displayName": "Mobile-LS-Samples",
+      "description": "Contains basic assets for Mobile",
+      "path": "Samples/Mobile-LS-Samples"
+    },
+    {
+      "displayName": "PC-LS-Samples",
+      "description": "Contains basic assets for PC",
+      "path": "Samples/PC-LS-Samples"
+    },
+    {
+      "displayName": "Tournament Formulas",
+      "description": "Contains basic Formulas for LS tournaments",
+      "path": "Samples/Tournament Formulas"
+    }
+  ]
 }
