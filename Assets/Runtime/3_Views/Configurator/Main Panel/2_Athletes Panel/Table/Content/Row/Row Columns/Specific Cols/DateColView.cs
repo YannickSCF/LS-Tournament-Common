@@ -12,9 +12,6 @@ using UnityEngine;
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content.Row.RowColumns.SpecificCols {
     public class DateColView : RowColumnView {
 
-        private const string DATE_FORMAT = "dd/MM/yyyy";
-        private const string DATE_SEPARATOR = "/";
-
         [Header("Color Col References")]
         [SerializeField] private TMP_InputField _dayInputField;
         [SerializeField] private TMP_InputField _monthInputField;
@@ -170,28 +167,30 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         #endregion
 
         public DateTime GetDate() {
-            return DateTime.ParseExact(GetDateString(), DATE_FORMAT, CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(GetDateString(), LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture);
         }
 
         public string GetDateString() {
-            return _dayInputField.text + DATE_SEPARATOR + _monthInputField.text + DATE_SEPARATOR + _yearInputField.text;
+            return _dayInputField.text + LSTournamentConsts.DATE_SEPARATOR + _monthInputField.text + LSTournamentConsts.DATE_SEPARATOR + _yearInputField.text;
         }
 
         public void SetDate(DateTime date, bool withoutNotify = false) {
-            string[] dateSeparated = date.ToString(DATE_FORMAT, CultureInfo.InvariantCulture).Split(DATE_SEPARATOR);
-            if (dateSeparated.Length != 3) {
-                Debug.LogWarning("Date given has a bad format");
-                return;
-            }
+            if (date != DateTime.MinValue) {
+                string[] dateSeparated = date.ToString(LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture).Split(LSTournamentConsts.DATE_SEPARATOR);
+                if (dateSeparated.Length != 3) {
+                    Debug.LogWarning("Date given has a bad format");
+                    return;
+                }
 
-            if (!withoutNotify) {
-                _dayInputField.text = dateSeparated[0];
-                _monthInputField.text = dateSeparated[1];
-                _yearInputField.text = dateSeparated[2];
-            } else {
-                _dayInputField.SetTextWithoutNotify(dateSeparated[0]);
-                _monthInputField.SetTextWithoutNotify(dateSeparated[1]);
-                _yearInputField.SetTextWithoutNotify(dateSeparated[2]);
+                if (!withoutNotify) {
+                    _dayInputField.text = dateSeparated[0];
+                    _monthInputField.text = dateSeparated[1];
+                    _yearInputField.text = dateSeparated[2];
+                } else {
+                    _dayInputField.SetTextWithoutNotify(dateSeparated[0]);
+                    _monthInputField.SetTextWithoutNotify(dateSeparated[1]);
+                    _yearInputField.SetTextWithoutNotify(dateSeparated[2]);
+                }
             }
         }
 

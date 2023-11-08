@@ -6,6 +6,7 @@
 // Dependencies
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace YannickSCF.LSTournaments.Common.Models.Athletes {
@@ -16,7 +17,7 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
         // Personal Information
         [SerializeField] private string _name;
         [SerializeField] private string _surname;
-        [SerializeField] private DateTime _birthDate;
+        [SerializeField] private string _birthDate;
         // Representation Information
         [SerializeField] private string _country;
         [SerializeField] private string _academy;
@@ -25,7 +26,7 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
         [SerializeField] private RankType _rank;
         [SerializeField] private List<StyleType> _styles;
         [SerializeField] private Color _saberColor;
-        [SerializeField] private DateTime _startDate;
+        [SerializeField] private string _startDate;
         // OTHER
         [SerializeField] private int _tier;
 
@@ -34,7 +35,18 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
         // Personal Information
         public string Name { get => _name; set => _name = value; }
         public string Surname { get => _surname; set => _surname = value; }
-        public DateTime BirthDate { get => _birthDate; set => _birthDate = value.Date; }
+        public DateTime BirthDate {
+            get {
+                DateTime.TryParseExact(_birthDate, LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime res);
+
+                if (res == DateTime.MinValue) Debug.LogWarning("No Birth Date saved!");
+                
+                return res;
+            }
+            set {
+                _birthDate = value.ToString(LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture);
+            }
+        }
         // Representation Information
         public string Country { get => _country; set => _country = value; }
         public string Academy { get => _academy; set => _academy = value; }
@@ -43,7 +55,18 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
         public RankType Rank { get => _rank; set => _rank = value; }
         public List<StyleType> Styles { get => _styles; set => _styles = value; }
         public Color SaberColor { get => _saberColor; set => _saberColor = value; }
-        public DateTime StartDate { get => _startDate; set => _startDate = value.Date; }
+        public DateTime StartDate {
+            get {
+                DateTime.TryParseExact(_startDate, LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime res);
+
+                if (res == DateTime.MinValue) Debug.LogWarning("No Start Date saved!");
+
+                return res;
+            }
+            set {
+                _startDate = value.ToString(LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture);
+            }
+        }
         // OTHER
         public int Tier { get => _tier; set => _tier = value; }
         #endregion
@@ -63,14 +86,14 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
             _id = Guid.NewGuid().ToString();
             _name = name;
             _surname = surname;
-            _birthDate = birthDate;
+            _birthDate = birthDate.ToString(LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture);
             _country = country;
             _academy = academy;
             _school = school;
             _rank = rank;
             _styles = styles;
             _saberColor = saberColor;
-            _startDate = startDate;
+            _startDate = startDate.ToString(LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture);
             _tier = tier;
 
             if (!styles.Contains(StyleType.Form1)) {
@@ -86,14 +109,14 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
             _id = id;
             _name = name;
             _surname = surname;
-            _birthDate = birthDate;
+            _birthDate = birthDate.ToString(LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture);
             _country = country;
             _academy = academy;
             _school = school;
             _rank = rank;
             _styles = styles;
             _saberColor = saberColor;
-            _startDate = startDate;
+            _startDate = startDate.ToString(LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture);
             _tier = tier;
 
             if (!styles.Contains(StyleType.Form1)) {
@@ -114,7 +137,7 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
         }
 
         public int GetAge() {
-            return DateTime.Now.Year - _birthDate.Year;
+            return DateTime.Now.Year - BirthDate.Year;
         }
 
         public List<SubRankType> GetSubRankTypes() {

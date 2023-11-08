@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.Localization.Settings;
 
 namespace YannickSCF.LSTournaments.Common {
+
     public enum TournamentType { Unrated, School, Academy, National, International }
 
     // -------------- Athlete Info Enumerators --------------
@@ -50,6 +51,7 @@ namespace YannickSCF.LSTournaments.Common {
     public enum MixedRankingType { TBD, PrefStyle, PrefWar }
 
     public static class LSTournamentEnums {
+
         public static string GetEnumsLocalization<T>(T enumValue) {
             if (typeof(T).BaseType != typeof(Enum)) {
                 Debug.LogWarning("The value introduced must be an enum");

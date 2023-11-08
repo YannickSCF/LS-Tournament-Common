@@ -28,7 +28,6 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
         private const string STYLES_SEPARATOR = ",";
 
         private const string REGEX_COMMAS_OUT_OF_LIST = "(?!\\B\"[^\"]*),(?![^\"]*\"\\B)";
-        private const string DATE_FORMAT = "dd/MM/yyyy";
 
         private const string SEMI_COLON_SEPARATOR = ";";
         private const string TAB_SEPARATOR = "\t";
@@ -223,7 +222,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
                     break;
                 case AthleteInfoType.BirthDate:
                     try {
-                        toFill.BirthDate = DateTime.ParseExact(info, DATE_FORMAT, CultureInfo.InvariantCulture);
+                        toFill.BirthDate = DateTime.ParseExact(info, LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture);
                     } catch (Exception e) {
                         Debug.LogWarning(e.StackTrace);
                         CommonExceptionEvents.ThrowDeserializeFieldError(AthleteInfoType.BirthDate, info);
@@ -231,7 +230,7 @@ namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
                     break;
                 case AthleteInfoType.StartDate:
                     try {
-                        toFill.StartDate = DateTime.ParseExact(info, DATE_FORMAT, CultureInfo.InvariantCulture);
+                        toFill.StartDate = DateTime.ParseExact(info, LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture);
                     } catch (Exception e) {
                         Debug.LogWarning(e.StackTrace);
                         CommonExceptionEvents.ThrowDeserializeFieldError(AthleteInfoType.StartDate, info);

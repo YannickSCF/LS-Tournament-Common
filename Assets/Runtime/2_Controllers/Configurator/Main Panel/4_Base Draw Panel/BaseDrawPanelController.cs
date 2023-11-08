@@ -20,10 +20,6 @@ using YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel;
 namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
     public class BaseDrawPanelController : PanelController {
 
-        private const string COLOR_TAG = "<color={0}>{1}</color>";
-
-        private readonly List<Color> RANK_COLORS = new List<Color>(){ Color.blue, Color.yellow, Color.red, Color.green, Color.magenta };
-
         [SerializeField] private BaseDrawPanelView _baseDrawPanelView;
 
         private TournamentData _tempData;
@@ -157,8 +153,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
         }
 
         private string GetRankWithColor(RankType rank) {
-            return string.Format(COLOR_TAG,
-                "#" + ColorUtility.ToHtmlStringRGB(RANK_COLORS[(int)rank]),
+            return string.Format(LSTournamentConsts.COLOR_TAG,
+                "#" + ColorUtility.ToHtmlStringRGB(LSTournamentConsts.RANK_COLORS[(int)rank]),
                 Enum.GetName(typeof(RankType), rank));
         }
     }

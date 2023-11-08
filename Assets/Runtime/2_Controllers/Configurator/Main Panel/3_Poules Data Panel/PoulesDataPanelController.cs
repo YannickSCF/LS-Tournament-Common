@@ -17,8 +17,6 @@ using YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel;
 namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel {
     public class PoulesDataPanelController : PanelController {
 
-        private const string TRANSAPARENT_TAG = "<color=#00000000>{0}</color>";
-
         [SerializeField] private PoulesDataPanelView _poulesDataPanelView;
 
         private PouleNamingType _namingType;
@@ -231,7 +229,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
 
             if (exampleNames.Count % poulesByLine != 0) {
                 int pouleIndex = exampleNames.Count;
-                string transparentName = string.Format(TRANSAPARENT_TAG, exampleNames[exampleNames.Count - 1]);
+                string transparentName = string.Format(LSTournamentConsts.TRANSAPARENT_TAG, exampleNames[exampleNames.Count - 1]);
                 while (pouleIndex % poulesByLine != 0) {
                     example += "\t" + transparentName;
                     ++pouleIndex;
