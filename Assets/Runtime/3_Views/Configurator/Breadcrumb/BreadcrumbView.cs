@@ -25,7 +25,9 @@ namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
 
         #region Mono
         private void Awake() {
-            crumbs = new List<CrumbView>();
+            if (crumbs == null) {
+                crumbs = new List<CrumbView>();
+            }
         }
 
         private void OnEnable() {
@@ -42,6 +44,9 @@ namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
         public void SetBreadcrumb(List<string> crumbNames) {
             foreach (Transform oldCrumbs in _crumbsParent) {
                 DestroyImmediate(oldCrumbs.gameObject);
+            }
+            if (crumbs == null) {
+                crumbs = new List<CrumbView>();
             }
             crumbs.Clear();
 
