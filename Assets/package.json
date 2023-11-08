@@ -6,7 +6,7 @@
   "unity": "2021.3",
   "unityRelease": "0b5",
   "dependencies": {
-    "https://github.com/SrejonKhan/AnotherFileBrowser.git": "0.5.0",
+    "com.srejonkhan.another-file-browser": "https://github.com/SrejonKhan/AnotherFileBrowser.git",
     "com.yannickscf.countries-data": "0.0.2",
     "com.yannickscf.project-basecode-template": "0.4.1"
   },
