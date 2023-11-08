@@ -7,13 +7,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 // Custom dependencies
+using YannickSCF.GeneralApp.Controller.UI.Windows;
+using YannickSCF.GeneralApp.View.UI.Windows;
 using YannickSCF.LSTournaments.Common.Controllers.MainPanel;
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Views.Breadcrumb;
 
 namespace YannickSCF.LSTournaments.Common.Controllers {
-    public class ConfiguratorController : MonoBehaviour {
+    public class ConfiguratorController : WindowController<WindowView> {
 
         [Header("Tournament Formulas")]
         [SerializeField] private List<TournamentFormula> _allTournamentFormulas;

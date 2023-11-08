@@ -286,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 894501036788243815}
   - component: {fileID: 8882021565873794350}
+  - component: {fileID: 2826248830782000683}
   m_Layer: 5
   m_Name: Configurator Window
   m_TagString: Untagged
@@ -330,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ae70818f475254a932c211117ad593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  View: {fileID: 2826248830782000683}
   _allTournamentFormulas:
   - {fileID: 11400000, guid: 4d9db3e15f87bda4eb531ca5f11665e6, type: 2}
   - {fileID: 11400000, guid: 411d50854933ec049b9ac6526e2e39d6, type: 2}
@@ -343,6 +345,18 @@ MonoBehaviour:
   - {fileID: 3783060466791203151, guid: a0cd3bcb2b1fec24cb6c4417da1a8abe, type: 3}
   - {fileID: 7356379574072716045, guid: 39b46b7a08be2eb4c8ddda63547c3d64, type: 3}
   _configurationContent: {fileID: 6071606250398540710}
+--- !u!114 &2826248830782000683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894501036788243814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac323ede18484fb438c15208d32c0b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &894501037080797204
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +483,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 25.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
