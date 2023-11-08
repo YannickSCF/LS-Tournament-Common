@@ -4,18 +4,19 @@
  **/
 
 // Dependencies
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 // Custom dependencies
 using YannickSCF.GeneralApp.Controller.UI.Windows;
-using YannickSCF.GeneralApp.View.UI.Windows;
 using YannickSCF.LSTournaments.Common.Controllers.MainPanel;
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
+using YannickSCF.LSTournaments.Common.Views;
 using YannickSCF.LSTournaments.Common.Views.Breadcrumb;
 
 namespace YannickSCF.LSTournaments.Common.Controllers {
-    public class ConfiguratorController : WindowController<WindowView> {
+    public class ConfiguratorController : WindowController<ConfiguratorView> {
 
         [Header("Tournament Formulas")]
         [SerializeField] private List<TournamentFormula> _allTournamentFormulas;
@@ -32,6 +33,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         private List<PanelController> _allConfiguratorPanels;
         private int _panelIndex = 0;
 
+        private Action _onCloseAction;
+        private Action _onFinishAction;
+
         #region Mono
         private void Awake() {
             TournamentFormulaUtils.SetTournamentFormulas(_allTournamentFormulas, _customFormula);
@@ -39,11 +43,15 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             Initialize();
         }
 
-        private void OnEnable() {
+        protected override void OnEnable() {
+            base.OnEnable();
+
             _breadcrumbView.NavigationBreadCrumbPressed += OnBreadcrumbNavigation;
         }
 
-        private void OnDisable() {
+        protected override void OnDisable() {
+            base.OnDisable();
+
             _breadcrumbView.NavigationBreadCrumbPressed -= OnBreadcrumbNavigation;
         }
         #endregion
@@ -59,7 +67,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
 
             if (clickedNext && _panelIndex >= _allConfiguratorPanels.Count - 1) {
                 _data = _allConfiguratorPanels[_panelIndex].RetrieveData(_data);
-                Debug.Log("Finished!");
+                _onFinishAction?.Invoke();
                 return;
             }
 
@@ -95,6 +103,16 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             // Set breadcrumb
             _breadcrumbView.SetBreadcrumb(breadcrumbNames);
             _breadcrumbView.UpdateCurrentCrumb(0);
+        }
+
+        public void SetCallbacks(Action closedCallback, Action finishedCallback) {
+            _onCloseAction = closedCallback;
+            _onFinishAction = finishedCallback;
+        }
+
+        public void CloseConfigurator() {
+            _data = new TournamentData();
+            _onCloseAction?.Invoke();
         }
     }
 }
