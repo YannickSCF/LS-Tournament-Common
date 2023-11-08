@@ -65,9 +65,13 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         #endregion
 
         #region Validators
-        private bool ValidateName() {
+        private bool ValidateName(bool showErrorAdvices) {
             bool res = !string.IsNullOrEmpty(_name);
-            _baseDataPanelView.ShowTournamentNameNotValidated(!res);
+
+            if (showErrorAdvices) {
+                _baseDataPanelView.ShowTournamentNameNotValidated(!res);
+            }
+
             return res;
         }
         #endregion
@@ -77,10 +81,10 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             return LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "BaseDataPanel_BreadcrumbTitle");
         }
 
-        public override void ValidateAll() {
+        public override void ValidateAll(bool showErrorAdvices = true) {
             bool res = true;
 
-            res &= ValidateName();
+            res &= ValidateName(showErrorAdvices);
 
             _IsDataValidated = res;
         }
@@ -96,7 +100,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             _baseDataPanelView.SetTournamentFormula(_allFormulas.IndexOf(_formula), true);
             UpdateFormulaDescription();
 
-            ValidateAll();
+            ValidateAll(false);
         }
 
         public override TournamentData RetrieveData(TournamentData data) {

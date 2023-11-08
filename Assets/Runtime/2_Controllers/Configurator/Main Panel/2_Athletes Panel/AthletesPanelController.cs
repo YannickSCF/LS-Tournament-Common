@@ -479,7 +479,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             return LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "AthletesPanel_BreadcrumbTitle");
         }
 
-        public override void ValidateAll() {
+        public override void ValidateAll(bool showErrorAdvices = true) {
             bool res = true;
             res &= ValidateAthletesMinimum();
 
@@ -497,7 +497,10 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             }
 
             UpdateErrorsPanel();
-            _bottomView.ShowAthletesNotValidated(!res);
+
+            if (showErrorAdvices) {
+                _bottomView.ShowAthletesNotValidated(!res);
+            }
         }
 
         public override void GiveData(TournamentData data) {
@@ -521,7 +524,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 data.AthletesInfoUsed[type] = _columnsShown[type] && _columnsEnabled[type];
             }
 
-            ValidateAll();
+            ValidateAll(false);
         }
 
         public override TournamentData RetrieveData(TournamentData data) {

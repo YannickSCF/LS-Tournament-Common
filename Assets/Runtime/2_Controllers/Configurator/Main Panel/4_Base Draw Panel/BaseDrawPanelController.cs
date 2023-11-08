@@ -62,9 +62,12 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
             return LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "BaseDraw_BreadcrumbTitle");
         }
 
-        public override void ValidateAll() {
+        public override void ValidateAll(bool showErrorAdvices = true) {
             _IsDataValidated = _fillerType != PouleFillerType.TBD;
-            _baseDrawPanelView.ShowFillerTypeNotValidated(!IsDataValidated);
+            
+            if (showErrorAdvices) {
+                _baseDrawPanelView.ShowFillerTypeNotValidated(!IsDataValidated);
+            }
         }
 
         public override void GiveData(TournamentData data) {
@@ -81,7 +84,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
             _baseDrawPanelView.SetFillerSubtype(_fillerSubtype);
 
             FillExampleByTypeAndSubtype();
-            ValidateAll();
+
+            ValidateAll(false);
         }
 
         public override TournamentData RetrieveData(TournamentData data) {

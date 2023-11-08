@@ -86,37 +86,45 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
             return LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "PoulesData_BreadcrumbTitle");
         }
 
-        public override void ValidateAll() {
+        public override void ValidateAll(bool showErrorAdvices = true) {
             bool res = true;
 
-            res &= ValidatePouleNaming();
-            res &= ValidatePouleCountAndSize();
+            res &= ValidatePouleNaming(showErrorAdvices);
+            res &= ValidatePouleCountAndSize(showErrorAdvices);
 
             _IsDataValidated = res;
         }
 
-        private bool ValidatePouleNaming() {
+        private bool ValidatePouleNaming(bool showErrorAdvices) {
             if (_currentPouleCountAndSize == null) return false;
 
             switch (_namingType) {
                 case PouleNamingType.Numbers:
-                    _poulesDataPanelView.ShowNamingNotValidated(false);
+                    if (showErrorAdvices) {
+                        _poulesDataPanelView.ShowNamingNotValidated(false);
+                    }
                     return true;
                 case PouleNamingType.Letters:
                 default:
                     bool res = _pouleRounds > 0 && _pouleRounds <= _currentPouleCountAndSize[0, 0] + _currentPouleCountAndSize[1, 0];
-                    _poulesDataPanelView.ShowNamingNotValidated(!res);
+                    if (showErrorAdvices) {
+                        _poulesDataPanelView.ShowNamingNotValidated(!res);
+                    }
                     return res;
             }
         }
 
-        private bool ValidatePouleCountAndSize() {
+        private bool ValidatePouleCountAndSize(bool showErrorAdvices) {
             if (_currentPouleCountAndSize == null) {
-                _poulesDataPanelView.ShowCountAndSizeNotValidated(true);
+                if (showErrorAdvices) {
+                    _poulesDataPanelView.ShowCountAndSizeNotValidated(true);
+                }
                 return false;
             }
 
-            _poulesDataPanelView.ShowCountAndSizeNotValidated(false);
+            if (showErrorAdvices) {
+                _poulesDataPanelView.ShowCountAndSizeNotValidated(false);
+            }
             return true;
         }
 
@@ -141,8 +149,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
                     data.TournamentFormulaName, _athletesCount, _currentPouleCountAndSize);
             }
 
-            ValidateAll();
             UpdateNamingExample(_namingType, _pouleRounds);
+
+            ValidateAll(false);
         }
 
         public override TournamentData RetrieveData(TournamentData data) {
