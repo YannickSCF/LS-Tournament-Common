@@ -5,6 +5,11 @@
   "description": "Tournament C# files common on Ludosport tournament tools",
   "unity": "2021.3",
   "unityRelease": "0b5",
+  "dependencies": {
+    "com.srejonkhan.another-file-browser": "0.5.0",
+    "com.yannickscf.countries-data": "0.0.2",
+    "com.yannickscf.project-basecode-template": "0.4.1"
+  },
   "author": {
     "name": "Yannick Santa Cruz Feuillias",
     "email": "yannickscf@gmail.com",
