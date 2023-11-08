@@ -7,8 +7,8 @@
   "unityRelease": "0b5",
   "dependencies": {
     "com.srejonkhan.another-file-browser": "https://github.com/SrejonKhan/AnotherFileBrowser.git",
-    "com.yannickscf.countries-data": "0.0.2",
-    "com.yannickscf.project-basecode-template": "0.4.1"
+    "com.yannickscf.countries-data": "https://github.com/YannickSCF/Countries-Data.git?path=/Assets",
+    "com.yannickscf.project-basecode-template": "https://github.com/YannickSCF/project-basecode-template.git?path=/Assets"
   },
   "author": {
     "name": "Yannick Santa Cruz Feuillias",
