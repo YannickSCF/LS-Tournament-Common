@@ -13,7 +13,7 @@ using YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers;
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using static YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers.AthletesListDeserializer;
 
-namespace YannickSCF.LSTournaments.Common.Tools.Importers {
+namespace YannickSCF.LSTournaments.Common.Tools.Importer {
     public static class FileImporter {
 
         #region Athletes File Importer

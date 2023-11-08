@@ -16,7 +16,7 @@ using YannickSCF.CountriesData;
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
-using YannickSCF.LSTournaments.Common.Tools.Importers;
+using YannickSCF.LSTournaments.Common.Tools.Importer;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Bottom;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content;
