@@ -1,6 +1,9 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     02/10/2023
+ **/
+
 // Dependencies
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // Custom dependencies

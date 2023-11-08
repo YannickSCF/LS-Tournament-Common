@@ -1,3 +1,8 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     29/09/2023
+ **/
+
 // Dependencies
 using System;
 using System.Collections.Generic;
@@ -20,6 +25,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         }
         #endregion
 
+        #region Methods to Add/Remove athletes from table
         public int AddAthleteRow() {
             AthleteRowView newRow = Instantiate(_athleteRowPrefab, _tableScrollRect.content);
             
@@ -68,7 +74,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             }
             _rows.Clear();
         }
+        #endregion
 
+        #region Methods to change athletes info visibility
         public void ShowRowColumn(int rowToUpdate, AthleteInfoType checkboxInfo, bool show) {
             _rows[rowToUpdate].ShowRowColumn(checkboxInfo, show);
         }
@@ -88,5 +96,6 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
                 row.EnableRowColumn(checkboxInfo, enable);
             }
         }
+        #endregion
     }
 }

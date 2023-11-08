@@ -1,8 +1,12 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     23/10/2023
+ **/
+
 // Dependencies
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-// Custom dependencies
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel.ExamplePoules {
     public class ExamplePoulesAthleteView : MonoBehaviour {

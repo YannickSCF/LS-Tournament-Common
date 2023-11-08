@@ -1,4 +1,9 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     21/09/2023
+ **/
 
+// Dependencies
 using System.Collections.Generic;
 using UnityEngine;
 

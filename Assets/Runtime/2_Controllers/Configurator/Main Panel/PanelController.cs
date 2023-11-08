@@ -1,5 +1,9 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     06/10/2023
+ **/
+
 // Dependencies
-using System.Collections.Generic;
 using UnityEngine;
 // Custom dependencies
 using YannickSCF.LSTournaments.Common.Scriptables.Data;

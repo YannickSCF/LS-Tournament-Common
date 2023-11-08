@@ -1,3 +1,8 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     21/09/2023
+ **/
+
 // Dependencies
 using System;
 using System.Collections.Generic;

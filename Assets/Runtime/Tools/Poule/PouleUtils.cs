@@ -1,4 +1,10 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     25/09/2023
+ **/
+
 // Dependencies
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,7 +14,6 @@ using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Tools.Poule.Filler;
 using YannickSCF.LSTournaments.Common.Tools.Poule.Filler.Specific;
-using System;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Poule {
     public struct PouleNamingObject {

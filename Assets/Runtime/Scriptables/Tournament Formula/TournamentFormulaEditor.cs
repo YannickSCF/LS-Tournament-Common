@@ -1,3 +1,8 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     02/10/2023
+ **/
+
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
@@ -6,10 +11,10 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Formulas.FormulasEditor {
     [CustomEditor(typeof(TournamentFormula))]
     internal class TournamentFormulaEditor : Editor {
         private TournamentFormula _formula;
-        SerializedObject _formulaSerialized;
+        private SerializedObject _formulaSerialized;
 
-        float minPouleSize = 0;
-        float maxPouleSize = 0;
+        private float minPouleSize = 0;
+        private float maxPouleSize = 0;
 
         private void OnEnable() {
             _formula = (TournamentFormula)target;

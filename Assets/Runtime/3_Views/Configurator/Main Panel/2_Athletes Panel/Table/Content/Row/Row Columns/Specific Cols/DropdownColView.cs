@@ -1,5 +1,9 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     29/09/2023
+ **/
+
 // Dependencies
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;

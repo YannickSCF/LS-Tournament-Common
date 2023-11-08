@@ -1,14 +1,17 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     29/09/2023
+ **/
+
 // Dependencies
-using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Newtonsoft.Json;
 // Custom dependencies
 using AnotherFileBrowser.Windows;
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers;
-using static YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers.AthletesListDeserializer;
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
-using Newtonsoft.Json;
+using static YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers.AthletesListDeserializer;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Importers {
     public static class FileImporter {

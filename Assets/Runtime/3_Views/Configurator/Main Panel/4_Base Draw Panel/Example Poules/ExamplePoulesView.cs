@@ -1,8 +1,12 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     23/10/2023
+ **/
+
 // Dependencies
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-// Custom dependencies
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel.ExamplePoules {
     public class ExamplePoulesView : MonoBehaviour {
@@ -30,6 +34,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel.ExampleP
                 UpdatePouleContent(pouleName, allPouleEntries);
             }
         }
+        
         public void ResetPoule() {
             foreach (Transform child in _examplePouleContent) {
                 DestroyImmediate(child.gameObject);

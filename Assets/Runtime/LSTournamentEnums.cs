@@ -1,3 +1,8 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     21/09/2023
+ **/
+
 // Dependencies
 using System;
 using System.Collections.Generic;
@@ -45,6 +50,15 @@ namespace YannickSCF.LSTournaments.Common {
     public enum MixedRankingType { TBD, PrefStyle, PrefWar }
 
     public static class LSTournamentEnums {
+        public static string GetEnumsLocalization<T>(T enumValue) {
+            if (typeof(T).BaseType != typeof(Enum)) {
+                Debug.LogWarning("The value introduced must be an enum");
+                return null;
+            }
+
+            return LocalizationSettings.StringDatabase.GetLocalizedString("Common Enums", typeof(T).Name + "." + enumValue.ToString());
+        }
+
         public static List<string> GetEnumsLocalizations<T>(List<T> enumValues = null) {
             List<string> typeOptions = new List<string>();
 

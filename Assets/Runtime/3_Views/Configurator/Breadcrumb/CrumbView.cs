@@ -1,3 +1,8 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     27/09/2023
+ **/
+
 // Dependencies
 using UnityEngine;
 using UnityEngine.UI;

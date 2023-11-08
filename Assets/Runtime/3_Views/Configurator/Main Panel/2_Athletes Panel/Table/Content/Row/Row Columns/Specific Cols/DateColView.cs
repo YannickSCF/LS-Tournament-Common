@@ -1,3 +1,8 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     30/09/2023
+ **/
+
 // Dependencies
 using System;
 using System.Globalization;

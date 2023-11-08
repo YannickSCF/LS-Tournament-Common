@@ -1,14 +1,19 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     29/09/2023
+ **/
+
 // Dependencies
 using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
 // Custom dependencies
 using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.CountriesData;
-using System.Text.RegularExpressions;
 
 namespace YannickSCF.LSTournaments.Common.Tools.Importer.Deserializers {
     public static class AthletesListDeserializer {

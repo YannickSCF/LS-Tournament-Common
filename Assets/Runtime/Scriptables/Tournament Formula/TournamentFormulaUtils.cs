@@ -1,8 +1,12 @@
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     06/10/2023
+ **/
+
 // Dependencies
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace YannickSCF.LSTournaments.Common.Scriptables.Formulas {
     public static class TournamentFormulaUtils {

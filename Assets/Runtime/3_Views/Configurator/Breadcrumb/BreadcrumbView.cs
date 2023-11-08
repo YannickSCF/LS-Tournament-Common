@@ -1,8 +1,13 @@
-using System.Collections;
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     27/09/2023
+ **/
+
+// Dependencies
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+// Custom dependencies
 using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {

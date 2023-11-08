@@ -1,7 +1,14 @@
-using AnotherFileBrowser.Windows;
+/**
+ * Author:      Yannick Santa Cruz Feuillias
+ * Created:     29/09/2023
+ **/
+
+// Dependencies
 using System;
 using System.IO;
 using UnityEngine;
+// Custom dependencies
+using AnotherFileBrowser.Windows;
 
 namespace YannickSCF.LSTournaments.Common.Tools.FileManagement {
     public static class FileExporter {
