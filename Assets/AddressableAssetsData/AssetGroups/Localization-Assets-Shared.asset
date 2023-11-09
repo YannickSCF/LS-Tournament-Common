@@ -16,17 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: fa61b7d07fd7ef640818c0a6157e6460
-  m_SerializeEntries:
-  - m_GUID: d67b121927964614e9e0d6d020c6ca6f
-    m_Address: Assets/Samples/Localizations/Tables/Common Enums/Common Enums Shared
-      Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-  - m_GUID: bb2d78d8b9dee9b46a86bcf92169a56c
-    m_Address: Assets/Samples/Localizations/Tables/Configurator/Configurator Descriptions
-      Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 13f38ed6d7765864a9c648aab806a337, type: 2}
   m_SchemaSet:

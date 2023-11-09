@@ -12,29 +12,24 @@
   },
   "samples": [
     {
-      "displayName": "Localizations",
+      "displayName": "Common Ludosport Localizations",
       "description": "Contains basic Localization of Ludosport commons",
-      "path": "Samples/Localizations"
+      "path": "Samples~/Localizations"
     },
     {
-      "displayName": "Ludosport TextMesh Pro",
-      "description": "Contains TextMeshPro configuration for Ludosport projects",
-      "path": "Samples/Ludosport TextMesh Pro"
-    },
-    {
-      "displayName": "Mobile-LS-Samples",
+      "displayName": "Ludosport Samples (Mobile)",
       "description": "Contains basic assets for Mobile",
-      "path": "Samples/Mobile-LS-Samples"
+      "path": "Samples~/Mobile-LS-Samples"
     },
     {
-      "displayName": "PC-LS-Samples",
+      "displayName": "Ludosport Samples (PC)",
       "description": "Contains basic assets for PC",
-      "path": "Samples/PC-LS-Samples"
+      "path": "Samples~/PC-LS-Samples"
     },
     {
-      "displayName": "Tournament Formulas",
+      "displayName": "Common Ludosport Tournament Formulas",
       "description": "Contains basic Formulas for LS tournaments",
-      "path": "Samples/Tournament Formulas~"
+      "path": "Samples~/Tournament-Formulas"
     }
   ]
 }
