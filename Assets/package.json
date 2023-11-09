@@ -17,6 +17,11 @@
       "path": "Samples/Localizations"
     },
     {
+      "displayName": "Ludosport TextMesh Pro",
+      "description": "Contains TextMeshPro configuration for Ludosport projects",
+      "path": "Samples/Ludosport TextMesh Pro"
+    },
+    {
       "displayName": "Mobile-LS-Samples",
       "description": "Contains basic assets for Mobile",
       "path": "Samples/Mobile-LS-Samples"
