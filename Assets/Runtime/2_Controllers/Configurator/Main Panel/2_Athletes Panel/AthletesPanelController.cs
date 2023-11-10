@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 // Custom Dependencies
 using YannickSCF.CountriesData;
@@ -17,20 +16,14 @@ using YannickSCF.LSTournaments.Common.Models.Athletes;
 using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Tools.Importer;
+using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Events;
-using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Bottom;
-using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Content;
-using YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Header;
 
 namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
-    public class AthletesPanelController : PanelController {
+    public class AthletesPanelController : PanelController<AthletesPanelView> {
 
         private const int MIN_ATHLETES = 4;
 
-        [Header("Views")]
-        [SerializeField] private AthleteTableHeaderView _headerView;
-        [SerializeField] private AthleteTableContentView _contentView;
-        [SerializeField] private AthleteBottomTableView _bottomView;
         [Header("Other objects")]
         [SerializeField] private GameObject _loadingPanel;
 
@@ -161,8 +154,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         }
 
         private void OnAthleteAddedByButton() {
-            int athleteCount = _contentView.AddAthleteRow();
-            _bottomView.SetAthletesCount(GetAthletesCountText(athleteCount));
+            int athleteCount = _View.AddAthlete();
 
             _currentAthletes.Add(new AthleteInfoModel());
 
@@ -173,8 +165,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         }
 
         private void OnAthleteRemovedByButton() {
-            int athleteCount = _contentView.RemoveLastAthleteRow();
-            _bottomView.SetAthletesCount(GetAthletesCountText(athleteCount));
+            int athleteCount = _View.RemoveAthlete();
 
             RemoveAllIndexErrors(_currentAthletes.Count - 1);
             _currentAthletes.RemoveAt(_currentAthletes.Count - 1);
@@ -195,7 +186,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 if (athletes != null && athletes.Count > 0) {
                     _loadingPanel.SetActive(true);
                     // Reset all table content
-                    _contentView.ResetContent();
+                    _View.ResetAthletesList();
                     // Add all needed rows with the athlete information
                     StartCoroutine(AddRowsCoroutine(athletes));
                     _currentAthletes = athletes;
@@ -220,20 +211,12 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
 
             for (int i = 0; i < athletes.Count; ++i) {
                 yield return new WaitForEndOfFrame();
-                _contentView.AddAthleteInfo(
-                    athletes[i].Country,
-                    athletes[i].Surname,
-                    athletes[i].Name,
-                    athletes[i].Academy,
-                    athletes[i].School,
-                    athletes[i].Rank,
-                    athletes[i].Styles,
-                    athletes[i].Tier,
-                    athletes[i].SaberColor,
-                    athletes[i].BirthDate,
-                    athletes[i].StartDate);
+                _View.AddAthlete(i + 1,
+                    athletes[i].Country, athletes[i].Surname, athletes[i].Name,
+                    athletes[i].Academy, athletes[i].School, athletes[i].Rank,
+                    athletes[i].Styles, athletes[i].Tier, athletes[i].SaberColor,
+                    athletes[i].BirthDate, athletes[i].StartDate);
 
-                _bottomView.SetAthletesCount(GetAthletesCountText(i + 1));
                 UpdateAllHiddenAndDisableColumnsInARow(i);
             }
 
@@ -433,7 +416,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 }
             }
 
-            _bottomView.SetErrorPanelText(errors);
+            _View.UpdateErrorsList(errors);
         }
 
         private class RowsErrors {
@@ -499,25 +482,27 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             UpdateErrorsPanel();
 
             if (showErrorAdvices) {
-                _bottomView.ShowAthletesNotValidated(!res);
+                _View.ShowAthletesNotValidated(!res);
             }
         }
 
         public override void GiveData(TournamentData data) {
             _currentAthletes = data.Athletes;
-            _bottomView.SetAthletesCount(GetAthletesCountText(_currentAthletes.Count));
+
             if (_currentAthletes.Count != 0) {
                 _loadingPanel.SetActive(true);
                 // Reset all table content
-                _contentView.ResetContent();
+                _View.ResetAthletesList();
                 // Add all needed rows with the athlete information
                 StartCoroutine(AddRowsCoroutine(_currentAthletes));
+            } else {
+                _View.SetAthletesCount(0);
             }
 
             UpdateColumnsToShow(data.TournamentType);
             UpdateColumnsEnabled(data.AthletesInfoUsed);
 
-            UpdateColumnsBlocked(data.TournamentFormulaName);
+            UpdateColumnsBlockedByFillerType(data.TournamentFormulaName);
 
             Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
             foreach (AthleteInfoType type in infoTypes) {
@@ -545,10 +530,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
                 case AthleteInfoType.Country:
                 case AthleteInfoType.Academy:
                 case AthleteInfoType.School:
-                    _headerView.ShowColumn(columnToShow, show);
-
                     _columnsShown[columnToShow] = show;
-                    _contentView.ShowRowColumns(columnToShow, show);
+                    _View.ShowColumn(columnToShow, show);
                     break;
                 default:
                     Debug.LogWarning($"You cannot Show/Hide {Enum.GetName(typeof(AthleteInfoType), columnToShow)} column!");
@@ -557,10 +540,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
         }
 
         public void EnableColumn(AthleteInfoType checkboxInfo, bool isChecked) {
-            _headerView.EnableHeader(checkboxInfo, isChecked);
-
             _columnsEnabled[checkboxInfo] = isChecked;
-            _contentView.EnableRowColumns(checkboxInfo, isChecked);
+            _View.EnableColumn(checkboxInfo, isChecked);
         }
 
         private void UpdateColumnsToShow(TournamentType tournamentType) {
@@ -584,32 +565,24 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             }
         }
 
-        private void UpdateColumnsBlocked(string tournamentFormulaName) {
+        private void UpdateColumnsBlockedByFillerType(string tournamentFormulaName) {
             TournamentFormula formula = TournamentFormulaUtils.GetFormulaByName(tournamentFormulaName);
             if (!TournamentFormulaUtils.IsCustomFormula(tournamentFormulaName)) {
-                _headerView.BlockHeader(AthleteInfoType.Rank, formula.FillerType == PouleFillerType.ByRank);
-                _headerView.BlockHeader(AthleteInfoType.Styles, formula.FillerType == PouleFillerType.ByStyle);
-                _headerView.BlockHeader(AthleteInfoType.Tier, formula.FillerType == PouleFillerType.ByTier);
+                _View.UpdateColumnsBlockedByFillerType(formula.FillerType);
             }
         }
 
-        private string GetAthletesCountText(int count) {
-            var localizedString = new LocalizedString("Configurator Texts", "AthletesPanel_Athletes");
-            localizedString.Arguments = new object[] { count };
-            return localizedString.GetLocalizedString();
-        }
-
         private void UpdateBottomButtons(int athleteCount) {
-            _bottomView.SetRemoveButtonInteractable(athleteCount > 0);
+            _View.SetRemoveButtonInteractable(athleteCount > 0);
         }
 
         private void UpdateAllHiddenAndDisableColumnsInARow(int rowToUpdate) {
             foreach (KeyValuePair<AthleteInfoType, bool> columnShownInfo in _columnsShown) {
-                _contentView.ShowRowColumn(rowToUpdate, columnShownInfo.Key, columnShownInfo.Value);
+                _View.ShowRowColumn(rowToUpdate, columnShownInfo.Key, columnShownInfo.Value);
             }
 
             foreach (KeyValuePair<AthleteInfoType, bool> columnEnabledInfo in _columnsEnabled) {
-                _contentView.EnableRowColumn(rowToUpdate, columnEnabledInfo.Key, columnEnabledInfo.Value);
+                _View.EnableRowColumn(rowToUpdate, columnEnabledInfo.Key, columnEnabledInfo.Value);
             }
         }
     }

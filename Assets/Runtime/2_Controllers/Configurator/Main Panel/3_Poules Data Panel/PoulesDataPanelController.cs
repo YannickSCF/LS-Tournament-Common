@@ -15,9 +15,7 @@ using YannickSCF.LSTournaments.Common.Tools.Poule;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.PoulesDataPanel;
 
 namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel {
-    public class PoulesDataPanelController : PanelController {
-
-        [SerializeField] private PoulesDataPanelView _poulesDataPanelView;
+    public class PoulesDataPanelController : PanelController<PoulesDataPanelView> {
 
         private PouleNamingType _namingType;
         private int _pouleRounds;
@@ -32,19 +30,19 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
 
         #region Mono
         private void OnEnable() {
-            _poulesDataPanelView.NamingTypeChanged += OnNamingChanged;
-            _poulesDataPanelView.PouleRoundChanged += OnPouleRoundChanged;
+            _View.NamingTypeChanged += OnNamingChanged;
+            _View.PouleRoundChanged += OnPouleRoundChanged;
 
-            _poulesDataPanelView.HowToDefinePoulesChanged += OnHowToDefinePoulesChanged;
-            _poulesDataPanelView.SelectedPouleDataChanged += OnSelectedPouleDataChanged;
+            _View.HowToDefinePoulesChanged += OnHowToDefinePoulesChanged;
+            _View.SelectedPouleDataChanged += OnSelectedPouleDataChanged;
         }
 
         private void OnDisable() {
-            _poulesDataPanelView.NamingTypeChanged -= OnNamingChanged;
-            _poulesDataPanelView.PouleRoundChanged -= OnPouleRoundChanged;
+            _View.NamingTypeChanged -= OnNamingChanged;
+            _View.PouleRoundChanged -= OnPouleRoundChanged;
 
-            _poulesDataPanelView.HowToDefinePoulesChanged -= OnHowToDefinePoulesChanged;
-            _poulesDataPanelView.SelectedPouleDataChanged -= OnSelectedPouleDataChanged;
+            _View.HowToDefinePoulesChanged -= OnHowToDefinePoulesChanged;
+            _View.SelectedPouleDataChanged -= OnSelectedPouleDataChanged;
         }
         #endregion
 
@@ -99,14 +97,14 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
             switch (_namingType) {
                 case PouleNamingType.Numbers:
                     if (showErrorAdvices) {
-                        _poulesDataPanelView.ShowNamingNotValidated(false);
+                        _View.ShowNamingNotValidated(false);
                     }
                     return true;
                 case PouleNamingType.Letters:
                 default:
                     bool res = _pouleRounds > 0 && _pouleRounds <= _currentPouleCountAndSize[0, 0] + _currentPouleCountAndSize[1, 0];
                     if (showErrorAdvices) {
-                        _poulesDataPanelView.ShowNamingNotValidated(!res);
+                        _View.ShowNamingNotValidated(!res);
                     }
                     return res;
             }
@@ -115,13 +113,13 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
         private bool ValidatePouleCountAndSize(bool showErrorAdvices) {
             if (_currentPouleCountAndSize == null) {
                 if (showErrorAdvices) {
-                    _poulesDataPanelView.ShowCountAndSizeNotValidated(true);
+                    _View.ShowCountAndSizeNotValidated(true);
                 }
                 return false;
             }
 
             if (showErrorAdvices) {
-                _poulesDataPanelView.ShowCountAndSizeNotValidated(false);
+                _View.ShowCountAndSizeNotValidated(false);
             }
             return true;
         }
@@ -129,11 +127,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
         public override void GiveData(TournamentData data) {
             _namingType = data.NamingInfo;
             _pouleRounds = data.RoundsOfPoules;
-            _poulesDataPanelView.SetPouleNamingType((int)_namingType, _pouleRounds);
+            _View.SetPouleNamingType((int)_namingType, _pouleRounds);
 
             _athletesCount = data.Athletes.Count;
 
-            _poulesDataPanelView.SetSelectableCountSize(TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName));
+            _View.SetSelectableCountSize(TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName));
             if (TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName)) {
                 _possiblePoulesByPouleCount = PouleUtils.GetPossiblePoulesByNumberOfPoules(_athletesCount);
                 _possiblePoulesByMaxSize = PouleUtils.GetPossiblePoulesByMaxPouleSize(_athletesCount);
@@ -143,7 +141,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
                 _currentPouleCountAndSize = PouleUtils.GetPoulesAndSize(_athletesCount,
                         TournamentFormulaUtils.GetFormulaByName(data.TournamentFormulaName));
 
-                _poulesDataPanelView.SetPoulesCountSizeAttributes(
+                _View.SetPoulesCountSizeAttributes(
                     data.TournamentFormulaName, _athletesCount, _currentPouleCountAndSize);
             }
 
@@ -185,11 +183,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
             }
             _namingType = newNaming;
 
-            _poulesDataPanelView.SetPouleNamingType((int)_namingType, _pouleRounds);
-            _poulesDataPanelView.SetInteractablePouleRounds(newNaming == PouleNamingType.Letters);
+            _View.SetPouleNamingType((int)_namingType, _pouleRounds);
+            _View.SetInteractablePouleRounds(newNaming == PouleNamingType.Letters);
 
             string example = GetNamingText();
-            _poulesDataPanelView.SetPouleNamingExample(example);
+            _View.SetPouleNamingExample(example);
         }
 
         private string GetNamingText() {
@@ -251,12 +249,12 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
                     break;
             }
 
-            _poulesDataPanelView.SetPoulesCountSizeDropdownOptions(options);
+            _View.SetPoulesCountSizeDropdownOptions(options);
         }
 
         private void UpdatePouleAttribute(bool noValue = false) {
             if (!noValue) {
-                _poulesDataPanelView.SetPoulesCountSizeDropdownOptionSelected(_pouleSizeCountDropdownValue);
+                _View.SetPoulesCountSizeDropdownOptionSelected(_pouleSizeCountDropdownValue);
                 switch (_howToDefine) {
                     case PoulesBy.MaxPoulesSize:
                         if (_possiblePoulesByMaxSize.ContainsKey(_pouleSizeCountDropdownValue)) {
@@ -278,7 +276,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
                 _currentPouleCountAndSize = null;
             }
 
-            _poulesDataPanelView.SetPoulesCountSizeAttributes(_athletesCount, _currentPouleCountAndSize);
+            _View.SetPoulesCountSizeAttributes(_athletesCount, _currentPouleCountAndSize);
         }
     }
 }

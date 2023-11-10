@@ -18,9 +18,7 @@ using YannickSCF.LSTournaments.Common.Tools.Poule;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel;
 
 namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
-    public class BaseDrawPanelController : PanelController {
-
-        [SerializeField] private BaseDrawPanelView _baseDrawPanelView;
+    public class BaseDrawPanelController : PanelController<BaseDrawPanelView> {
 
         private TournamentData _tempData;
 
@@ -29,13 +27,13 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
 
         #region Mono
         private void OnEnable() {
-            _baseDrawPanelView.FillerTypeChanged += OnFillerTypeChanged;
-            _baseDrawPanelView.FillerSubtypeChanged += OnFillerSubtypeChanged;
+            _View.FillerTypeChanged += OnFillerTypeChanged;
+            _View.FillerSubtypeChanged += OnFillerSubtypeChanged;
         }
 
         private void OnDisable() {
-            _baseDrawPanelView.FillerTypeChanged -= OnFillerTypeChanged;
-            _baseDrawPanelView.FillerSubtypeChanged -= OnFillerSubtypeChanged;
+            _View.FillerTypeChanged -= OnFillerTypeChanged;
+            _View.FillerSubtypeChanged -= OnFillerSubtypeChanged;
         }
         #endregion
 
@@ -62,7 +60,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
             _IsDataValidated = _fillerType != PouleFillerType.TBD;
             
             if (showErrorAdvices) {
-                _baseDrawPanelView.ShowFillerTypeNotValidated(!IsDataValidated);
+                _View.ShowFillerTypeNotValidated(!IsDataValidated);
             }
         }
 
@@ -72,12 +70,12 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
             _fillerType = data.FillerTypeInfo;
             _fillerSubtype = data.FillerSubtypeInfo;
 
-            _baseDrawPanelView.RemoveSelectableTypes(data.GetFillerTypesCannotBeUsed());
-            _baseDrawPanelView.RemoveSelectableSubtypes(data.GetFillerSubtypesCannotBeUsed());
+            _View.RemoveSelectableTypes(data.GetFillerTypesCannotBeUsed());
+            _View.RemoveSelectableSubtypes(data.GetFillerSubtypesCannotBeUsed());
 
             TournamentFormula formula = TournamentFormulaUtils.GetFormulaByName(data.TournamentFormulaName);
-            _baseDrawPanelView.SetFillerType(_fillerType, TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName) || formula.FillerType == PouleFillerType.TBD);
-            _baseDrawPanelView.SetFillerSubtype(_fillerSubtype);
+            _View.SetFillerType(_fillerType, TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName) || formula.FillerType == PouleFillerType.TBD);
+            _View.SetFillerSubtype(_fillerSubtype);
 
             FillExampleByTypeAndSubtype();
 
@@ -95,7 +93,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
             Randomizer.SetSeed(0);
 
             if (_fillerType == PouleFillerType.TBD) {
-                _baseDrawPanelView.SetExample(LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "BaseDraw_Title_Conditions_Example_Empty"));
+                _View.SetExample(LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "BaseDraw_Title_Conditions_Example_Empty"));
                 return;
             }
             PouleNamingObject? namingData = _tempData.GetNamingData();
@@ -111,7 +109,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
                 examplePoules.Add(tempPoules[i].Name, GetPouleText(tempPoules[i]));
             }
 
-            _baseDrawPanelView.SetExample(examplePoules);
+            _View.SetExample(examplePoules);
         }
 
         private List<string> GetPouleText(PouleDataModel pouleData) {

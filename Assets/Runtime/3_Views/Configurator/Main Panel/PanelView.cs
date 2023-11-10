@@ -11,6 +11,8 @@ using UnityEngine.UI;
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel {
     public class PanelView : MonoBehaviour {
 
+        [SerializeField] private Animator _animator;
+
         private readonly Color _ErrorColor = Color.red;
         private readonly Color _NormalColor = Color.white;
 
@@ -67,6 +69,21 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel {
 
             yield return new WaitForSeconds(WAIT_TO_HIDE_VALIDATION_ERROR);
             image.CrossFadeColor(Color.white, TIME_TO_HIDE_VALIDATION_ERROR, true, true);
+        }
+    
+        public virtual void MovePanelLeft() {
+            if (_animator == null) return;
+            _animator.SetInteger("Position", -1);
+        }
+
+        public virtual void MovePanelRight() {
+            if (_animator == null) return;
+            _animator.SetInteger("Position", 1);
+        }
+
+        public virtual void MovePanelCenter() {
+            if (_animator == null) return;
+            _animator.SetInteger("Position", 0);
         }
     }
 }

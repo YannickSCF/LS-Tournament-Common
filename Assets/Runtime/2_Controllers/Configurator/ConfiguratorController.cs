@@ -14,6 +14,8 @@ using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Views;
 using YannickSCF.LSTournaments.Common.Views.Breadcrumb;
+using YannickSCF.LSTournaments.Common.Views.MainPanel;
+using static YannickSCF.LSTournaments.Common.Controllers.MainPanel.PanelController;
 
 namespace YannickSCF.LSTournaments.Common.Controllers {
     public class ConfiguratorController : WindowController<ConfiguratorView> {
@@ -37,6 +39,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         private Action _onFinishAction;
 
         #region Mono
+        private void Awake() {
+            Init("xd");
+        }
         protected override void OnEnable() {
             base.OnEnable();
 
@@ -66,15 +71,16 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             }
 
             _data = _allConfiguratorPanels[_panelIndex].RetrieveData(_data);
-            _allConfiguratorPanels[_panelIndex].gameObject.SetActive(false);
 
             if (clickedNext) {
+                _allConfiguratorPanels[_panelIndex].MovePanel(PanelPosition.Left);
                 ++_panelIndex;
             } else {
+                _allConfiguratorPanels[_panelIndex].MovePanel(PanelPosition.Right);
                 --_panelIndex;
             }
 
-            _allConfiguratorPanels[_panelIndex].gameObject.SetActive(true);
+            _allConfiguratorPanels[_panelIndex].MovePanel(PanelPosition.Center);
             _allConfiguratorPanels[_panelIndex].GiveData(_data);
 
             _breadcrumbView.UpdateCurrentCrumb(_panelIndex);
@@ -88,9 +94,10 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
 
             List<string> breadcrumbNames = new List<string>();
             _allConfiguratorPanels = new List<PanelController>();
+
             foreach (PanelController configuratorPanelPrefab in _allConfiguratorPanelsPrefabs) {
                 PanelController newPanelController = Instantiate(configuratorPanelPrefab, _configurationContent);
-                newPanelController.gameObject.SetActive(false);
+                newPanelController.MovePanel(PanelPosition.Right);
                 breadcrumbNames.Add(newPanelController.GetTitle());
 
                 _allConfiguratorPanels.Add(newPanelController);
@@ -107,7 +114,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         public void SetData(TournamentData data) {
             _data = data;
 
-            _allConfiguratorPanels[0].gameObject.SetActive(true);
+            _allConfiguratorPanels[0].MovePanel(PanelPosition.Center);
             _allConfiguratorPanels[0].GiveData(_data);
         }
 

@@ -13,9 +13,7 @@ using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDataPanel;
 
 namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
-    public class BaseDataPanelController : PanelController {
-
-        [SerializeField] private BaseDataPanelView _baseDataPanelView;
+    public class BaseDataPanelController : PanelController<BaseDataPanelView>  {
 
         private TournamentType _type;
         private string _name;
@@ -26,20 +24,20 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         #region Mono
         private void Awake() {
             _allFormulas = TournamentFormulaUtils.GetTournamentFormulasNames();
-            _baseDataPanelView.FillFormulaDropdown(_allFormulas);
+            _View.FillFormulaDropdown(_allFormulas);
             UpdateFormulaDescription();
         }
 
         private void OnEnable() {
-            _baseDataPanelView.TypeChanged += OnTypeChanged;
-            _baseDataPanelView.NameChanged += OnNameChanged;
-            _baseDataPanelView.FormulaChanged += OnFormulaChanged;
+            _View.TypeChanged += OnTypeChanged;
+            _View.NameChanged += OnNameChanged;
+            _View.FormulaChanged += OnFormulaChanged;
         }
 
         private void OnDisable() {
-            _baseDataPanelView.TypeChanged -= OnTypeChanged;
-            _baseDataPanelView.NameChanged -= OnNameChanged;
-            _baseDataPanelView.FormulaChanged -= OnFormulaChanged;
+            _View.TypeChanged -= OnTypeChanged;
+            _View.NameChanged -= OnNameChanged;
+            _View.FormulaChanged -= OnFormulaChanged;
         }
         #endregion
 
@@ -69,7 +67,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             bool res = !string.IsNullOrEmpty(_name);
 
             if (showErrorAdvices) {
-                _baseDataPanelView.ShowTournamentNameNotValidated(!res);
+                _View.ShowTournamentNameNotValidated(!res);
             }
 
             return res;
@@ -91,13 +89,13 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
 
         public override void GiveData(TournamentData data) {
             _type = data.TournamentType;
-            _baseDataPanelView.SetTournamentType((int)_type, true);
+            _View.SetTournamentType((int)_type, true);
 
             _name = data.TournamentName;
-            _baseDataPanelView.SetTournamentName(_name, true);
+            _View.SetTournamentName(_name, true);
 
             _formula = string.IsNullOrEmpty(data.TournamentFormulaName) ? _allFormulas[0] : data.TournamentFormulaName;
-            _baseDataPanelView.SetTournamentFormula(_allFormulas.IndexOf(_formula), true);
+            _View.SetTournamentFormula(_allFormulas.IndexOf(_formula), true);
             UpdateFormulaDescription();
 
             ValidateAll(false);
@@ -113,7 +111,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         #endregion
 
         private void UpdateFormulaDescription() {
-            _baseDataPanelView.SetFormulaDescription(
+            _View.SetFormulaDescription(
                 LocalizationSettings.StringDatabase.GetLocalizedString("Configurator Texts", "FormulaDescription_" + _formula));
         }
     }
