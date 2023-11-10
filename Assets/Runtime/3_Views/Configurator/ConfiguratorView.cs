@@ -4,6 +4,7 @@
  **/
 
 // Dependencies
+using System;
 using System.Collections;
 using UnityEngine;
 //Custom dependencies
@@ -14,6 +15,11 @@ namespace YannickSCF.LSTournaments.Common.Views {
 
         [SerializeField] private Animator _animator;
 
+        public override void Open() {
+            base.Open();
+            _animator.SetBool("Show", true);
+        }
+
         public override void Show() {
             base.Show();
             _animator.SetBool("Show", true);
@@ -21,12 +27,17 @@ namespace YannickSCF.LSTournaments.Common.Views {
 
         public override void Hide() {
             _animator.SetBool("Show", false);
-            StartCoroutine(WaitToHideCoroutine());
+            StartCoroutine(WaitToAnimationsEnds(base.Hide));
         }
 
-        private IEnumerator WaitToHideCoroutine() {
+        public override void Close() {
+            _animator.SetBool("Show", false);
+            StartCoroutine(WaitToAnimationsEnds(base.Close));
+        }
+
+        private IEnumerator WaitToAnimationsEnds(Action actionToDo) {
             yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).IsName("configurator_hidden"));
-            base.Hide();
+            actionToDo?.Invoke();
         }
     }
 }
