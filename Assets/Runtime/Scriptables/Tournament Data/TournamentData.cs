@@ -274,5 +274,31 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
             return _athletes.FirstOrDefault(x => x.Id == athleteId);
         }
         #endregion
+
+        public void ResetData() {
+            _tournamentName = string.Empty;
+            _tournamentType = TournamentType.Unrated;
+            _tournamentFormulaName = string.Empty;
+            _seed = 0;
+            // ---------------------
+            _namingInfo = PouleNamingType.Letters;
+            _roundsOfPoules = 1;
+            
+            _fillerTypeInfo = PouleFillerType.TBD;
+            _fillerSubtypeInfo = PouleFillerSubtype.None;
+            
+            _pouleCountMaxSize = Vector2.zero;
+            _pouleCountMinSize = Vector2.zero;
+            
+            _data.Clear();
+            // ---------------------
+            _eliminationBracket.Clear();
+            // ---------------------
+            _athletesInfoUsed = null;
+            _ = AthletesInfoUsed;
+
+            _athletes.Clear();
+            _athletesStats.Clear();
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         [SerializeField] private List<TournamentFormula> _allTournamentFormulas;
         [SerializeField] private TournamentFormula _customFormula;
 
-        [Header("Tournament Data")]
+        [Header("Tournament Data (Optional)")]
         [SerializeField] private TournamentData _data;
 
         [Header("Configurator pages")]
@@ -37,12 +37,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         private Action _onFinishAction;
 
         #region Mono
-        private void Awake() {
-            TournamentFormulaUtils.SetTournamentFormulas(_allTournamentFormulas, _customFormula);
-
-            Initialize();
-        }
-
         protected override void OnEnable() {
             base.OnEnable();
 
@@ -87,7 +81,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         }
         #endregion
 
-        private void Initialize() {
+        public override void Init(string windowId) {
+            base.Init(windowId);
+
+            TournamentFormulaUtils.SetTournamentFormulas(_allTournamentFormulas, _customFormula);
+
             List<string> breadcrumbNames = new List<string>();
             _allConfiguratorPanels = new List<PanelController>();
             foreach (PanelController configuratorPanelPrefab in _allConfiguratorPanelsPrefabs) {
@@ -98,11 +96,19 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
                 _allConfiguratorPanels.Add(newPanelController);
             }
 
-            _allConfiguratorPanels[0].gameObject.SetActive(true);
-            _allConfiguratorPanels[0].GiveData(_data);
+            if(_data != null) {
+                SetData(_data);
+            }
             // Set breadcrumb
             _breadcrumbView.SetBreadcrumb(breadcrumbNames);
             _breadcrumbView.UpdateCurrentCrumb(0);
+        }
+
+        public void SetData(TournamentData data) {
+            _data = data;
+
+            _allConfiguratorPanels[0].gameObject.SetActive(true);
+            _allConfiguratorPanels[0].GiveData(_data);
         }
 
         public void SetCallbacks(Action closedCallback, Action finishedCallback) {
