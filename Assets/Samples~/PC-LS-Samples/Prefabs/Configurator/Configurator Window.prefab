@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 894501036788243815}
   - component: {fileID: 8882021565873794350}
   - component: {fileID: 2826248830782000683}
+  - component: {fileID: 5138557604639611844}
   m_Layer: 5
   m_Name: Configurator Window
   m_TagString: Untagged
@@ -357,6 +358,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac323ede18484fb438c15208d32c0b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 5138557604639611844}
+--- !u!95 &5138557604639611844
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894501036788243814}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fabbfe94ce3399448aa6a92ce409f9a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &894501037080797204
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +505,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.1
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

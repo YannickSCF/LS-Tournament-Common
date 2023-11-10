@@ -5,21 +5,28 @@
 
 // Dependencies
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 //Custom dependencies
 using YannickSCF.GeneralApp.View.UI.Windows;
 
 namespace YannickSCF.LSTournaments.Common.Views {
     public class ConfiguratorView : WindowView {
-        // Start is called before the first frame update
-        void Start() {
 
+        [SerializeField] private Animator _animator;
+
+        public override void Show() {
+            base.Show();
+            _animator.SetBool("Show", true);
         }
 
-        // Update is called once per frame
-        void Update() {
+        public override void Hide() {
+            _animator.SetBool("Show", false);
+            StartCoroutine(WaitToHideCoroutine());
+        }
 
+        private IEnumerator WaitToHideCoroutine() {
+            yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).IsName("configurator_hidden"));
+            base.Hide();
         }
     }
 }
