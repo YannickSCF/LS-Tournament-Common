@@ -50,10 +50,22 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         #endregion
 
         [Header("Basic Col References")]
+        [SerializeField] private RectTransform _localTransform;
         [SerializeField] private AthleteInfoType _infoType;
         [SerializeField] private Image _hidder;
 
         protected virtual void SetSelectablesInteractables(bool isInteractable) { }
+
+        public void SetColumnAnchors(float minX, float maxX) {
+            Vector2 oldSizeDelta = _localTransform.sizeDelta;
+            Vector2 oldAnchoredPosition = _localTransform.anchoredPosition;
+
+            _localTransform.anchorMin = new Vector2(minX, _localTransform.anchorMin.y);
+            _localTransform.anchorMax = new Vector2(maxX, _localTransform.anchorMax.y);
+
+            _localTransform.sizeDelta = oldSizeDelta;
+            _localTransform.anchoredPosition = oldAnchoredPosition;
+        }
 
         public void SetBackgroundColor(Color bgColor) {
             _hidder.color = bgColor;

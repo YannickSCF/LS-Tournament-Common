@@ -28,13 +28,17 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             UpdateFormulaDescription();
         }
 
-        private void OnEnable() {
+        protected override void OnEnable() {
+            base.OnEnable();
+
             _View.TypeChanged += OnTypeChanged;
             _View.NameChanged += OnNameChanged;
             _View.FormulaChanged += OnFormulaChanged;
         }
 
-        private void OnDisable() {
+        protected override void OnDisable() {
+            base.OnDisable();
+
             _View.TypeChanged -= OnTypeChanged;
             _View.NameChanged -= OnNameChanged;
             _View.FormulaChanged -= OnFormulaChanged;
@@ -44,6 +48,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         #region Events Listeners methods
         private void OnTypeChanged(int typeIndex) {
             _type = (TournamentType)typeIndex;
+
+            DataManager.Instance.AppData.SetAthletesInfoUsed(LSTournamentEnums.GetAthleteInfoBase(_type));
+
             ValidateAll();
         }
 
@@ -87,7 +94,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             _IsDataValidated = res;
         }
 
-        public override void GiveData(TournamentData data) {
+        public override void InitPanel() {
+            TournamentData data = DataManager.Instance.AppData;
             _type = data.TournamentType;
             _View.SetTournamentType((int)_type, true);
 
@@ -101,12 +109,14 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
             ValidateAll(false);
         }
 
-        public override TournamentData RetrieveData(TournamentData data) {
+        public override void FinishPanel() {
+            TournamentData data = DataManager.Instance.AppData;
+
             data.TournamentName = _name;
             data.TournamentType = _type;
             data.TournamentFormulaName = _formula;
 
-            return data;
+            DataManager.Instance.AppData = data;
         }
         #endregion
 

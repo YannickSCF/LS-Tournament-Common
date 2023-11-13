@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8711ea08d3e6bf04fbc93f31c9b5c15c, type: 3}
+  m_Name: Athlete Info Table Settings
+  m_EditorClassIdentifier: 
+  _rowHeight: 40
+  _countryCanExpand: 0
+  _countryIsVisible: 1
+  _countrySize: 6.5
+  _surnameCanExpand: 1
+  _surnameIsVisible: 1
+  _surnameSize: 12
+  _nameCanExpand: 1
+  _nameIsVisible: 1
+  _nameSize: 8
+  _academyCanExpand: 1
+  _academyIsVisible: 1
+  _academySize: 8.5
+  _schoolCanExpand: 1
+  _schoolIsVisible: 1
+  _schoolSize: 7.5
+  _rankCanExpand: 0
+  _rankIsVisible: 1
+  _rankSize: 6.5
+  _stylesCanExpand: 0
+  _stylesIsVisible: 1
+  _stylesSize: 25
+  _tierCanExpand: 0
+  _tierIsVisible: 1
+  _tierSize: 5
+  _saberColorCanExpand: 0
+  _saberColorIsVisible: 0
+  _saberColorSize: 6
+  _birthDateCanExpand: 0
+  _birthDateIsVisible: 0
+  _birthDateSize: 7.5
+  _startDateCanExpand: 0
+  _startDateIsVisible: 0
+  _startDateSize: 7.5

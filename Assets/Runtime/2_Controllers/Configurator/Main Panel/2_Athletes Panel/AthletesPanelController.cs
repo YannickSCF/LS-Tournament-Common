@@ -486,7 +486,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             }
         }
 
-        public override void GiveData(TournamentData data) {
+        public override void InitPanel() {
+            TournamentData data = DataManager.Instance.AppData;
             _currentAthletes = data.Athletes;
 
             if (_currentAthletes.Count != 0) {
@@ -500,28 +501,29 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesPanel {
             }
 
             UpdateColumnsToShow(data.TournamentType);
-            UpdateColumnsEnabled(data.AthletesInfoUsed);
+            //UpdateColumnsEnabled(data.AthletesInfoUsed);
 
             UpdateColumnsBlockedByFillerType(data.TournamentFormulaName);
 
             Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
             foreach (AthleteInfoType type in infoTypes) {
-                data.AthletesInfoUsed[type] = _columnsShown[type] && _columnsEnabled[type];
+                //data.AthletesInfoUsed[type] = _columnsShown[type] && _columnsEnabled[type];
             }
 
             ValidateAll(false);
         }
 
-        public override TournamentData RetrieveData(TournamentData data) {
+        public override void FinishPanel() {
+            TournamentData data = DataManager.Instance.AppData;
             Dictionary<AthleteInfoType, bool> infoUsed = new Dictionary<AthleteInfoType, bool>();
             foreach (Enum infoType in Enum.GetValues(typeof(AthleteInfoType))) {
                 infoUsed[(AthleteInfoType)infoType] =
                     _columnsShown[(AthleteInfoType)infoType] && _columnsEnabled[(AthleteInfoType)infoType];
             }
 
-            data.AthletesInfoUsed = infoUsed;
+            //data.AthletesInfoUsed = infoUsed;
             data.Athletes = _currentAthletes;
-            return data;
+            DataManager.Instance.AppData = data;
         }
         #endregion
 

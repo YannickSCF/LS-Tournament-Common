@@ -103,7 +103,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Content.
 
         #region SETTERS
         public void SetCountryField(string countryCode, bool withoutNotify = false) {
-            _countryRow.SetInitValue(countryCode, withoutNotify);
+            _countryRow.SetInitValue(countryCode);
         }
         public void SetSurnameField(string surname, bool withoutNotify = false) {
             _surnameRow.SetInputField(surname, withoutNotify);

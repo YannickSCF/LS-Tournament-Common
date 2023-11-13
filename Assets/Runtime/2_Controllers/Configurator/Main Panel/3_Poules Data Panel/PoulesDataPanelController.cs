@@ -29,7 +29,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
         private Dictionary<int, int[,]> _possiblePoulesByMaxSize;
 
         #region Mono
-        private void OnEnable() {
+        protected override void OnEnable() {
+            base.OnEnable();
+
             _View.NamingTypeChanged += OnNamingChanged;
             _View.PouleRoundChanged += OnPouleRoundChanged;
 
@@ -37,7 +39,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
             _View.SelectedPouleDataChanged += OnSelectedPouleDataChanged;
         }
 
-        private void OnDisable() {
+        protected override void OnDisable() {
+            base.OnDisable();
+
             _View.NamingTypeChanged -= OnNamingChanged;
             _View.PouleRoundChanged -= OnPouleRoundChanged;
 
@@ -124,7 +128,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
             return true;
         }
 
-        public override void GiveData(TournamentData data) {
+        public override void InitPanel() {
+            TournamentData data = DataManager.Instance.AppData;
             _namingType = data.NamingInfo;
             _pouleRounds = data.RoundsOfPoules;
             _View.SetPouleNamingType((int)_namingType, _pouleRounds);
@@ -150,7 +155,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
             ValidateAll(false);
         }
 
-        public override TournamentData RetrieveData(TournamentData data) {
+        public override void FinishPanel() {
+            TournamentData data = DataManager.Instance.AppData;
             data.NamingInfo = _namingType;
             data.RoundsOfPoules = _pouleRounds;
 
@@ -158,7 +164,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.PoulesDataPanel 
                 data.PouleCountAndSizes = _currentPouleCountAndSize;
             }
 
-            return data;
+            DataManager.Instance.AppData = data;
         }
         #endregion
 

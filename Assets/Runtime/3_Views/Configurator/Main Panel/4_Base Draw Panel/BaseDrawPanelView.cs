@@ -27,9 +27,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
         [Header("Example references")]
         [SerializeField] private TextMeshProUGUI _exampleCompleteText;
         [SerializeField] private ScrollRect _examplePoulesScroll;
+        [SerializeField] private Transform _examplePoulesPool;
         [SerializeField] private ExamplePoulesView _examplePoulePrefab;
 
         private List<ExamplePoulesView> _examplePoules;
+        private List<ExamplePoulesView> _examplePoulesDeactivated;
 
         private List<PouleFillerType> _addedTypes;
         private List<PouleFillerSubtype> _addedSubtypes;
@@ -62,7 +64,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
 
         #region Event Listeners methods
         private void FillerTypeDropdownChanged(int newFillerType) {
-            FillerTypeChanged?.Invoke(newFillerType);
+            PouleFillerType type = _addedTypes[newFillerType];
+            FillerTypeChanged?.Invoke((int)type);
         }
 
         private void FillerSubtypeDropdownChanged(int newFillerSubtype) {
@@ -117,9 +120,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
             _examplePoulesScroll.gameObject.SetActive(true);
             _exampleCompleteText.gameObject.SetActive(false);
 
-            if (poulesExamples.Count != _examplePoulesScroll.content.childCount) {
-                CleanExample();
+            // TODO: añadir pool para los ejemplos
 
+            if (poulesExamples.Count > _examplePoules.Count) {
                 foreach (KeyValuePair<string, List<string>> pouleExample in poulesExamples) {
                     ExamplePoulesView examplePoule = Instantiate(_examplePoulePrefab, _examplePoulesScroll.content);
                     examplePoule.SetPouleContent(pouleExample.Key, pouleExample.Value);

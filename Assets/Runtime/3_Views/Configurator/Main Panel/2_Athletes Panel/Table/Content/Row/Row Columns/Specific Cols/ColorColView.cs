@@ -102,6 +102,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
             SetExampleColor(color);
         }
 
+        public void ResetColor() {
+            _inputField.SetTextWithoutNotify("#");
+            SetExampleColor("#");
+        }
+
         private void SetExampleColor(string colorHex) {
             if (colorHex.Length < 7) {
                 int zerosNeeded = 7 - colorHex.Length;

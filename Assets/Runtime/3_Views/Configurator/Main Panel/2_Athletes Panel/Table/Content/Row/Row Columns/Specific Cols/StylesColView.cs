@@ -4,7 +4,9 @@
  **/
 
 // Dependencies
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,6 +67,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
 
         public void SetStyles(List<bool> stylesStatus, bool withoutNotify = false) {
             for (int i = 1; i < stylesStatus.Count; ++i) {
+                if (i >= _styleToggles.Count) break;
+
                 _styleSelections[i] = stylesStatus[i];
                 if (withoutNotify) {
                     _styleToggles[i].SetIsOnWithoutNotify(stylesStatus[i]);
@@ -82,6 +86,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
                 }
             }
             return styles;
+        }
+    
+        public void ResetStyles() {
+            List<bool> stylesStatus = Enumerable.Repeat(false, Enum.GetValues(typeof(StyleType)).Length).ToList();
+            SetStyles(stylesStatus, true);
         }
     }
 }

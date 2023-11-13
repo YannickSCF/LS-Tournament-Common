@@ -66,8 +66,14 @@ namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
                 crumbs[i].EnableCrumb(i <= indexCurrentCrumb);
                 crumbs[i].FocusCrumb(i == indexCurrentCrumb);
             }
+        }
 
-            _prevStepButton.interactable = indexCurrentCrumb != 0;
+        public void EnablePrevNavigationButton(bool enable) {
+            _prevStepButton.interactable = enable;
+        }
+
+        public void EnableNextNavigationButton(bool enable) {
+            _nextStepButton.interactable = enable;
         }
     }
 }

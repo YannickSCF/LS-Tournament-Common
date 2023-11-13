@@ -7,11 +7,20 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using YannickSCF.GeneralApp;
+using static YannickSCF.GeneralApp.CommonEventsDelegates;
 
 namespace YannickSCF.LSTournaments.Common.Views.MainPanel {
     public class PanelView : MonoBehaviour {
 
-        [SerializeField] private Animator _animator;
+        public event SimpleEventDelegate PanelMovedApart;
+        public event SimpleEventDelegate PanelCentered;
+
+        [SerializeField] private RectTransform _localTransform;
+
+        private Vector2 _leftPosition = new Vector2(-1.1f, -0.1f);
+        private Vector2 _centerPosition = new Vector2(0f, 1f);
+        private Vector2 _rightPosition = new Vector2(1.1f, 2.1f);
 
         private readonly Color _ErrorColor = Color.red;
         private readonly Color _NormalColor = Color.white;
@@ -72,18 +81,64 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel {
         }
     
         public virtual void MovePanelLeft() {
-            if (_animator == null) return;
-            _animator.SetInteger("Position", -1);
+            StartCoroutine(MovePanel(_leftPosition));
         }
 
         public virtual void MovePanelRight() {
-            if (_animator == null) return;
-            _animator.SetInteger("Position", 1);
+            StartCoroutine(MovePanel(_rightPosition));
         }
 
         public virtual void MovePanelCenter() {
-            if (_animator == null) return;
-            _animator.SetInteger("Position", 0);
+            StartCoroutine(MovePanel(_centerPosition));
+        }
+
+        private IEnumerator MovePanel(Vector2 position) {
+            float cTime = 0f;
+            float TotalTime = 0.5f;
+
+            Vector2 initAnchorMin = _localTransform.anchorMin;
+            Vector2 initAnchorMax = _localTransform.anchorMax;
+
+            Vector2 anchorMin = new Vector2(position.x, _localTransform.anchorMin.y);
+            Vector2 anchorMax = new Vector2(position.y, _localTransform.anchorMax.y);
+
+            Vector2 oldSizeDelta = _localTransform.sizeDelta;
+            Vector2 oldAnchoredPosition = _localTransform.anchoredPosition;
+
+            while (cTime < TotalTime) {
+                _localTransform.anchorMin = Vector2.Lerp(initAnchorMin, anchorMin, cTime / TotalTime);
+                _localTransform.anchorMax = Vector2.Lerp(initAnchorMax, anchorMax, cTime / TotalTime);
+
+                yield return new WaitForEndOfFrame();
+                cTime += Time.deltaTime;
+            }
+
+            _localTransform.anchorMin = new Vector2(position.x, _localTransform.anchorMin.y);
+            _localTransform.anchorMax = new Vector2(position.y, _localTransform.anchorMax.y);
+
+            _localTransform.sizeDelta = oldSizeDelta;
+            _localTransform.anchoredPosition = oldAnchoredPosition;
+
+            yield return new WaitForSeconds(0.25f);
+            if (position == _centerPosition) {
+                PanelMovedCenter();
+            } else if (position == _leftPosition) {
+                PanelMovedLeft();
+            } else if (position == _rightPosition) {
+                PanelMovedRight();
+            }
+        }
+
+        public virtual void PanelMovedLeft() {
+            PanelMovedApart?.Invoke();
+        }
+
+        public virtual void PanelMovedRight() {
+            PanelMovedApart?.Invoke();
+        }
+
+        public virtual void PanelMovedCenter() {
+            PanelCentered?.Invoke();
         }
     }
 }

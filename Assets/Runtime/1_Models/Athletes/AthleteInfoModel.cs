@@ -38,8 +38,6 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
         public DateTime BirthDate {
             get {
                 DateTime.TryParseExact(_birthDate, LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime res);
-
-                if (res == DateTime.MinValue) Debug.LogWarning("No Birth Date saved!");
                 
                 return res;
             }
@@ -58,8 +56,6 @@ namespace YannickSCF.LSTournaments.Common.Models.Athletes {
         public DateTime StartDate {
             get {
                 DateTime.TryParseExact(_startDate, LSTournamentConsts.DATE_FORMAT, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime res);
-
-                if (res == DateTime.MinValue) Debug.LogWarning("No Start Date saved!");
 
                 return res;
             }

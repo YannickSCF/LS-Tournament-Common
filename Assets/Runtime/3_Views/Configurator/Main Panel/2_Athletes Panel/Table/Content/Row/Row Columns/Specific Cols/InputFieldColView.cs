@@ -16,10 +16,12 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesPanel.Table.Co
         #region Mono
         private void OnEnable() {
             _inputField.onSubmit.AddListener(OnTextSetted);
+            _inputField.onEndEdit.AddListener(OnTextSetted);
         }
 
         private void OnDisable() {
             _inputField.onSubmit.RemoveAllListeners();
+            _inputField.onEndEdit.RemoveAllListeners();
         }
         #endregion
 

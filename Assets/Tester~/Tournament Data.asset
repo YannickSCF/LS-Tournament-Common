@@ -12,18 +12,148 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea546a798974544abfc9dfd4567d70d, type: 3}
   m_Name: Tournament Data
   m_EditorClassIdentifier: 
-  _tournamentName: 
-  _tournamentType: 0
-  _tournamentFormulaName: 
+  _tournamentName: 12345
+  _tournamentType: 2
+  _tournamentFormulaName: Bravo
   _seed: 0
   _namingInfo: 0
   _roundsOfPoules: 0
-  _fillerTypeInfo: 0
+  _fillerTypeInfo: 2
   _fillerSubtypeInfo: 0
   _pouleCountMaxSize: {x: 0, y: 0}
   _pouleCountMinSize: {x: 0, y: 0}
   _data: []
   _eliminationBracket: []
-  _athletesInfoUsed: []
-  _athletes: []
+  _athletesInfoUsed:
+  - _info: 0
+    _status: 1
+  - _info: 1
+    _status: 0
+  - _info: 2
+    _status: 0
+  - _info: 3
+    _status: 1
+  - _info: 4
+    _status: 2
+  - _info: 5
+    _status: 0
+  - _info: 6
+    _status: 0
+  - _info: 7
+    _status: 2
+  - _info: 8
+    _status: 1
+  - _info: 9
+    _status: 1
+  - _info: 10
+    _status: 1
+  _athletes:
+  - _id: 614cc4dd-ab94-469d-b9c9-cf10dae5cf77
+    _name: Daniel
+    _surname: "Mart\xEDnez Oller"
+    _birthDate: 08/05/1994
+    _country: ES
+    _academy: Atlas
+    _school: 
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 1, g: 0, b: 0, a: 1}
+    _startDate: 05/05/2016
+    _tier: 0
+  - _id: b05a455d-2e33-4897-be09-8b1061a84a5c
+    _name: Arnau
+    _surname: "P\xE9rez"
+    _birthDate: 08/07/1998
+    _country: ES
+    _academy: Atlas
+    _school: 
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 1, g: 0, b: 0, a: 1}
+    _startDate: 12/10/2018
+    _tier: 0
+  - _id: 2b7334b6-9a65-43bf-aaca-eba29a425a30
+    _name: "Adri\xE1"
+    _surname: "Balc\xE1zar"
+    _birthDate: 12/04/2000
+    _country: ES
+    _academy: Atlas
+    _school: 
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 1, b: 0, a: 1}
+    _startDate: 30/08/2019
+    _tier: 0
+  - _id: 2fa0fb5b-86ac-47a2-ab07-3c83aee3b6ec
+    _name: Roc
+    _surname: "Faixedas de Bol\xF3s"
+    _birthDate: 07/01/1990
+    _country: ES
+    _academy: Atlas
+    _school: 
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 1, g: 1, b: 0, a: 1}
+    _startDate: 08/06/2018
+    _tier: 0
+  - _id: 855da9c8-c941-4c6b-b32e-00277a0f4772
+    _name: Jordi
+    _surname: "Pallar\xE9s"
+    _birthDate: 30/12/2001
+    _country: ES
+    _academy: Atlas
+    _school: 
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 1, a: 1}
+    _startDate: 19/01/2020
+    _tier: 0
+  - _id: e699ae2c-9d1b-4681-b883-da3915668841
+    _name: Andrea
+    _surname: Bonet
+    _birthDate: 01/09/1998
+    _country: ES
+    _academy: Atlas
+    _school: 
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 1, b: 1, a: 1}
+    _startDate: 27/12/2022
+    _tier: 0
+  - _id: b699f36a-d762-4a31-88da-cc3f9315b9e1
+    _name: Guillermo
+    _surname: Torres
+    _birthDate: 21/10/1987
+    _country: ES
+    _academy: Atlas
+    _school: 
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 1, g: 0, b: 0, a: 1}
+    _startDate: 26/07/2018
+    _tier: 0
+  - _id: 1d2db084-ed07-48a2-9190-e548cb366dd5
+    _name: Ariadna
+    _surname: "Rodr\xEDguez"
+    _birthDate: 21/11/1996
+    _country: ES
+    _academy: Atlas
+    _school: 
+    _rank: 1
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 1, a: 1}
+    _startDate: 08/03/2017
+    _tier: 0
+  - _id: 68f9c047-3bd2-4c6e-8b03-708ed0b47bab
+    _name: 
+    _surname: 
+    _birthDate: 
+    _country: 
+    _academy: 
+    _school: 
+    _rank: 0
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _startDate: 
+    _tier: 0
   _athletesStats: []

@@ -26,12 +26,16 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
         private PouleFillerSubtype _fillerSubtype;
 
         #region Mono
-        private void OnEnable() {
+        protected override void OnEnable() {
+            base.OnEnable();
+
             _View.FillerTypeChanged += OnFillerTypeChanged;
             _View.FillerSubtypeChanged += OnFillerSubtypeChanged;
         }
 
-        private void OnDisable() {
+        protected override void OnDisable() {
+            base.OnDisable();
+
             _View.FillerTypeChanged -= OnFillerTypeChanged;
             _View.FillerSubtypeChanged -= OnFillerSubtypeChanged;
         }
@@ -64,16 +68,21 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
             }
         }
 
-        public override void GiveData(TournamentData data) {
+        public override void InitPanel() {
+            TournamentData data = DataManager.Instance.AppData;
             _tempData = data;
 
-            _fillerType = data.FillerTypeInfo;
+            TournamentFormula formula = TournamentFormulaUtils.GetFormulaByName(data.TournamentFormulaName);
+            if (TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName) || formula.FillerType == PouleFillerType.TBD) {
+                _fillerType = data.FillerTypeInfo;
+            } else {
+                _fillerType = formula.FillerType;
+            }
             _fillerSubtype = data.FillerSubtypeInfo;
 
             _View.RemoveSelectableTypes(data.GetFillerTypesCannotBeUsed());
             _View.RemoveSelectableSubtypes(data.GetFillerSubtypesCannotBeUsed());
 
-            TournamentFormula formula = TournamentFormulaUtils.GetFormulaByName(data.TournamentFormulaName);
             _View.SetFillerType(_fillerType, TournamentFormulaUtils.IsCustomFormula(data.TournamentFormulaName) || formula.FillerType == PouleFillerType.TBD);
             _View.SetFillerSubtype(_fillerSubtype);
 
@@ -82,10 +91,12 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDrawPanel {
             ValidateAll(false);
         }
 
-        public override TournamentData RetrieveData(TournamentData data) {
-            data.FillerTypeInfo =_fillerType;
+        public override void FinishPanel() {
+            TournamentData data = DataManager.Instance.AppData;
+            data.FillerTypeInfo = _fillerType;
             data.FillerSubtypeInfo = _fillerSubtype;
-            return data;
+
+            DataManager.Instance.AppData = data;
         }
         #endregion
 

@@ -14,18 +14,16 @@ using YannickSCF.LSTournaments.Common.Scriptables.Data;
 using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Views;
 using YannickSCF.LSTournaments.Common.Views.Breadcrumb;
-using YannickSCF.LSTournaments.Common.Views.MainPanel;
 using static YannickSCF.LSTournaments.Common.Controllers.MainPanel.PanelController;
 
 namespace YannickSCF.LSTournaments.Common.Controllers {
     public class ConfiguratorController : WindowController<ConfiguratorView> {
 
+        [SerializeField] private GameObject _loadingPanel;
+
         [Header("Tournament Formulas")]
         [SerializeField] private List<TournamentFormula> _allTournamentFormulas;
         [SerializeField] private TournamentFormula _customFormula;
-
-        [Header("Tournament Data (Optional)")]
-        [SerializeField] private TournamentData _data;
 
         [Header("Configurator pages")]
         [SerializeField] private BreadcrumbView _breadcrumbView;
@@ -40,18 +38,22 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
 
         #region Mono
         private void Awake() {
-            Init("xd");
+            Init("xd"); // TO DELETE
+
+            _breadcrumbView.EnablePrevNavigationButton(false);
         }
         protected override void OnEnable() {
             base.OnEnable();
 
             _breadcrumbView.NavigationBreadCrumbPressed += OnBreadcrumbNavigation;
+            PanelController.AskedLoading += OnAskedLoading;
         }
 
         protected override void OnDisable() {
             base.OnDisable();
 
             _breadcrumbView.NavigationBreadCrumbPressed -= OnBreadcrumbNavigation;
+            PanelController.AskedLoading -= OnAskedLoading;
         }
         #endregion
 
@@ -65,12 +67,12 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             }
 
             if (clickedNext && _panelIndex >= _allConfiguratorPanels.Count - 1) {
-                _data = _allConfiguratorPanels[_panelIndex].RetrieveData(_data);
+                _allConfiguratorPanels[_panelIndex].FinishPanel();
                 _onFinishAction?.Invoke();
                 return;
             }
 
-            _data = _allConfiguratorPanels[_panelIndex].RetrieveData(_data);
+            _allConfiguratorPanels[_panelIndex].FinishPanel();
 
             if (clickedNext) {
                 _allConfiguratorPanels[_panelIndex].MovePanel(PanelPosition.Left);
@@ -81,7 +83,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             }
 
             _allConfiguratorPanels[_panelIndex].MovePanel(PanelPosition.Center);
-            _allConfiguratorPanels[_panelIndex].GiveData(_data);
+            _allConfiguratorPanels[_panelIndex].InitPanel();
 
             _breadcrumbView.UpdateCurrentCrumb(_panelIndex);
         }
@@ -103,19 +105,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
                 _allConfiguratorPanels.Add(newPanelController);
             }
 
-            if(_data != null) {
-                SetData(_data);
-            }
+            _allConfiguratorPanels[0].InitPanel();
+            _allConfiguratorPanels[0].MovePanel(PanelPosition.Center);
             // Set breadcrumb
             _breadcrumbView.SetBreadcrumb(breadcrumbNames);
             _breadcrumbView.UpdateCurrentCrumb(0);
-        }
-
-        public void SetData(TournamentData data) {
-            _data = data;
-
-            _allConfiguratorPanels[0].MovePanel(PanelPosition.Center);
-            _allConfiguratorPanels[0].GiveData(_data);
         }
 
         public void SetCallbacks(Action closedCallback, Action finishedCallback) {
@@ -123,8 +117,19 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             _onFinishAction = finishedCallback;
         }
 
+        private void OnAskedLoading(PanelController panel, bool show) {
+            _loadingPanel.SetActive(show);
+
+            _breadcrumbView.EnableNextNavigationButton(!show);
+            if (_panelIndex > 0) {
+                _breadcrumbView.EnablePrevNavigationButton(!show);
+            } else {
+                _breadcrumbView.EnablePrevNavigationButton(false);
+            }
+        }
+
         public void CloseConfigurator() {
-            _data = new TournamentData();
+            DataManager.Instance.AppData.ResetData();
             _onCloseAction?.Invoke();
         }
     }

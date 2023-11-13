@@ -16,6 +16,7 @@ namespace YannickSCF.LSTournaments.Common {
     // -------------- Athlete Info Enumerators --------------
 
     public enum AthleteInfoType { Country, Surname, Name, Academy, School, Rank, Styles, Tier, SaberColor, BirthDate, StartDate };
+    public enum AthleteInfoStatus { Active, Hide, Disable};
     public enum RankType { Novizio, Iniziato, Accademico, Cavaliere, MaestroDiScuola }
     public enum SubRankType { Long, Dual, Staff }
     public enum StyleType {
@@ -83,6 +84,29 @@ namespace YannickSCF.LSTournaments.Common {
             }
 
             return typeOptions;
+        }
+
+        public static Dictionary<AthleteInfoType, AthleteInfoStatus> GetAthleteInfoBase(TournamentType tournamentType) {
+            Dictionary<AthleteInfoType, AthleteInfoStatus> infoToShow = new Dictionary<AthleteInfoType, AthleteInfoStatus>();
+            Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
+            foreach (Enum infoType in infoTypes) {
+                infoToShow[(AthleteInfoType)infoType] = AthleteInfoStatus.Active;
+            }
+
+            if (tournamentType == TournamentType.School ||
+                tournamentType == TournamentType.Academy ||
+                tournamentType == TournamentType.National) {
+                infoToShow[AthleteInfoType.Country] = AthleteInfoStatus.Hide;
+            }
+            if (tournamentType == TournamentType.School ||
+                tournamentType == TournamentType.Academy) {
+                infoToShow[AthleteInfoType.Academy] = AthleteInfoStatus.Hide;
+            }
+            if (tournamentType == TournamentType.School) {
+                infoToShow[AthleteInfoType.School] = AthleteInfoStatus.Hide;
+            }
+
+            return infoToShow;
         }
     }
 }
