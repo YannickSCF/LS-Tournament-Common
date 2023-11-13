@@ -343,7 +343,7 @@ MonoBehaviour:
   _breadcrumbView: {fileID: 894501037700282449}
   _allConfiguratorPanelsPrefabs:
   - {fileID: 4144980020027049884, guid: fce6ea515b1c1b54cba904b87aeb5495, type: 3}
-  - {fileID: 4935429875922214779, guid: 70f63917a20f3e14692329b6674c673a, type: 3}
+  - {fileID: 5380273528391389431, guid: d4de3b0811614f14b93d218a7de92fbf, type: 3}
   - {fileID: 3783060466791203151, guid: a0cd3bcb2b1fec24cb6c4417da1a8abe, type: 3}
   - {fileID: 7356379574072716045, guid: 39b46b7a08be2eb4c8ddda63547c3d64, type: 3}
   _configurationContent: {fileID: 6071606250398540710}

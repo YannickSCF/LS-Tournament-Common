@@ -4531,10 +4531,6 @@ PrefabInstance:
       propertyPath: _data
       value: 
       objectReference: {fileID: 11400000, guid: a7f20fffbd6bdf848a214aa14285e6eb, type: 2}
-    - target: {fileID: 8882021565873794350, guid: c77cd9da9392f374a9cb68f9e1e11721, type: 3}
-      propertyPath: _allConfiguratorPanelsPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 5380273528391389431, guid: d4de3b0811614f14b93d218a7de92fbf, type: 3}
     - target: {fileID: 8921171460668619201, guid: c77cd9da9392f374a9cb68f9e1e11721, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
