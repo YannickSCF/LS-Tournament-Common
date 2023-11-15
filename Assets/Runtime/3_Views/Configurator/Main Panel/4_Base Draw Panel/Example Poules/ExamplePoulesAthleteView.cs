@@ -33,5 +33,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel.ExampleP
         public void SetFlag(Sprite athleteFlag) {
             _athleteFlag.sprite = athleteFlag;
         }
+
+        public void ResetAthlete() {
+            _athleteText.text = string.Empty;
+        }
     }
 }

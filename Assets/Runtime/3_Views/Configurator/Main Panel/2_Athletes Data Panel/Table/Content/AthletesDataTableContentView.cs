@@ -88,7 +88,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesDataPanel.Tabl
             AthleteDataRowView newRow = GetNewAthleteRow();
 
             newRow.SetAthleteRowIndex(_rowsActive.Count - 1, _rowHeight);
-            newRow.SetCountryField(countryCode, true);
+            newRow.SetCountryField(countryCode, true, true);
             newRow.SetSurnameField(surname, true);
             newRow.SetNameField(name, true);
             newRow.SetAcademyField(academy, true);

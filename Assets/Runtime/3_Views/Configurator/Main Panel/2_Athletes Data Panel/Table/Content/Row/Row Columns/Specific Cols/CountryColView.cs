@@ -50,20 +50,11 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesDataPanel.Tabl
             _inputField.interactable = isInteractable;
         }
         #endregion
+        
+        public bool SetInitValue(string countryCode, bool setTwoDigitCode, bool withoutNotify = false) {
+            _twoDigitCode = setTwoDigitCode;
+            SetPlaceholder();
 
-        public bool SetInitValue(string countryCode, bool setToTwoDigitCode) {
-            _twoDigitCode = setToTwoDigitCode;
-
-            if (SetInitValue(countryCode)) {
-                _inputField.text = countryCode;
-                SetPlaceholder();
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool SetInitValue(string countryCode) {
             if (countryCode != null && countryCode.Length == 2 && _twoDigitCode) {
                 _captionImage.sprite = CountriesDataUtils.GetFlagByCode(countryCode);
             } else if (countryCode != null && countryCode.Length == 3 && !_twoDigitCode) {
@@ -72,7 +63,19 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesDataPanel.Tabl
                 return false;
             }
 
+            if (withoutNotify) {
+                _inputField.SetTextWithoutNotify(countryCode);
+            } else {
+                _inputField.text = countryCode;
+            }
+
             return true;
+        }
+
+        public void ResetValue() {
+            _inputField.SetTextWithoutNotify(string.Empty);
+            _captionImage.sprite = null;
+            _captionImage.color = new Color(1, 1, 1, 0);
         }
 
         public string GetCurrentValue() {

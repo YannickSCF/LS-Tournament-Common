@@ -107,8 +107,8 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesDataPanel.Tabl
         #endregion
 
         #region SETTERS
-        public void SetCountryField(string countryCode, bool withoutNotify = false) {
-            _countryRow.SetInitValue(countryCode);
+        public void SetCountryField(string countryCode, bool setTwoDigitCode, bool withoutNotify = false) {
+            _countryRow.SetInitValue(countryCode, setTwoDigitCode, withoutNotify);
         }
         public void SetSurnameField(string surname, bool withoutNotify = false) {
             _surnameRow.SetInputField(surname, withoutNotify);
@@ -253,7 +253,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesDataPanel.Tabl
 
             _localTransform.anchoredPosition = new Vector2(_localTransform.anchoredPosition.x, 0);
 
-            _countryRow.SetInitValue(string.Empty);
+            _countryRow.ResetValue();
             _countryRow.EnableColumn(true);
 
             _surnameRow.SetInputField(string.Empty, true);

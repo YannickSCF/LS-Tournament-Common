@@ -41,6 +41,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
         #region Mono
         private void Awake() {
             _examplePoules = new List<ExamplePoulesView>();
+            _examplePoulesDeactivated = new List<ExamplePoulesView>();
 
             _addedTypes = Enum.GetValues(typeof(PouleFillerType)).Cast<PouleFillerType>().ToList();
             _fillerTypeDropdown.ClearOptions();
@@ -99,7 +100,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
         /// </summary>
         /// <param name="completePanelText">Message to show on complete example panel.</param>
         public void SetExample(string completePanelText) {
-            CleanExample();
+            RemoveAllExamplePoules();
 
             _examplePoulesScroll.gameObject.SetActive(false);
 
@@ -120,28 +121,43 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.BaseDrawPanel {
             _examplePoulesScroll.gameObject.SetActive(true);
             _exampleCompleteText.gameObject.SetActive(false);
 
-            // TODO: añadir pool para los ejemplos
+            RemoveAllExamplePoules();
 
-            if (poulesExamples.Count > _examplePoules.Count) {
-                foreach (KeyValuePair<string, List<string>> pouleExample in poulesExamples) {
-                    ExamplePoulesView examplePoule = Instantiate(_examplePoulePrefab, _examplePoulesScroll.content);
-                    examplePoule.SetPouleContent(pouleExample.Key, pouleExample.Value);
-                    _examplePoules.Add(examplePoule);
-                }
-            } else {
-                int exampleCount = 0;
-                foreach (KeyValuePair<string, List<string>> pouleExample in poulesExamples) {
-                    _examplePoules[exampleCount].SetPouleContent(pouleExample.Key, pouleExample.Value);
-                    ++exampleCount;
-                }
+            foreach (KeyValuePair<string, List<string>> pouleExample in poulesExamples) {
+                AddExamplePoule(pouleExample.Key, pouleExample.Value);
             }
         }
 
-        private void CleanExample() {
-            foreach (Transform child in _examplePoulesScroll.content) {
-                DestroyImmediate(child.gameObject);
+        private void AddExamplePoule(string pouleName, List<string> pouleContent) {
+            ExamplePoulesView newExample;
+            if (_examplePoulesDeactivated.Count == 0) {
+                newExample = Instantiate(_examplePoulePrefab, _examplePoulesScroll.content);
+            } else {
+                newExample = _examplePoulesDeactivated[0];
+                _examplePoulesDeactivated.Remove(newExample);
+                newExample.transform.SetParent(_examplePoulesScroll.content);
+                newExample.gameObject.SetActive(true);
             }
-            _examplePoules.Clear();
+
+            newExample.SetPouleContent(pouleName, pouleContent);
+            _examplePoules.Add(newExample);
+        }
+
+        private void RemoveLastExamplePoule() {
+            ExamplePoulesView last = _examplePoules.ElementAt(_examplePoules.Count - 1);
+
+            last.gameObject.SetActive(false);
+            last.ResetPoule();
+            last.transform.SetParent(_examplePoulesPool);
+
+            _examplePoules.Remove(last);
+            _examplePoulesDeactivated.Add(last);
+        }
+
+        private void RemoveAllExamplePoules() {
+            for (int i = _examplePoules.Count - 1; i >= 0; --i) {
+                RemoveLastExamplePoule();
+            }
         }
         #endregion
 
