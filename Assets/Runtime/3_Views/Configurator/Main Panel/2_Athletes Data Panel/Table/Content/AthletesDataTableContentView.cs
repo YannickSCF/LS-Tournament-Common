@@ -191,8 +191,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesDataPanel.Tabl
         public void ResetScrollAndHideInvisibleRows(bool show) {
             _tableScrollRect.verticalScrollbar.value = 1;
             int rowsVisible = (int)(_tableScrollRect.viewport.rect.height / _rowHeight) + 2;
-            rowsVisible = 0;
+
             if (rowsVisible > 0 && _rowsActive != null && _rowsActive.Count > rowsVisible) {
+                rowsVisible = 0;
                 for (int i = rowsVisible; i < _rowsActive.Count; ++i) {
                     _rowsActive[i].gameObject.SetActive(show);
                 }
