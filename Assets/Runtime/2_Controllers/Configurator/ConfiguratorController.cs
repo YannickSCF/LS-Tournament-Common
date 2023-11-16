@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 // Custom dependencies
 using YannickSCF.GeneralApp.Controller.UI.Windows;
 using YannickSCF.LSTournaments.Common.Controllers.MainPanel;
@@ -20,6 +21,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
     public class ConfiguratorController : WindowController<ConfiguratorView> {
 
         [SerializeField] private GameObject _loadingPanel;
+        [SerializeField] private Button _closeButton;
 
         [Header("Tournament Formulas")]
         [SerializeField] private List<TournamentFormula> _allTournamentFormulas;
@@ -43,12 +45,16 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         protected override void OnEnable() {
             base.OnEnable();
 
+            _closeButton.onClick.AddListener(() => CloseConfigurator());
+
             _breadcrumbView.NavigationBreadCrumbPressed += OnBreadcrumbNavigation;
             PanelController.AskedLoading += OnAskedLoading;
         }
 
         protected override void OnDisable() {
             base.OnDisable();
+
+            _closeButton.onClick.RemoveAllListeners();
 
             _breadcrumbView.NavigationBreadCrumbPressed -= OnBreadcrumbNavigation;
             PanelController.AskedLoading -= OnAskedLoading;

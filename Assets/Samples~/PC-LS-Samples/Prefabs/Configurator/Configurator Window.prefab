@@ -335,6 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   View: {fileID: 2826248830782000683}
   _loadingPanel: {fileID: 2517388566698418402}
+  _closeButton: {fileID: 894501037827594841}
   _allTournamentFormulas:
   - {fileID: 11400000, guid: 4d9db3e15f87bda4eb531ca5f11665e6, type: 2}
   - {fileID: 11400000, guid: 411d50854933ec049b9ac6526e2e39d6, type: 2}
@@ -506,7 +507,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.05
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
