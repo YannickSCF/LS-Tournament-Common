@@ -32,7 +32,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel {
         public abstract void InitPanel();
         public abstract void FinishPanel();
 
-        public virtual void MovePanel(PanelPosition position) { }
+        public virtual void MovePanel(PanelPosition position, bool moveInmediate = false) { }
 
         protected virtual void OnPanelMovedApart() {
             PanelViewMovedApart?.Invoke(this);
@@ -65,16 +65,16 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel {
         }
         #endregion
 
-        public override void MovePanel(PanelPosition position) {
+        public override void MovePanel(PanelPosition position, bool moveInmediate = false) {
             base.MovePanel(position);
 
             switch (position) {
-                case PanelPosition.Left: _View.MovePanelLeft(); break;
-                case PanelPosition.Right: _View.MovePanelRight(); break;
+                case PanelPosition.Left: _View.MovePanelLeft(moveInmediate); break;
+                case PanelPosition.Right: _View.MovePanelRight(moveInmediate); break;
                 case PanelPosition.Center:
                 default:
                     AskLoading(true);
-                    _View.MovePanelCenter();
+                    _View.MovePanelCenter(moveInmediate);
                     break;
             }
         }

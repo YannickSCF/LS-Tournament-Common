@@ -107,12 +107,12 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesDataPanel {
         }
         #endregion
 
-        public override void MovePanelLeft() {
+        public override void MovePanelLeft(bool moveInmediate = false) {
             base.MovePanelLeft();
             _content.ResetScrollAndHideInvisibleRows(false);
         }
 
-        public override void MovePanelRight() {
+        public override void MovePanelRight(bool moveInmediate = false) {
             base.MovePanelRight();
             _content.ResetScrollAndHideInvisibleRows(false);
         }

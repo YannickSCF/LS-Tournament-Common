@@ -80,16 +80,29 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel {
             image.CrossFadeColor(Color.white, TIME_TO_HIDE_VALIDATION_ERROR, true, true);
         }
     
-        public virtual void MovePanelLeft() {
-            StartCoroutine(MovePanel(_leftPosition));
+        public virtual void MovePanelLeft(bool moveInmediate = false) {
+            if (!moveInmediate) {
+                StartCoroutine(MovePanel(_leftPosition));
+            } else {
+                MovePanelInmediate(_leftPosition);
+            }
         }
 
-        public virtual void MovePanelRight() {
-            StartCoroutine(MovePanel(_rightPosition));
+        public virtual void MovePanelRight(bool moveInmediate = false) {
+            if (!moveInmediate) {
+                StartCoroutine(MovePanel(_rightPosition));
+            } else {
+                MovePanelInmediate(_rightPosition);
+            }
         }
 
-        public virtual void MovePanelCenter() {
-            StartCoroutine(MovePanel(_centerPosition));
+        public virtual void MovePanelCenter(bool moveInmediate = false) {
+            gameObject.SetActive(true);
+            if (!moveInmediate) {
+                StartCoroutine(MovePanel(_centerPosition));
+            } else {
+                MovePanelInmediate(_centerPosition);
+            }
         }
 
         private IEnumerator MovePanel(Vector2 position) {
@@ -129,11 +142,32 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel {
             }
         }
 
+        private void MovePanelInmediate(Vector2 position) {
+            Vector2 oldSizeDelta = _localTransform.sizeDelta;
+            Vector2 oldAnchoredPosition = _localTransform.anchoredPosition;
+
+            _localTransform.anchorMin = new Vector2(position.x, _localTransform.anchorMin.y);
+            _localTransform.anchorMax = new Vector2(position.y, _localTransform.anchorMax.y);
+
+            _localTransform.sizeDelta = oldSizeDelta;
+            _localTransform.anchoredPosition = oldAnchoredPosition;
+
+            if (position == _centerPosition) {
+                PanelMovedCenter();
+            } else if (position == _leftPosition) {
+                PanelMovedLeft();
+            } else if (position == _rightPosition) {
+                PanelMovedRight();
+            }
+        }
+
         public virtual void PanelMovedLeft() {
+            gameObject.SetActive(false);
             PanelMovedApart?.Invoke();
         }
 
         public virtual void PanelMovedRight() {
+            gameObject.SetActive(false);
             PanelMovedApart?.Invoke();
         }
 

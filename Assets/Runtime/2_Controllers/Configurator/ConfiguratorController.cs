@@ -40,6 +40,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
 
         #region Mono
         private void Awake() {
+            Init("");
             _breadcrumbView.EnablePrevNavigationButton(false);
         }
         protected override void OnEnable() {
@@ -101,16 +102,18 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             List<string> breadcrumbNames = new List<string>();
             ResetConfigurator();
 
-            foreach (PanelController configuratorPanelPrefab in _allConfiguratorPanelsPrefabs) {
-                PanelController newPanelController = Instantiate(configuratorPanelPrefab, _configurationContent);
-                newPanelController.MovePanel(PanelPosition.Right);
+            for (int i = 0; i < _allConfiguratorPanelsPrefabs.Count; ++i) {
+                PanelController newPanelController = Instantiate(_allConfiguratorPanelsPrefabs[i], _configurationContent);
                 breadcrumbNames.Add(newPanelController.GetTitle());
+                if (i > 0) {
+                    newPanelController.MovePanel(PanelPosition.Right, true);
+                }
 
                 _allConfiguratorPanels.Add(newPanelController);
             }
 
             _allConfiguratorPanels[0].InitPanel();
-            _allConfiguratorPanels[0].MovePanel(PanelPosition.Center);
+            _allConfiguratorPanels[0].MovePanel(PanelPosition.Center, true);
             // Set breadcrumb
             _breadcrumbView.SetBreadcrumb(breadcrumbNames);
             _breadcrumbView.UpdateCurrentCrumb(0);
