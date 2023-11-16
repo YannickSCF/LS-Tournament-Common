@@ -42,13 +42,7 @@ namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
         #endregion
 
         public void SetBreadcrumb(List<string> crumbNames) {
-            foreach (Transform oldCrumbs in _crumbsParent) {
-                DestroyImmediate(oldCrumbs.gameObject);
-            }
-            if (crumbs == null) {
-                crumbs = new List<CrumbView>();
-            }
-            crumbs.Clear();
+            ResetBreadcrumb();
 
             for (int i = crumbNames.Count - 1; i >= 0; --i) {
                 CrumbView newCrumb = Instantiate(_crumbPrefab, _crumbsParent);
@@ -59,6 +53,21 @@ namespace YannickSCF.LSTournaments.Common.Views.Breadcrumb {
             }
 
             crumbs.Reverse();
+        }
+
+        public void ResetBreadcrumb() {
+
+            if (crumbs != null) {
+                List<CrumbView> auxCrumbs = new List<CrumbView>(crumbs);
+                foreach (CrumbView auxCrumb in auxCrumbs) {
+                    DestroyImmediate(auxCrumb.gameObject);
+                }
+            }
+
+            if (crumbs == null) {
+                crumbs = new List<CrumbView>();
+            }
+            crumbs.Clear();
         }
 
         public void UpdateCurrentCrumb(int indexCurrentCrumb) {

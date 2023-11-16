@@ -33,6 +33,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesDataPane
         private List<AthleteInfoModel> _currentAthletes;
         private List<RowsErrors> _errorsList;
 
+        // TODO: Revisar errores al cambiar columnas ocultas una vez cargados los atletas
+
         #region Mono
         private void Awake() {
             _currentAthletes = new List<AthleteInfoModel>();
@@ -168,7 +170,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesDataPane
         private void OnAthletesLoadedByFile() {
             string filePath = FileImporter.SelectAthletesFileWithBrowser();
             if (!string.IsNullOrEmpty(filePath)) {
-                AskLoading(true);
                 RemoveAllErrors();
                 // Get all participants
                 List<AthleteInfoModel> athletes = FileImporter.ImportAthletesFromFile(filePath);
@@ -205,8 +206,13 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesDataPane
         }
         private IEnumerator AddRowsCoroutine(List<AthleteInfoModel> athletes) {
             yield return new WaitForSeconds(0.25f);
+            AskLoading(true);
 
             for (int i = 0; i < athletes.Count; ++i) {
+                if (!IsLoadingActive) {
+                    AskLoading(true);
+                }
+
                 yield return new WaitForEndOfFrame();
                 _View.AddAthlete(athletes[i].Country, athletes[i].Surname, athletes[i].Name,
                     athletes[i].Academy, athletes[i].School, athletes[i].Rank,
@@ -503,13 +509,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.AthletesDataPane
 
         private void LoadAthletes(List<AthleteInfoModel> athletes) {
             if (_currentAthletes.Count == 0 && athletes.Count != 0) {
-                AskLoading(true);
                 // Show athletes saved in tournament data
                 StartCoroutine(AddRowsCoroutine(athletes));
                 // Save that list locally
                 _currentAthletes = athletes;
             } else if (_currentAthletes.Count != 0 && _currentAthletes != athletes) {
-                AskLoading(true);
                 // Reset all table content
                 _View.ResetAthletesList();
                 // Add all needed rows with the athlete information

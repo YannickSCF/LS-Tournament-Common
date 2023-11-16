@@ -38,8 +38,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
 
         #region Mono
         private void Awake() {
-            Init("xd"); // TO DELETE
-
             _breadcrumbView.EnablePrevNavigationButton(false);
         }
         protected override void OnEnable() {
@@ -95,7 +93,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             TournamentFormulaUtils.SetTournamentFormulas(_allTournamentFormulas, _customFormula);
 
             List<string> breadcrumbNames = new List<string>();
-            _allConfiguratorPanels = new List<PanelController>();
+            ResetConfigurator();
 
             foreach (PanelController configuratorPanelPrefab in _allConfiguratorPanelsPrefabs) {
                 PanelController newPanelController = Instantiate(configuratorPanelPrefab, _configurationContent);
@@ -115,6 +113,21 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         public void SetCallbacks(Action closedCallback, Action finishedCallback) {
             _onCloseAction = closedCallback;
             _onFinishAction = finishedCallback;
+        }
+
+        private void ResetConfigurator() {
+            _breadcrumbView.ResetBreadcrumb();
+
+            if (_allConfiguratorPanels != null) {
+                List<PanelController> auxConfiguratorPanels = new List<PanelController>(_allConfiguratorPanels);
+                foreach (PanelController auxConfiguratorPanel in auxConfiguratorPanels) {
+                    DestroyImmediate(auxConfiguratorPanel.gameObject);
+                }
+
+                _allConfiguratorPanels.Clear();
+            }
+
+            _allConfiguratorPanels = new List<PanelController>();
         }
 
         private void OnAskedLoading(PanelController panel, bool show) {

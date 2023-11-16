@@ -17,12 +17,14 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel {
         public delegate void AskLoadingEventDelegate(PanelController panel, bool show);
         public static event AskLoadingEventDelegate AskedLoading;
 
-        private static int loadingCount = 0;
-
         public enum PanelPosition { Left = -1, Center = 0, Right = 1 };
 
         protected bool _IsDataValidated = false;
         public bool IsDataValidated { get => _IsDataValidated; }
+
+        private static bool _isLoadingActive = false;
+        public static bool IsLoadingActive { get => _isLoadingActive; }
+        protected static bool _IsLoadingActive { set => _isLoadingActive = value; }
 
         public abstract string GetTitle();
         public abstract void ValidateAll(bool showErrorAdvices = true);
@@ -42,16 +44,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel {
         }
 
         protected void AskLoading(bool show) {
-            if (show) {
-                ++loadingCount;
-                AskedLoading?.Invoke(this, show);
-            } else {
-                --loadingCount;
-                if (loadingCount <= 0) {
-                    AskedLoading?.Invoke(this, show);
-                    loadingCount = 0;
-                }
-            }
+            AskedLoading?.Invoke(this, show);
+            _IsLoadingActive = show;
         }
     }
 
