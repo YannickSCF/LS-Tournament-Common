@@ -86,27 +86,29 @@ namespace YannickSCF.LSTournaments.Common {
             return typeOptions;
         }
 
-        public static Dictionary<AthleteInfoType, AthleteInfoStatus> GetAthleteInfoBase(TournamentType tournamentType) {
-            Dictionary<AthleteInfoType, AthleteInfoStatus> infoToShow = new Dictionary<AthleteInfoType, AthleteInfoStatus>();
-            Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));
-            foreach (Enum infoType in infoTypes) {
-                infoToShow[(AthleteInfoType)infoType] = AthleteInfoStatus.Active;
-            }
-
+        public static Dictionary<AthleteInfoType, AthleteInfoStatus> GetAthleteInfoBase(Dictionary<AthleteInfoType, AthleteInfoStatus> current, TournamentType tournamentType) {
             if (tournamentType == TournamentType.School ||
                 tournamentType == TournamentType.Academy ||
                 tournamentType == TournamentType.National) {
-                infoToShow[AthleteInfoType.Country] = AthleteInfoStatus.Hide;
-            }
-            if (tournamentType == TournamentType.School ||
-                tournamentType == TournamentType.Academy) {
-                infoToShow[AthleteInfoType.Academy] = AthleteInfoStatus.Hide;
-            }
-            if (tournamentType == TournamentType.School) {
-                infoToShow[AthleteInfoType.School] = AthleteInfoStatus.Hide;
+                current[AthleteInfoType.Country] = AthleteInfoStatus.Hide;
+            } else if (current[AthleteInfoType.Country] != AthleteInfoStatus.Disable) {
+                current[AthleteInfoType.Country] = AthleteInfoStatus.Active;
             }
 
-            return infoToShow;
+            if (tournamentType == TournamentType.School ||
+                tournamentType == TournamentType.Academy) {
+                current[AthleteInfoType.Academy] = AthleteInfoStatus.Hide;
+            } else if (current[AthleteInfoType.Academy] != AthleteInfoStatus.Disable) {
+                current[AthleteInfoType.Academy] = AthleteInfoStatus.Active;
+            }
+
+            if (tournamentType == TournamentType.School) {
+                current[AthleteInfoType.School] = AthleteInfoStatus.Hide;
+            } else if (current[AthleteInfoType.School] != AthleteInfoStatus.Disable) {
+                current[AthleteInfoType.School] = AthleteInfoStatus.Active;
+            }
+
+            return current;
         }
     }
 }

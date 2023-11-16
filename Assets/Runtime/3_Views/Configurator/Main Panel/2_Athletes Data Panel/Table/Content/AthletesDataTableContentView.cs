@@ -183,6 +183,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesDataPanel.Tabl
         public void EnableRowColumns(AthleteInfoType checkboxInfo, bool enable) {
             foreach (AthleteDataRowView row in _rowsActive) {
                 row.EnableRowColumn(checkboxInfo, enable);
+                row.SetColumnsAnchors(_columnsSizes);
             }
         }
         #endregion

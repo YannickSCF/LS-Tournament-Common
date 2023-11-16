@@ -49,7 +49,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel.BaseDataPanel {
         private void OnTypeChanged(int typeIndex) {
             _type = (TournamentType)typeIndex;
 
-            DataManager.Instance.AppData.SetAthletesInfoUsed(LSTournamentEnums.GetAthleteInfoBase(_type));
+            Dictionary<AthleteInfoType, AthleteInfoStatus> newInfoBase =
+                LSTournamentEnums.GetAthleteInfoBase(DataManager.Instance.AppData.GetAthletesInfoUsed(), _type);
+            DataManager.Instance.AppData.SetAthletesInfoUsed(newInfoBase);
 
             ValidateAll();
         }

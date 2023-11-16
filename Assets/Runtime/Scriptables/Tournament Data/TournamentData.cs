@@ -268,7 +268,7 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
                 }
             }
         }
-        
+
         private void ResetAthleteInfoType() {
             _athletesInfoUsed = new List<AthleteInfoUsed>();
             Array infoTypes = Enum.GetValues(typeof(AthleteInfoType));

@@ -63,6 +63,7 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel.AthletesDataPanel.Tabl
                 return false;
             }
 
+            _captionImage.color = new Color(1, 1, 1, 1);
             if (withoutNotify) {
                 _inputField.SetTextWithoutNotify(countryCode);
             } else {
