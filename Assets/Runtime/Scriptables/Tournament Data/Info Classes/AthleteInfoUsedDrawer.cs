@@ -3,6 +3,7 @@
  * Created:     13/11/2023
  **/
 
+#if UNITY_EDITOR
 // Dependencies
 using UnityEditor;
 using UnityEngine;
@@ -25,3 +26,4 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data.Objects {
         }
     }
 }
+#endif

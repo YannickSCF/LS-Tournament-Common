@@ -32,6 +32,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel {
         public abstract void InitPanel();
         public abstract void FinishPanel();
 
+        public virtual void ResetPanel() { }
+
         public virtual void MovePanel(PanelPosition position, bool moveInmediate = false) { }
 
         protected virtual void OnPanelMovedApart() {
@@ -64,6 +66,11 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel {
             _View.PanelCentered -= OnPanelCentered;
         }
         #endregion
+
+        public override void ResetPanel() {
+            base.ResetPanel();
+            _View.ResetView();
+        }
 
         public override void MovePanel(PanelPosition position, bool moveInmediate = false) {
             base.MovePanel(position);

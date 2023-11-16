@@ -79,7 +79,9 @@ namespace YannickSCF.LSTournaments.Common.Views.MainPanel {
             yield return new WaitForSeconds(WAIT_TO_HIDE_VALIDATION_ERROR);
             image.CrossFadeColor(Color.white, TIME_TO_HIDE_VALIDATION_ERROR, true, true);
         }
-    
+
+        public virtual void ResetView() { }
+
         public virtual void MovePanelLeft(bool moveInmediate = false) {
             if (!moveInmediate) {
                 StartCoroutine(MovePanel(_leftPosition));
