@@ -60,7 +60,7 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
         [SerializeField] private Vector2 _pouleCountMaxSize;
         [SerializeField] private Vector2 _pouleCountMinSize;
 
-        [SerializeField] private List<PouleDataModel> _data;
+        [SerializeField] private List<PouleDataModel> _poules;
 
         #region Poule Tournament Data Properties
         public PouleNamingType NamingInfo { get => _namingInfo; set => _namingInfo = value; }
@@ -108,7 +108,7 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
             }
         }
 
-        public List<PouleDataModel> Data { get => _data; set => _data = value; }
+        public List<PouleDataModel> Poules { get => _poules; set => _poules = value; }
 
         #endregion
 
@@ -309,7 +309,7 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
             _pouleCountMaxSize = Vector2.zero;
             _pouleCountMinSize = Vector2.zero;
             
-            _data.Clear();
+            _poules.Clear();
             // ---------------------
             _eliminationBracket.Clear();
             // ---------------------
