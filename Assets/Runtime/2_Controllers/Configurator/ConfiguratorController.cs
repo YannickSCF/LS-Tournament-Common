@@ -151,7 +151,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         }
 
         public void CloseConfigurator() {
-            DataManager.Instance.AppData.ResetData();
+            DataManager.Instance.ResetData();
             _allConfiguratorPanels[_panelIndex].ResetPanel();
             _onCloseAction?.Invoke();
         }
