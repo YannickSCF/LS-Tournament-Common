@@ -5,6 +5,7 @@
 
 // Dependencies
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -111,6 +112,8 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             _allConfiguratorPanels[0].InitPanel();
             _allConfiguratorPanels[0].MovePanel(PanelPosition.Center, true);
 
+            StartCoroutine(CreateSecondPanelCoroutine());
+
             for (int i = 0; i < _allConfiguratorPanelsPrefabs.Count; ++i) {
                 breadcrumbNames.Add(_allConfiguratorPanelsPrefabs[i].GetTitle());
             }
@@ -118,6 +121,15 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             // Set breadcrumb
             _breadcrumbView.SetBreadcrumb(breadcrumbNames);
             _breadcrumbView.UpdateCurrentCrumb(0);
+        }
+
+        private IEnumerator CreateSecondPanelCoroutine() {
+            yield return null;
+
+            if (_allConfiguratorPanelsPrefabs.Count > 1) {
+                PanelController newPanelController = Instantiate(_allConfiguratorPanelsPrefabs[1], _configurationContent);
+                _allConfiguratorPanels.Add(newPanelController);
+            }
         }
 
         public void SetCallbacks(Action closedCallback, Action finishedCallback) {
