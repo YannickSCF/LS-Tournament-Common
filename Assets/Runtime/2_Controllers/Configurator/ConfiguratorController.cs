@@ -6,7 +6,6 @@
 // Dependencies
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 // Custom dependencies
@@ -65,7 +64,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
                 return;
             }
 
-            if (clickedNext && _panelIndex >= _allConfiguratorPanels.Count - 1) {
+            if (clickedNext && _panelIndex >= _allConfiguratorPanelsPrefabs.Count - 1) {
                 _allConfiguratorPanels[_panelIndex].FinishPanel();
                 _onFinishAction?.Invoke();
                 return;
@@ -81,14 +80,27 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
                 --_panelIndex;
             }
 
-            _allConfiguratorPanels[_panelIndex].MovePanel(PanelPosition.Center);
-            _allConfiguratorPanels[_panelIndex].InitPanel();
+            CenterCurrentPanel();
+        }
 
-            _breadcrumbView.UpdateCurrentCrumb(_panelIndex);
+        private void CenterCurrentPanel() {
+            if (_panelIndex >= 0 && _panelIndex < _allConfiguratorPanelsPrefabs.Count) {
+                if (_panelIndex >= _allConfiguratorPanels.Count) {
+                    PanelController newPanelController = Instantiate(_allConfiguratorPanelsPrefabs[_panelIndex], _configurationContent);
+                    _allConfiguratorPanels.Add(newPanelController);
+                }
+
+                _allConfiguratorPanels[_panelIndex].MovePanel(PanelPosition.Center);
+                _allConfiguratorPanels[_panelIndex].InitPanel();
+
+                _breadcrumbView.UpdateCurrentCrumb(_panelIndex);
+            } else {
+                Debug.LogError("You are trying to access to an incorrect panel index!: There is no {_panelIndex} panels in configurator.");
+            }
         }
         #endregion
 
-        public override async void Init(string windowId) {
+        public override void Init(string windowId) {
             base.Init(windowId);
 
             List<string> breadcrumbNames = new List<string>();
@@ -106,16 +118,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
             // Set breadcrumb
             _breadcrumbView.SetBreadcrumb(breadcrumbNames);
             _breadcrumbView.UpdateCurrentCrumb(0);
-
-            await InstantiateOtherPanels();
-        }
-
-        private async Task InstantiateOtherPanels() {
-            await Task.Delay(1000);
-            for (int i = 1; i < _allConfiguratorPanelsPrefabs.Count; ++i) {
-                PanelController newPanelController = Instantiate(_allConfiguratorPanelsPrefabs[i], _configurationContent);
-                _allConfiguratorPanels.Add(newPanelController);
-            }
         }
 
         public void SetCallbacks(Action closedCallback, Action finishedCallback) {
