@@ -56,6 +56,9 @@ namespace YannickSCF.LSTournaments.Common.Controllers.MainPanel {
         [SerializeField] protected T _View;
 
         #region Mono
+        private void Awake() {
+            MovePanel(PanelPosition.Right, true);
+        }
         protected virtual void OnEnable() {
             _View.PanelMovedApart += OnPanelMovedApart;
             _View.PanelCentered += OnPanelCentered;

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea546a798974544abfc9dfd4567d70d, type: 3}
   m_Name: Tournament Data
   m_EditorClassIdentifier: 
-  _tournamentName: 
+  _tournamentName: 12345
   _tournamentType: 0
-  _tournamentFormulaName: 
+  _tournamentFormulaName: Alpha
   _seed: 0
   _namingInfo: 0
   _roundsOfPoules: 0
@@ -22,8 +22,30 @@ MonoBehaviour:
   _fillerSubtypeInfo: 0
   _pouleCountMaxSize: {x: 0, y: 0}
   _pouleCountMinSize: {x: 0, y: 0}
-  _data: []
+  _poules: []
   _eliminationBracket: []
-  _athletesInfoUsed: []
+  _athletesInfoUsed:
+  - _info: 0
+    _status: 0
+  - _info: 1
+    _status: 0
+  - _info: 2
+    _status: 0
+  - _info: 3
+    _status: 0
+  - _info: 4
+    _status: 0
+  - _info: 5
+    _status: 0
+  - _info: 6
+    _status: 0
+  - _info: 7
+    _status: 0
+  - _info: 8
+    _status: 1
+  - _info: 9
+    _status: 1
+  - _info: 10
+    _status: 1
   _athletes: []
   _athletesStats: []

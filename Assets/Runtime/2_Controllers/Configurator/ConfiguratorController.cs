@@ -6,13 +6,12 @@
 // Dependencies
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 // Custom dependencies
 using YannickSCF.GeneralApp.Controller.UI.Windows;
 using YannickSCF.LSTournaments.Common.Controllers.MainPanel;
-using YannickSCF.LSTournaments.Common.Scriptables.Data;
-using YannickSCF.LSTournaments.Common.Scriptables.Formulas;
 using YannickSCF.LSTournaments.Common.Views;
 using YannickSCF.LSTournaments.Common.Views.Breadcrumb;
 using static YannickSCF.LSTournaments.Common.Controllers.MainPanel.PanelController;
@@ -22,10 +21,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
 
         [SerializeField] private GameObject _loadingPanel;
         [SerializeField] private Button _closeButton;
-
-        [Header("Tournament Formulas")]
-        [SerializeField] private List<TournamentFormula> _allTournamentFormulas;
-        [SerializeField] private TournamentFormula _customFormula;
 
         [Header("Configurator pages")]
         [SerializeField] private BreadcrumbView _breadcrumbView;
@@ -40,7 +35,6 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
 
         #region Mono
         private void Awake() {
-            Init("");
             _breadcrumbView.EnablePrevNavigationButton(false);
         }
         protected override void OnEnable() {
@@ -94,29 +88,34 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
         }
         #endregion
 
-        public override void Init(string windowId) {
+        public override async void Init(string windowId) {
             base.Init(windowId);
-
-            TournamentFormulaUtils.SetTournamentFormulas(_allTournamentFormulas, _customFormula);
 
             List<string> breadcrumbNames = new List<string>();
             ResetConfigurator();
 
-            for (int i = 0; i < _allConfiguratorPanelsPrefabs.Count; ++i) {
-                PanelController newPanelController = Instantiate(_allConfiguratorPanelsPrefabs[i], _configurationContent);
-                breadcrumbNames.Add(newPanelController.GetTitle());
-                if (i > 0) {
-                    newPanelController.MovePanel(PanelPosition.Right, true);
-                }
-
-                _allConfiguratorPanels.Add(newPanelController);
-            }
-
+            PanelController newPanelController = Instantiate(_allConfiguratorPanelsPrefabs[0], _configurationContent);
+            _allConfiguratorPanels.Add(newPanelController);
             _allConfiguratorPanels[0].InitPanel();
             _allConfiguratorPanels[0].MovePanel(PanelPosition.Center, true);
+
+            for (int i = 0; i < _allConfiguratorPanelsPrefabs.Count; ++i) {
+                breadcrumbNames.Add(_allConfiguratorPanelsPrefabs[i].GetTitle());
+            }
+
             // Set breadcrumb
             _breadcrumbView.SetBreadcrumb(breadcrumbNames);
             _breadcrumbView.UpdateCurrentCrumb(0);
+
+            await InstantiateOtherPanels();
+        }
+
+        private async Task InstantiateOtherPanels() {
+            await Task.Delay(1000);
+            for (int i = 1; i < _allConfiguratorPanelsPrefabs.Count; ++i) {
+                PanelController newPanelController = Instantiate(_allConfiguratorPanelsPrefabs[i], _configurationContent);
+                _allConfiguratorPanels.Add(newPanelController);
+            }
         }
 
         public void SetCallbacks(Action closedCallback, Action finishedCallback) {

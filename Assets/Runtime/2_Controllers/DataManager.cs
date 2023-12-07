@@ -14,6 +14,7 @@ namespace YannickSCF.LSTournaments.Common.Controllers {
 
         private const string DRAW_CONFIGURATION_PLAYER_PREF = "Tournament-Data_";
 
+        [Header("Tournament Data")]
         [SerializeField] private TournamentData _appData;
         [SerializeField, Range(0, 254), Tooltip("When value is 0, it means infinite saves.")]
         private byte _numberOfSaves;

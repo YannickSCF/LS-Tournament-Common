@@ -175,7 +175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Load from file...
+  m_text: "A\xF1adir atletas desde..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d7ca675a6a37e364f88f01ce8e8ce19d, type: 2}
   m_sharedMaterial: {fileID: 1046373433071155173, guid: d7ca675a6a37e364f88f01ce8e8ce19d, type: 2}
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.7
+  m_fontSize: 18.6
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -643,8 +643,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 1.1, y: 0}
+  m_AnchorMax: {x: 2.1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1185,8 +1185,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6079767615116639087, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Sable Largo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079767615116639087, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 10
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079767615239036108, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Dagas
       objectReference: {fileID: 0}
     - target: {fileID: 6079767615239036108, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
@@ -1197,8 +1205,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6079767615786869386, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: "Bast\xF3n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079767615786869386, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 10
+      value: 9.8
       objectReference: {fileID: 0}
     - target: {fileID: 6079767616108769512, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_Name
@@ -1301,44 +1313,88 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7594232480908320147, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Fecha de inicio
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232480908320147, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232481190818712, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Academia
       objectReference: {fileID: 0}
     - target: {fileID: 7594232481190818712, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232481279583202, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Escuela
       objectReference: {fileID: 0}
     - target: {fileID: 7594232481279583202, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232481314212791, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Estilos
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232481318178339, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Color de sable
       objectReference: {fileID: 0}
     - target: {fileID: 7594232481318178339, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232481541000371, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: "Pa\xEDs"
       objectReference: {fileID: 0}
     - target: {fileID: 7594232481541000371, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232481854283759, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Fecha de nacimiento
       objectReference: {fileID: 0}
     - target: {fileID: 7594232481854283759, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232482042510146, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Tier
       objectReference: {fileID: 0}
     - target: {fileID: 7594232482042510146, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232482224892448, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Nombre
       objectReference: {fileID: 0}
     - target: {fileID: 7594232482224892448, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232482467621486, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Rango
       objectReference: {fileID: 0}
     - target: {fileID: 7594232482467621486, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594232482666024028, guid: 24c23cd3786721340b984ce707b42171, type: 3}
+      propertyPath: m_text
+      value: Apellido
       objectReference: {fileID: 0}
     - target: {fileID: 7594232482666024028, guid: 24c23cd3786721340b984ce707b42171, type: 3}
       propertyPath: m_fontSize
-      value: 22.5
+      value: 20.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24c23cd3786721340b984ce707b42171, type: 3}
