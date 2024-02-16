@@ -51,6 +51,10 @@ namespace YannickSCF.LSTournaments.Common {
     public enum WarRankingType { TBD, LS, Fencing, Style }
     public enum MixedRankingType { TBD, PrefStyle, PrefWar }
 
+    // -------------- Tournament Elements --------------
+
+    public enum CombatCards { White, Yellow, Red, Black }
+
     public static class LSTournamentEnums {
 
         public static string GetEnumsLocalization<T>(T enumValue) {

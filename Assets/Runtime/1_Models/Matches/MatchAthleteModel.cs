@@ -44,7 +44,20 @@ namespace YannickSCF.LSTournaments.Common.Models.Matches {
                 totalStyle += points;
             }
 
+            if (totalStyle == 0)
+                return 0f;
             return totalStyle / _stylePoints.Count;
+        }
+
+        public AthleteCards GetCards() {
+            AthleteCards res;
+
+            res.White = _whiteCards;
+            res.Yellow = _yellowCards;
+            res.Red = _redCard;
+            res.Black = _blackCard;
+
+            return res;
         }
     }
 }

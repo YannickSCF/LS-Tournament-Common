@@ -40,11 +40,11 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
 
     public static class PouleUtils {
         // ENUMS
-        private enum PouleSize { Three = 3, Four = 4, Five = 5, Six = 6, Seven = 7, Eight = 8, Nine = 9, Ten = 10, Eleven = 11 };
+        private enum PouleSize { Three = 3, Four = 4, Five = 5, Six = 6, Seven = 7, Eight = 8, Nine = 9, Ten = 10/*, Eleven = 11 */};
         // CONSTANTS
         private const int FIRST_LETTER_CHAR = 65;
         private const int DEFAULT_MIN_POULE_SIZE = 3;
-        private const int DEFAULT_MAX_POULE_SIZE = 11;
+        private const int DEFAULT_MAX_POULE_SIZE = 10; // 11;
 
         #region Create Poules - METHODS
         public static List<PouleDataModel> CreatePoules(
@@ -335,8 +335,8 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
                     return POULE_OF_NINE;
                 case PouleSize.Ten:
                     return POULE_OF_TEN;
-                case PouleSize.Eleven:
-                    return POULE_OF_ELEVEN;
+                //case PouleSize.Eleven:
+                //    return POULE_OF_ELEVEN;
                 default:
                     return null;
             }
@@ -360,8 +360,8 @@ namespace YannickSCF.LSTournaments.Common.Tools.Poule {
                     return POULE_OF_NINE.GetLength(0);
                 case PouleSize.Ten:
                     return POULE_OF_TEN.GetLength(0);
-                case PouleSize.Eleven:
-                    return POULE_OF_ELEVEN.GetLength(0);
+                //case PouleSize.Eleven:
+                //    return POULE_OF_ELEVEN.GetLength(0);
                 default:
                     return 0;
             }

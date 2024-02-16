@@ -286,6 +286,10 @@ namespace YannickSCF.LSTournaments.Common.Scriptables.Data {
         public AthleteInfoModel GetAthleteById(string athleteId) {
             return _athletes.FirstOrDefault(x => x.Id == athleteId);
         }
+        public AthleteBasicInfo GetAthleteBasicInfoById(string athleteId) {
+            AthleteInfoModel athlete = GetAthleteById(athleteId);
+            return new AthleteBasicInfo(athlete.GetFullName(), /*athlete.Country*/ null, athlete.Academy);
+        }
         #endregion
 
         private void OnEnable() {

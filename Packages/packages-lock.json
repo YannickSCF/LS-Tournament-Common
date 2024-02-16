@@ -101,7 +101,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "469d4a1e166483e8a67579dc31aa09701d2047a6"
+      "hash": "e8cb70714c2147a500f6cae4f1dff5dd3f8711b9"
     },
     "com.yannickscf.project-basecode-template": {
       "version": "https://github.com/YannickSCF/project-basecode-template.git?path=/Assets",
@@ -110,7 +110,7 @@
       "dependencies": {
         "com.unity.localization": "1.3.2"
       },
-      "hash": "ba2a8fc701ac385d2ba72b3a5ba33fcae05d9a48"
+      "hash": "91769fddf762ff5efd6da9c2c20b7a0f2bda9ad4"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

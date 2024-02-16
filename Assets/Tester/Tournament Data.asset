@@ -1,0 +1,790 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea546a798974544abfc9dfd4567d70d, type: 3}
+  m_Name: Tournament Data
+  m_EditorClassIdentifier: 
+  _tournamentName: Test CA 23
+  _tournamentType: 4
+  _tournamentFormulaName: Custom
+  _seed: 0
+  _namingInfo: 0
+  _roundsOfPoules: 1
+  _fillerTypeInfo: 2
+  _fillerSubtypeInfo: 0
+  _pouleCountMaxSize: {x: 1, y: 8}
+  _pouleCountMinSize: {x: 0, y: 7}
+  _poules:
+  - _name: Poule A
+    _athletesIds:
+    - f058ab36-5e36-4c0d-ba8c-eb3ce90fc48e
+    - f53458bd-e4ab-4103-910e-a963db1e2b96
+    - 31f1b607-e4a4-41e0-b095-065e92648be8
+    - 99acf125-f564-4f08-b8a8-b9f6a61fd7af
+    - a981cf29-f18f-4b34-a443-16478069a20a
+    - d25e1b82-e5c3-45d2-a358-6bfc456cdf18
+    - a0c7984e-3e3f-41df-aa5d-e255cfb37b30
+    - 9f46e76d-5c9d-4da3-bc5a-d01256b799fb
+    _matches:
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: f53458bd-e4ab-4103-910e-a963db1e2b96
+        _pointsInFavor: 2
+        _pointsAgainst: 1
+        _stylePoints:
+        - 7.1
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: 31f1b607-e4a4-41e0-b095-065e92648be8
+        _pointsInFavor: 1
+        _pointsAgainst: 2
+        _stylePoints:
+        - 6.3
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 1
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: f058ab36-5e36-4c0d-ba8c-eb3ce90fc48e
+        _pointsInFavor: 1
+        _pointsAgainst: 1
+        _stylePoints:
+        - 6.7
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: a981cf29-f18f-4b34-a443-16478069a20a
+        _pointsInFavor: 1
+        _pointsAgainst: 1
+        _stylePoints:
+        - 6.7
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 1
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: a0c7984e-3e3f-41df-aa5d-e255cfb37b30
+        _pointsInFavor: 1
+        _pointsAgainst: 2
+        _stylePoints:
+        - 6.7
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: 99acf125-f564-4f08-b8a8-b9f6a61fd7af
+        _pointsInFavor: 2
+        _pointsAgainst: 1
+        _stylePoints:
+        - 6.7
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 1
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: d25e1b82-e5c3-45d2-a358-6bfc456cdf18
+        _pointsInFavor: 0
+        _pointsAgainst: 3
+        _stylePoints:
+        - 5.9
+        _whiteCards: 0
+        _yellowCards: 1
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: 9f46e76d-5c9d-4da3-bc5a-d01256b799fb
+        _pointsInFavor: 3
+        _pointsAgainst: 0
+        _stylePoints:
+        - 6.3
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 1
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: f058ab36-5e36-4c0d-ba8c-eb3ce90fc48e
+        _pointsInFavor: 1
+        _pointsAgainst: 2
+        _stylePoints:
+        - 6.5
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: f53458bd-e4ab-4103-910e-a963db1e2b96
+        _pointsInFavor: 2
+        _pointsAgainst: 1
+        _stylePoints:
+        - 6.9
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 1
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 31f1b607-e4a4-41e0-b095-065e92648be8
+        _pointsInFavor: 1
+        _pointsAgainst: 2
+        _stylePoints:
+        - 6.3
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: 99acf125-f564-4f08-b8a8-b9f6a61fd7af
+        _pointsInFavor: 2
+        _pointsAgainst: 1
+        _stylePoints:
+        - 6.7
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 1
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: a981cf29-f18f-4b34-a443-16478069a20a
+        _pointsInFavor: 2
+        _pointsAgainst: 1
+        _stylePoints:
+        - 6.3
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: d25e1b82-e5c3-45d2-a358-6bfc456cdf18
+        _pointsInFavor: 1
+        _pointsAgainst: 2
+        _stylePoints:
+        - 6.3
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 1
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 9f46e76d-5c9d-4da3-bc5a-d01256b799fb
+        _pointsInFavor: 1
+        _pointsAgainst: 2
+        _stylePoints:
+        - 6.3
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: a0c7984e-3e3f-41df-aa5d-e255cfb37b30
+        _pointsInFavor: 2
+        _pointsAgainst: 1
+        _stylePoints:
+        - 6.3
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 1
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 99acf125-f564-4f08-b8a8-b9f6a61fd7af
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: f058ab36-5e36-4c0d-ba8c-eb3ce90fc48e
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: a981cf29-f18f-4b34-a443-16478069a20a
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: f53458bd-e4ab-4103-910e-a963db1e2b96
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 9f46e76d-5c9d-4da3-bc5a-d01256b799fb
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: 31f1b607-e4a4-41e0-b095-065e92648be8
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: d25e1b82-e5c3-45d2-a358-6bfc456cdf18
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: a0c7984e-3e3f-41df-aa5d-e255cfb37b30
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 99acf125-f564-4f08-b8a8-b9f6a61fd7af
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: f53458bd-e4ab-4103-910e-a963db1e2b96
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 9f46e76d-5c9d-4da3-bc5a-d01256b799fb
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: f058ab36-5e36-4c0d-ba8c-eb3ce90fc48e
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: a0c7984e-3e3f-41df-aa5d-e255cfb37b30
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: a981cf29-f18f-4b34-a443-16478069a20a
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 31f1b607-e4a4-41e0-b095-065e92648be8
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: d25e1b82-e5c3-45d2-a358-6bfc456cdf18
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: f53458bd-e4ab-4103-910e-a963db1e2b96
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: 9f46e76d-5c9d-4da3-bc5a-d01256b799fb
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: a981cf29-f18f-4b34-a443-16478069a20a
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: 99acf125-f564-4f08-b8a8-b9f6a61fd7af
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: d25e1b82-e5c3-45d2-a358-6bfc456cdf18
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: f058ab36-5e36-4c0d-ba8c-eb3ce90fc48e
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 31f1b607-e4a4-41e0-b095-065e92648be8
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: a0c7984e-3e3f-41df-aa5d-e255cfb37b30
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 99acf125-f564-4f08-b8a8-b9f6a61fd7af
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: 9f46e76d-5c9d-4da3-bc5a-d01256b799fb
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: f53458bd-e4ab-4103-910e-a963db1e2b96
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: d25e1b82-e5c3-45d2-a358-6bfc456cdf18
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 31f1b607-e4a4-41e0-b095-065e92648be8
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: a981cf29-f18f-4b34-a443-16478069a20a
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: f058ab36-5e36-4c0d-ba8c-eb3ce90fc48e
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: a0c7984e-3e3f-41df-aa5d-e255cfb37b30
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 99acf125-f564-4f08-b8a8-b9f6a61fd7af
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: d25e1b82-e5c3-45d2-a358-6bfc456cdf18
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: 9f46e76d-5c9d-4da3-bc5a-d01256b799fb
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: a981cf29-f18f-4b34-a443-16478069a20a
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: a0c7984e-3e3f-41df-aa5d-e255cfb37b30
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: f53458bd-e4ab-4103-910e-a963db1e2b96
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+    - _matchType:
+        _phase: 0
+        _round: 0
+      _firstAthlete:
+        _athleteId: f058ab36-5e36-4c0d-ba8c-eb3ce90fc48e
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _secondAthlete:
+        _athleteId: 31f1b607-e4a4-41e0-b095-065e92648be8
+        _pointsInFavor: 0
+        _pointsAgainst: 0
+        _stylePoints: []
+        _whiteCards: 0
+        _yellowCards: 0
+        _redCard: 0
+        _blackCard: 0
+      _isFinished: 0
+  _eliminationBracket: []
+  _athletesInfoUsed:
+  - _info: 0
+    _status: 0
+  - _info: 1
+    _status: 0
+  - _info: 2
+    _status: 0
+  - _info: 3
+    _status: 0
+  - _info: 4
+    _status: 0
+  - _info: 5
+    _status: 0
+  - _info: 6
+    _status: 0
+  - _info: 7
+    _status: 2
+  - _info: 8
+    _status: 1
+  - _info: 9
+    _status: 1
+  - _info: 10
+    _status: 1
+  _athletes:
+  - _id: f058ab36-5e36-4c0d-ba8c-eb3ce90fc48e
+    _name: Sara
+    _surname: Magnifico
+    _birthDate: 
+    _country: IT
+    _academy: Alpha
+    _school: Milan
+    _rank: 3
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _startDate: 
+    _tier: 0
+  - _id: f53458bd-e4ab-4103-910e-a963db1e2b96
+    _name: Carlos
+    _surname: Jimenez Moyano
+    _birthDate: 
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 3
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _startDate: 
+    _tier: 0
+  - _id: 31f1b607-e4a4-41e0-b095-065e92648be8
+    _name: Barthelemy
+    _surname: Caron
+    _birthDate: 
+    _country: FR
+    _academy: Paris
+    _school: Paris
+    _rank: 3
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _startDate: 
+    _tier: 0
+  - _id: 99acf125-f564-4f08-b8a8-b9f6a61fd7af
+    _name: Yannick
+    _surname: Santa Cruz Feuillias
+    _birthDate: 
+    _country: ES
+    _academy: Atlas
+    _school: Barcelona
+    _rank: 2
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _startDate: 
+    _tier: 0
+  - _id: a981cf29-f18f-4b34-a443-16478069a20a
+    _name: Marco
+    _surname: Brondolo
+    _birthDate: 
+    _country: IT
+    _academy: Alpha
+    _school: Turin
+    _rank: 2
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _startDate: 
+    _tier: 0
+  - _id: d25e1b82-e5c3-45d2-a358-6bfc456cdf18
+    _name: Frederic
+    _surname: Coschemique
+    _birthDate: 
+    _country: FR
+    _academy: Paris
+    _school: Paris
+    _rank: 2
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _startDate: 
+    _tier: 0
+  - _id: a0c7984e-3e3f-41df-aa5d-e255cfb37b30
+    _name: Seb
+    _surname: Ferris
+    _birthDate: 
+    _country: GB
+    _academy: Manchester
+    _school: Manchester
+    _rank: 2
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _startDate: 
+    _tier: 0
+  - _id: 9f46e76d-5c9d-4da3-bc5a-d01256b799fb
+    _name: Aaron
+    _surname: Spierin
+    _birthDate: 
+    _country: IE
+    _academy: Dublin
+    _school: Dublin
+    _rank: 2
+    _styles: 00000000
+    _saberColor: {r: 0, g: 0, b: 0, a: 0}
+    _startDate: 
+    _tier: 0
+  _athletesStats: []

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 // Custom dependencies
 using YannickSCF.LSTournaments.Common.Models.Matches;
+using YannickSCF.LSTournaments.Common.Tools.Poule;
 
 namespace YannickSCF.LSTournaments.Common.Models.Poules {
     [System.Serializable]
@@ -20,11 +21,6 @@ namespace YannickSCF.LSTournaments.Common.Models.Poules {
         #region Properties
         public string Name { get => _name; }
         public List<string> AthletesIds { get => _athletesIds; }
-
-        internal object OrderBy(Func<object, object> p) {
-            throw new NotImplementedException();
-        }
-
         public List<MatchModel> Matches { get => _matches; }
         #endregion
 
@@ -47,7 +43,16 @@ namespace YannickSCF.LSTournaments.Common.Models.Poules {
         #endregion
 
         public void CreateMatches() {
-            // TODO
+            int[,] matchesOrder = PouleUtils.GetMatchesOrder(_athletesIds.Count);
+            _matches = new List<MatchModel>();
+
+            for(int i = 0; i < matchesOrder.GetLength(0); ++i) {
+                string firstAthleteId = _athletesIds[matchesOrder[i, 0] - 1];
+                string secondAthleteId = _athletesIds[matchesOrder[i, 1] - 1];
+
+                MatchModel newMatch = new MatchModel(new MatchType(), firstAthleteId, secondAthleteId);
+                _matches.Add(newMatch);
+            }
         }
     }
 }

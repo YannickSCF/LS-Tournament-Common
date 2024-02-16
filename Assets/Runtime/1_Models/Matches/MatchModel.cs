@@ -15,6 +15,8 @@ namespace YannickSCF.LSTournaments.Common.Models.Matches {
         [SerializeField] private MatchAthleteModel _firstAthlete;
         [SerializeField] private MatchAthleteModel _secondAthlete;
 
+        [SerializeField] private bool _isFinished;
+
         public MatchModel(MatchType type, string firstAthleteId, string secondAthleteId) {
             _matchType = type;
             _firstAthlete = new MatchAthleteModel(firstAthleteId);
@@ -31,6 +33,7 @@ namespace YannickSCF.LSTournaments.Common.Models.Matches {
 
         public MatchAthleteModel FirstAthlete { get => _firstAthlete; }
         public MatchAthleteModel SecondAthlete { get => _secondAthlete; }
+        public bool IsFinished { get => _isFinished; set => _isFinished = value; }
 
         public bool IsATie() {
             return _firstAthlete.PointsInFavor == _secondAthlete.PointsInFavor;
